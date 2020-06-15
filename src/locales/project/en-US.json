@@ -1,0 +1,10 @@
+{
+  "common": {
+    "pageTitle": "Admin"
+  },
+  "nav": {
+    "home": {
+      "name": "Homepage"
+    }
+  }
+}

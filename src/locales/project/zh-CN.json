@@ -1,0 +1,10 @@
+{
+  "common": {
+    "pageTitle": "管理中心"
+  },
+  "nav": {
+    "home": {
+      "name": "主页"
+    }
+  }
+}
