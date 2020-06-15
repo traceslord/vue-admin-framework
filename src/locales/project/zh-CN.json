@@ -1,6 +1,8 @@
 {
   "common": {
-    "pageTitle": "管理中心"
+    "pageTitle": "管理中心",
+    "login": "登录",
+    "logout": "登出"
   },
   "nav": {
     "home": {

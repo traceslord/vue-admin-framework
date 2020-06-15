@@ -105,7 +105,21 @@
     <div class="page-right-container">
       <div class="page-header">
         <div class="page-header-left"></div>
-        <div class="page-header-middle"></div>
+        <div class="page-header-middle">
+          <span v-for="(lang, index) in supportedLangs" :key="index">
+            <el-link
+              :type="$i18n.locale === lang ? 'primary' : ''"
+              :underline="false"
+              @click="changeLocale(lang)"
+            >
+              {{ langs[lang] }}
+            </el-link>
+            <el-divider
+              direction="vertical"
+              v-if="index !== supportedLangs.length - 1"
+            ></el-divider>
+          </span>
+        </div>
         <el-dropdown style="height: 100%" @command="handleCommand">
           <div class="page-header-right">
             <img v-if="userAvatar" class="user-avatar" :src="userAvatar" />
@@ -118,8 +132,10 @@
             <i class="el-icon-arrow-down"></i>
           </div>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item icon="el-icon-video-pause" command="handleLogout"
-              >登出</el-dropdown-item
+            <el-dropdown-item
+              icon="el-icon-video-pause"
+              command="handleLogout"
+              >{{ $t("common.logout") }}</el-dropdown-item
             >
           </el-dropdown-menu>
         </el-dropdown>
@@ -136,6 +152,7 @@
 <script>
 import { mapState } from "vuex";
 import routesAll from "@/router/routes";
+import { SUPPORTED_LANGS, setLocale } from "@/locales/i18n";
 
 export default {
   data() {
@@ -145,7 +162,13 @@ export default {
       navActiveTextColor: "",
       navDefaultActive: this.$route.name,
       navRoutes: [],
-      collapse: false
+      collapse: false,
+      supportedLangs: SUPPORTED_LANGS,
+      langs: {
+        "en-US": "English",
+        "zh-CN": "中文",
+        "fr-FR": "Français"
+      }
     };
   },
   computed: {
@@ -220,6 +243,12 @@ export default {
     },
     handleLogout() {
       this.$store.dispatch("logout");
+    },
+    changeLocale(lang) {
+      if (this.$i18n.locale === lang) return;
+      // this.$i18n.locale = lang;
+      setLocale(lang);
+      this.$router.go(0);
     }
   }
 };

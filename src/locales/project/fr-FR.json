@@ -1,6 +1,8 @@
 {
   "common": {
-    "pageTitle": "Admin"
+    "pageTitle": "Admin",
+    "login": "Connexion",
+    "logout": "Se déconnecter"
   },
   "nav": {
     "home": {
