@@ -4,6 +4,11 @@
     "login": "登录",
     "logout": "登出"
   },
+  "api": {
+    "forbidden": "没有权限！",
+    "serverError": "服务器发送错误，请稍后再试",
+    "timeout": "网络超时"
+  },
   "nav": {
     "home": {
       "name": "主页"

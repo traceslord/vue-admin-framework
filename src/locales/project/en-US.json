@@ -4,6 +4,11 @@
     "login": "Log in",
     "logout": "Log out"
   },
+  "api": {
+    "forbidden": "No permissions!",
+    "serverError": "The server sent an error, please try again later",
+    "timeout": "Network timeout"
+  },
   "nav": {
     "home": {
       "name": "Homepage"

@@ -4,6 +4,11 @@
     "login": "Connexion",
     "logout": "Se déconnecter"
   },
+  "api": {
+    "forbidden": "Pas de permis!",
+    "serverError": "Le serveur a envoyé une erreur, essayez de nouveau plus tard.",
+    "timeout": "Temps d’attente du réseau"
+  },
   "nav": {
     "home": {
       "name": "Page d'accueil"
