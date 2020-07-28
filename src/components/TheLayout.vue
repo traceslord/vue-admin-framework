@@ -1,20 +1,25 @@
 <template>
   <div class="page">
-    <div class="page-left-container" :style="{ width: siderWidth }">
+    <div
+      class="page-left-container"
+      :style="[{ width: siderWidth, backgroundColor: navBackgroundColor }]"
+    >
       <div class="page-sidebar">
         <div class="sidebar-header">
-          <img class="sidebar-header-logo" src="@/assets/images/logo.png" />
+          <img
+            class="sidebar-header-logo"
+            :style="collapse ? 'margin-left: 16px' : 'margin-left: 20px'"
+            src="@/assets/images/logo.png"
+          />
+          <span v-show="!collapse" class="sidebar-header-text">超级后台</span>
         </div>
-        <div
-          class="sidebar-body"
-          :style="{ backgroundColor: navBackgroundColor }"
-        >
+        <div class="sidebar-body">
           <el-scrollbar class="scrollbar-section">
             <el-menu
               :background-color="navBackgroundColor"
               :text-color="navTextColor"
               :active-text-color="navActiveTextColor"
-              :default-active="navDefaultActive"
+              :default-active="$route.name"
               :router="true"
               :collapse="collapse"
             >
@@ -72,7 +77,16 @@
                       :index="item.name"
                     >
                       <template slot="title">
-                        <span class="fa-diamond"></span>
+                        <i
+                          v-if="item.meta.nav.icon"
+                          :class="item.meta.nav.icon"
+                        ></i>
+                        <icon-svg
+                          v-else-if="item.meta.nav.svg"
+                          :svg-class="item.meta.nav.svg.class"
+                          :svg-name="item.meta.nav.svg.name"
+                        ></icon-svg>
+                        <span v-else class="fa-diamond"></span>
                         <span>{{ item.meta.nav.title }}</span>
                       </template>
                       <el-menu-item
@@ -160,7 +174,6 @@ export default {
       navBackgroundColor: "#141f29",
       navTextColor: "#EEE",
       navActiveTextColor: "",
-      navDefaultActive: this.$route.name,
       navRoutes: [],
       collapse: false,
       supportedLangs: SUPPORTED_LANGS,
@@ -286,25 +299,32 @@ export default {
     flex-direction: column;
     width: 246px;
     transition: all 0.2s ease-out;
+    box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
     .page-sidebar {
       flex: 1;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
       .sidebar-header {
-        z-index: 102;
-        flex: none;
+        display: flex;
+        align-items: center;
         height: 48px;
-        background: #fff;
         .sidebar-header-logo {
           margin: 8px 12px 8px 20px;
           height: 32px;
+          transition: all 0.2s linear;
+        }
+        .sidebar-header-text {
+          flex: none;
+          font-size: 22px;
+          font-weight: 500;
+          color: #fff;
         }
       }
       .sidebar-body {
         flex: 1;
         height: 0;
         overflow: auto;
-        box-shadow: 2px 2px 6px rgba(0, 21, 41, 0.35);
       }
       .sidebar-footer {
         flex: none;
