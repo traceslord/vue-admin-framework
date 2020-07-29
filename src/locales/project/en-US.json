@@ -4,6 +4,12 @@
     "login": "Log in",
     "logout": "Log out"
   },
+  "success": {
+    "format": "{attribute} successfully"
+  },
+  "error": {
+    "login": "The format of mobile phone number is wrong, please fill in again."
+  },
   "api": {
     "forbidden": "No permissions!",
     "serverError": "The server sent an error, please try again later",
@@ -12,6 +18,12 @@
   "nav": {
     "home": {
       "name": "Homepage"
+    }
+  },
+  "login": {
+    "form": {
+      "phone": "Mobile phone number",
+      "password": "Password"
     }
   }
 }

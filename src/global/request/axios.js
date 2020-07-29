@@ -9,8 +9,8 @@ axiosInstance.defaults.timeout = 20000;
 axiosInstance.interceptors.request.use(
   config => {
     const newConfig = { ...config };
-    const TOKEN = localStorage.getItem("admin_token");
-    const lang = localStorage.getItem("locale");
+    const TOKEN = localStorage.getItem("jk_admin_token");
+    const lang = localStorage.getItem("jk_locale");
     // const offset = -new Date().getTimezoneOffset() / 60;
     // const timezone = offset < 0 ? "UTC" + offset : "UTC+" + offset;
     if (TOKEN) {
@@ -32,7 +32,7 @@ const handleErrorRequest = error => {
     const { errors } = data;
     const message = data.message || i18n.t("api.serverError");
     if (status === 401) {
-      localStorage.removeItem("admin_token");
+      localStorage.removeItem("jk_admin_token");
     } else if (status === 403) {
       Message.error(i18n.t("api.forbidden"));
     } else if (status === 419) {

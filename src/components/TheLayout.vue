@@ -11,7 +11,7 @@
             :style="collapse ? 'margin-left: 16px' : 'margin-left: 20px'"
             src="@/assets/images/logo.png"
           />
-          <span v-show="!collapse" class="sidebar-header-text">超级后台</span>
+          <span v-show="!collapse" class="sidebar-header-text">管理中心</span>
         </div>
         <div class="sidebar-body">
           <el-scrollbar class="scrollbar-section">
@@ -142,7 +142,7 @@
               class="user-avatar"
               src="@/assets/images/default-avatar.png"
             />
-            <span class="user-name">{{ userName }}</span>
+            <span class="user-name">{{ userName || userPhone }}</span>
             <i class="el-icon-arrow-down"></i>
           </div>
           <el-dropdown-menu slot="dropdown">
@@ -185,7 +185,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["userAvatar", "userName", "authPermissions"]),
+    ...mapState(["userPhone", "userName", "userAvatar", "authPermissions"]),
     siderWidth() {
       return this.collapse ? "64px" : "227px";
     }
@@ -255,7 +255,8 @@ export default {
       this[command]();
     },
     handleLogout() {
-      this.$store.dispatch("logout");
+      localStorage.removeItem("jk_admin_token");
+      this.$router.replace({ name: "AccountLogin" });
     },
     changeLocale(lang) {
       if (this.$i18n.locale === lang) return;
@@ -310,13 +311,13 @@ export default {
         align-items: center;
         height: 48px;
         .sidebar-header-logo {
-          margin: 8px 12px 8px 20px;
+          margin: 8px 8px 8px 20px;
           height: 32px;
           transition: all 0.2s linear;
         }
         .sidebar-header-text {
           flex: none;
-          font-size: 22px;
+          font-size: 20px;
           font-weight: 500;
           color: #fff;
         }

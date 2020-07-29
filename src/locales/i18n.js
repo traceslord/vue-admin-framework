@@ -6,7 +6,7 @@ import frFR from "./element/fr-FR";
 
 Vue.use(VueI18n);
 
-const LOCALE = "locale";
+const LOCALE = "jk_locale";
 export const SUPPORTED_LANGS = ["en-US", "zh-CN", "fr-FR"];
 const DEFAULT_LANG = SUPPORTED_LANGS[0];
 

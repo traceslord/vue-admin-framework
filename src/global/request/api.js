@@ -1,3 +1,4 @@
 export default {
-  userInfo: "/api/xxxx"
+  userInfo: "/api/xxx",
+  userLogin: "/api/xxx"
 };
