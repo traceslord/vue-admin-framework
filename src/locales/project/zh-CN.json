@@ -1,8 +1,10 @@
 {
   "common": {
-    "pageTitle": "管理中心",
+    "brand": "JK",
+    "admin": "管理中心",
     "login": "登录",
-    "logout": "登出"
+    "logout": "登出",
+    "guide": "指南"
   },
   "success": {
     "format": "{attribute}成功"
@@ -18,6 +20,9 @@
   "nav": {
     "home": {
       "name": "主页"
+    },
+    "icon": {
+      "name": "图标"
     }
   },
   "login": {

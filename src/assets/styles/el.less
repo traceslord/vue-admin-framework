@@ -125,7 +125,8 @@
     color: #EEE;
   }
 }
-.el-menu-item.is-active .fa-dot {
+.el-menu-item.is-active .fa-dot,
+.el-menu-item.is-active svg {
   color: #409EFF;
 }
 .el-submenu-level_1.is-active > .el-submenu__title {
@@ -159,6 +160,12 @@
   transform: rotate(0deg);
 }
 .el-submenu-level_2.is-active .el-submenu__title {
+  i {
+    color: #409EFF !important;
+  }
+  svg {
+    color: #409EFF !important;
+  }
   span {
     color: #409EFF !important;
   }

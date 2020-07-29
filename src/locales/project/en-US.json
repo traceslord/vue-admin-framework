@@ -1,8 +1,10 @@
 {
   "common": {
-    "pageTitle": "Admin",
+    "brand": "JK",
+    "admin": "Admin",
     "login": "Log in",
-    "logout": "Log out"
+    "logout": "Log out",
+    "guide": "Guide"
   },
   "success": {
     "format": "{attribute} successfully"
@@ -18,6 +20,9 @@
   "nav": {
     "home": {
       "name": "Homepage"
+    },
+    "icon": {
+      "name": "Icons"
     }
   },
   "login": {

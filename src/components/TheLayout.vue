@@ -11,7 +11,9 @@
             :style="collapse ? 'margin-left: 16px' : 'margin-left: 20px'"
             src="@/assets/images/logo.png"
           />
-          <span v-show="!collapse" class="sidebar-header-text">管理中心</span>
+          <span v-show="!collapse" class="sidebar-header-text">{{
+            $t("common.brand")
+          }}</span>
         </div>
         <div class="sidebar-body">
           <el-scrollbar class="scrollbar-section">

@@ -8,7 +8,7 @@ export default [
     name: "Home",
     component: Home,
     meta: {
-      title: `Vue-${i18n.t("common.pageTitle")}`,
+      title: `${i18n.t("common.brand")}-${i18n.t("common.admin")}`,
       nav: {
         icon: "el-icon-s-home",
         title: i18n.t("nav.home.name")

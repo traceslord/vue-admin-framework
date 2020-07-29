@@ -1,4 +1,5 @@
-import routesHome from "./routesHome";
+import routesHome from "./routes-home";
+import routesIcon from "./routes-icon";
 import TheLayout from "@/components/TheLayout.vue";
 import AccountLogin from "@/views/AccountLogin";
 import i18n from "@/locales/i18n";
@@ -9,13 +10,15 @@ export default [
     name: "AccountLogin",
     component: AccountLogin,
     meta: {
-      title: `IIOE-${i18n.t("common.pageTitle")}-${i18n.t("common.login")}`
+      title: `${i18n.t("common.brand")}-${i18n.t("common.admin")}-${i18n.t(
+        "common.login"
+      )}`
     }
   },
   {
     path: "/admin",
     component: TheLayout,
     redirect: { name: "Home" },
-    children: [...routesHome]
+    children: [...routesHome, ...routesIcon]
   }
 ];

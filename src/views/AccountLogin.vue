@@ -18,7 +18,7 @@
     <div class="login-page-mainer">
       <div class="login-logo-box">
         <img class="login-logo" src="@/assets/images/logo.png" />
-        <div class="login-logo_text">{{ $t("common.pageTitle") }}</div>
+        <div class="login-logo_text">{{ $t("common.brand") }}</div>
       </div>
       <el-form
         class="login-info"

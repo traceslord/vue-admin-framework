@@ -1,3 +1,3 @@
 <template>
-  <div>{{ $t("nav.home.name") }}</div>
+  <div></div>
 </template>
