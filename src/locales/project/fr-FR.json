@@ -30,5 +30,13 @@
       "phone": "Numéro de téléphone mobile",
       "password": "Mot de passe"
     }
+  },
+  "icon": {
+    "name": "Icônes",
+    "operationalGuidelines": "Lignes directrices opérationnelles",
+    "description": "Une collection d’icônes fréquemment utilisées peut être utilisée, soit à l’aide de la collection d’icônes habituelles qui est fournie par element-ui, soit à l’aide de sa propre bibliothèque d’icônes personnalisée (la création de la bibliothèque d’icônes peut être vue en cliquant sur le guide d’action en haut à droite).",
+    "usage": "Méthodes utilisées",
+    "showCode": "Code d’affichage",
+    "hiddenCode": "Code caché"
   }
 }

@@ -30,5 +30,13 @@
       "phone": "手机号码",
       "password": "密码"
     }
+  },
+  "icon": {
+    "name": "图标",
+    "operationalGuidelines": "操作指南",
+    "description": "可使用 element-ui 自带的一套常用图标集合，也可使用自己自定义的图标库（图标库的生成可点击右上角的操作指南进行查看）。",
+    "usage": "使用方法",
+    "showCode": "显示代码",
+    "hiddenCode": "隐藏代码"
   }
 }

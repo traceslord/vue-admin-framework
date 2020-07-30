@@ -30,5 +30,13 @@
       "phone": "Mobile phone number",
       "password": "Password"
     }
+  },
+  "icon": {
+    "name": "Icons",
+    "operationalGuidelines": "Operational guidelines",
+    "description": "You can use element-ui with a set of commonly used icon collection, or you can use your own custom icon library (the generation of the icon library can be viewed by clicking the operation guide in the upper right corner).",
+    "usage": "Usage",
+    "showCode": "Show code",
+    "hiddenCode": "Hidden code"
   }
 }
