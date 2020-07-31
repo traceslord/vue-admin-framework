@@ -103,7 +103,7 @@
             <div class="icon-list" :style="{ width: iconListWidth }">
               <div
                 class="icon-item"
-                v-for="(icon, index) in icons"
+                v-for="(icon, index) in elIcons"
                 :key="index"
               >
                 <i :class="icon"></i>
@@ -111,7 +111,18 @@
               </div>
             </div>
           </el-tab-pane>
-          <el-tab-pane :label="$t('icon.diy')" name="svg"></el-tab-pane>
+          <el-tab-pane :label="$t('icon.diy')" name="svg">
+            <div class="icon-list" :style="{ width: iconListWidth }">
+              <div
+                class="icon-item"
+                v-for="(icon, index) in svgIcons"
+                :key="index"
+              >
+                <icon-svg :svg-name="icon"></icon-svg>
+                <span>{{ icon }}</span>
+              </div>
+            </div>
+          </el-tab-pane>
         </el-tabs>
       </div>
     </el-card>
@@ -128,7 +139,8 @@ export default {
       collapse: true,
       activeName: "el",
       iconListWidth: "",
-      icons: icon["el-icons"]
+      elIcons: icon["el-icons"],
+      svgIcons: icon["svg-icons"]
     };
   },
   computed: {
@@ -240,6 +252,7 @@ export default {
 }
 .icon-icons {
   margin-top: 48px;
+  min-height: 1000px;
   .icon-list {
     margin-top: 4px;
     margin-bottom: 36px;
@@ -254,9 +267,10 @@ export default {
       text-align: center;
       border-right: 1px solid #eee;
       border-bottom: 1px solid #eee;
-      i {
+      i,
+      svg {
         display: block;
-        margin: 24px 0 12px;
+        margin: 24px auto 12px;
         font-size: 32px;
         color: #606266;
         transition: color 0.15s linear;
@@ -270,6 +284,7 @@ export default {
       }
       &:hover {
         i,
+        svg,
         span {
           color: #5cb6ff;
         }

@@ -280,7 +280,8 @@ const icon = {
     "el-icon-lollipop",
     "el-icon-ice-cream-square",
     "el-icon-ice-cream-round"
-  ]
+  ],
+  "svg-icons": ["iconfont", "menu"]
 };
 
 export default icon;
