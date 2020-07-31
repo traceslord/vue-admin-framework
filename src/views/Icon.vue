@@ -96,7 +96,7 @@
           </div>
         </div>
       </div>
-      <div class="icon-icons" ref="icons">
+      <div class="icon-icons" id="icons">
         <div class="icon-title">{{ $t("icon.icons") }}</div>
         <el-tabs v-model="activeName" class="mt-8">
           <el-tab-pane label="Element-UI" name="el">
@@ -120,13 +120,14 @@
 
 <script>
 import icon from "@/data/icon";
+import elementResizeDetectorMaker from "element-resize-detector";
 
 export default {
   data() {
     return {
       collapse: true,
       activeName: "el",
-      iconListWidth: null,
+      iconListWidth: "",
       icons: icon["el-icons"]
     };
   },
@@ -138,11 +139,9 @@ export default {
     }
   },
   mounted() {
-    this.getIconsWidth();
-  },
-  methods: {
-    getIconsWidth() {
-      const width = this.$refs.icons.clientWidth;
+    const erd = elementResizeDetectorMaker();
+    erd.listenTo(document.getElementById("icons"), element => {
+      const width = element.offsetWidth;
       if (width < 1016) {
         this.iconListWidth = "871px";
       } else if (width < 1161) {
@@ -162,7 +161,9 @@ export default {
       } else {
         this.iconListWidth = width + "px";
       }
-    },
+    });
+  },
+  methods: {
     goGuide() {
       this.$router.push({ name: "IconGuide" });
     },
