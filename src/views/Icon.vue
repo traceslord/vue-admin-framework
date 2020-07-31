@@ -10,19 +10,49 @@
       </div>
       <div class="icon-description">{{ $t("icon.description") }}</div>
       <div class="icon-use">
-        <div class="icon-use-title">{{ $t("icon.usage") }}</div>
+        <div class="icon-title">{{ $t("icon.usage") }}</div>
         <div class="icon-use-demo-box">
           <div class="demo-box-source">
             <div>
+              <i class="el-icon-s-home"></i>
+              <i class="el-icon-menu"></i>
               <icon-svg svg-name="iconfont"></icon-svg>
-              <i class="el-icon-edit"></i>
-              <i class="el-icon-share"></i>
-              <i class="el-icon-delete"></i>
+              <icon-svg svg-name="menu"></icon-svg>
             </div>
           </div>
           <div class="demo-box-meta" :style="demoMetaStyle">
             <div class="jk-highlight">
               <code class="jkhl">
+                <div>
+                  <span class="jkhl-tag">
+                    <span>&lt;</span>
+                    <span class="jkhl-name">i </span>
+                    <span class="jkhl-attr">class</span>
+                    <span>=</span>
+                    <span class="jkhl-string">"el-icon-s-home"</span>
+                    <span>&gt;</span>
+                  </span>
+                  <span class="jkhl-tag">
+                    <span>&lt;/</span>
+                    <span class="jkhl-name">i</span>
+                    <span>&gt;</span>
+                  </span>
+                </div>
+                <div>
+                  <span class="jkhl-tag">
+                    <span>&lt;</span>
+                    <span class="jkhl-name">i </span>
+                    <span class="jkhl-attr">class</span>
+                    <span>=</span>
+                    <span class="jkhl-string">"el-icon-menu"</span>
+                    <span>&gt;</span>
+                  </span>
+                  <span class="jkhl-tag">
+                    <span>&lt;/</span>
+                    <span class="jkhl-name">i</span>
+                    <span>&gt;</span>
+                  </span>
+                </div>
                 <div>
                   <span class="jkhl-tag">
                     <span>&lt;</span>
@@ -41,45 +71,15 @@
                 <div>
                   <span class="jkhl-tag">
                     <span>&lt;</span>
-                    <span class="jkhl-name">i </span>
-                    <span class="jkhl-attr">class</span>
+                    <span class="jkhl-name">icon-svg </span>
+                    <span class="jkhl-attr">svg-name</span>
                     <span>=</span>
-                    <span class="jkhl-string">"el-icon-edit"</span>
+                    <span class="jkhl-string">"menu"</span>
                     <span>&gt;</span>
                   </span>
                   <span class="jkhl-tag">
                     <span>&lt;/</span>
-                    <span class="jkhl-name">i</span>
-                    <span>&gt;</span>
-                  </span>
-                </div>
-                <div>
-                  <span class="jkhl-tag">
-                    <span>&lt;</span>
-                    <span class="jkhl-name">i </span>
-                    <span class="jkhl-attr">class</span>
-                    <span>=</span>
-                    <span class="jkhl-string">"el-icon-share"</span>
-                    <span>&gt;</span>
-                  </span>
-                  <span class="jkhl-tag">
-                    <span>&lt;/</span>
-                    <span class="jkhl-name">i</span>
-                    <span>&gt;</span>
-                  </span>
-                </div>
-                <div>
-                  <span class="jkhl-tag">
-                    <span>&lt;</span>
-                    <span class="jkhl-name">i </span>
-                    <span class="jkhl-attr">class</span>
-                    <span>=</span>
-                    <span class="jkhl-string">"el-icon-delete"</span>
-                    <span>&gt;</span>
-                  </span>
-                  <span class="jkhl-tag">
-                    <span>&lt;/</span>
-                    <span class="jkhl-name">i</span>
+                    <span class="jkhl-name">icon-svg</span>
                     <span>&gt;</span>
                   </span>
                 </div>
@@ -96,15 +96,38 @@
           </div>
         </div>
       </div>
+      <div class="icon-icons" ref="icons">
+        <div class="icon-title">{{ $t("icon.icons") }}</div>
+        <el-tabs v-model="activeName" class="mt-8">
+          <el-tab-pane label="Element-UI" name="el">
+            <div class="icon-list" :style="{ width: iconListWidth }">
+              <div
+                class="icon-item"
+                v-for="(icon, index) in icons"
+                :key="index"
+              >
+                <i :class="icon"></i>
+                <span>{{ icon }}</span>
+              </div>
+            </div>
+          </el-tab-pane>
+          <el-tab-pane :label="$t('icon.diy')" name="svg"></el-tab-pane>
+        </el-tabs>
+      </div>
     </el-card>
   </div>
 </template>
 
 <script>
+import icon from "@/data/icon";
+
 export default {
   data() {
     return {
-      collapse: true
+      collapse: true,
+      activeName: "el",
+      iconListWidth: null,
+      icons: icon["el-icons"]
     };
   },
   computed: {
@@ -114,7 +137,32 @@ export default {
         : { height: "142px", borderTop: "1px solid #eaeefb" };
     }
   },
+  mounted() {
+    this.getIconsWidth();
+  },
   methods: {
+    getIconsWidth() {
+      const width = this.$refs.icons.clientWidth;
+      if (width < 1016) {
+        this.iconListWidth = "871px";
+      } else if (width < 1161) {
+        this.iconListWidth = "1016px";
+      } else if (width < 1306) {
+        this.iconListWidth = "1161px";
+      } else if (width < 1451) {
+        this.iconListWidth = "1306px";
+      } else if (width < 1596) {
+        this.iconListWidth = "1451px";
+      } else if (width < 1741) {
+        this.iconListWidth = "1596px";
+      } else if (width < 1886) {
+        this.iconListWidth = "1741px";
+      } else if (width < 2031) {
+        this.iconListWidth = "1886px";
+      } else {
+        this.iconListWidth = width + "px";
+      }
+    },
     goGuide() {
       this.$router.push({ name: "IconGuide" });
     },
@@ -135,11 +183,12 @@ export default {
   line-height: 1.6;
   text-indent: 2em;
 }
+.icon-title {
+  font-size: 18px;
+  color: #1f2f3d;
+}
 .icon-use {
-  margin-top: 36px;
-  .icon-use-title {
-    font-size: 18px;
-  }
+  margin-top: 48px;
   .icon-use-demo-box {
     margin-top: 12px;
     border: 1px solid #ebebeb;
@@ -184,6 +233,39 @@ export default {
         margin-left: 10px;
         font-size: 14px;
         line-height: 44px;
+      }
+    }
+  }
+}
+.icon-icons {
+  margin-top: 48px;
+  .icon-list {
+    margin-top: 4px;
+    margin-bottom: 36px;
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+    .icon-item {
+      flex: none;
+      width: 145px;
+      height: 120px;
+      text-align: center;
+      border-right: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      i {
+        display: block;
+        margin: 24px 0 12px;
+        font-size: 32px;
+        color: #606266;
+        transition: color 0.15s linear;
+      }
+      span {
+        padding: 0 3px;
+        font-size: 13px;
+        font-family: icomoon;
+        color: #99a9bf;
+        transition: color 0.15s linear;
       }
     }
   }

@@ -37,6 +37,8 @@
     "description": "可使用 element-ui 自带的一套常用图标集合，也可使用自己自定义的图标库（图标库的生成可点击右上角的操作指南进行查看）。",
     "usage": "使用方法",
     "showCode": "显示代码",
-    "hiddenCode": "隐藏代码"
+    "hiddenCode": "隐藏代码",
+    "icons": "图标集合",
+    "diy": "自定义"
   }
 }
