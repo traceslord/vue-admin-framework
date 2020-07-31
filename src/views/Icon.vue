@@ -268,6 +268,12 @@ export default {
         color: #99a9bf;
         transition: color 0.15s linear;
       }
+      &:hover {
+        i,
+        span {
+          color: #5cb6ff;
+        }
+      }
     }
   }
 }
