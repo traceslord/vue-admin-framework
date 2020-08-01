@@ -39,6 +39,17 @@
     "showCode": "Agrandir",
     "hiddenCode": "Réduire",
     "icons": "Icônes",
-    "diy": "Personnalisé"
+    "diy": "Personnalisé",
+    "guide": {
+      "tips_1": "La procédure de création d’une bibliothèque d’icônes personnalisées est simple, il suffit de placer le fichier SVG correspondant dans un dossier spécifique.",
+      "tips_2": "Le fichier SVG peut être téléchargé sur",
+      "tips_3": "ou sur d’autres sites internet",
+      "tips_4": "La voie de conservation du fichier: ",
+      "title": "Génération de codes de base d’icônes",
+      "text_1": "Tout d’abord, nous sommes allés à",
+      "text_2": "(la bibliothèque d’icônes vectorielles de alibaba), nous avons cherché et trouvé les icônes dont nous avions besoin, et nous avons cliqué sur la photo suivante pour les télécharger:",
+      "text_3": "Ensuite, cliquez sur \"copiez SVG\" et nous obtenons ainsi le code SVG de l’icône désirée.",
+      "text_4": "Enfin, le code SVG copié est collé à l’endroit du code dans le diagramme, de sorte que notre bibliothèque d’icônes a réussi à générer cette icône et est prête à être utilisée directement."
+    }
   }
 }

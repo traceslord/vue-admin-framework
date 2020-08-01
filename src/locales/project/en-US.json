@@ -39,6 +39,17 @@
     "showCode": "Expand",
     "hiddenCode": "Hide",
     "icons": "Icons",
-    "diy": "User-Defined"
+    "diy": "User-Defined",
+    "guide": {
+      "tips_1": "The steps to generate a custom icon library are simple, we simply need to place the appropriate SVG files in a specific folder.",
+      "tips_2": "SVG files can be downloaded from",
+      "tips_3": "or other icon sites",
+      "tips_4": "The file is saved at the following path: ",
+      "title": "Icon library code generation",
+      "text_1": "First, we enter",
+      "text_2": "(alibaba vector icon library), search and find the icon we need, and click to download it, as shown in the figure below:",
+      "text_3": "After that, click \"Copy SVG\", and we have successfully generated the SVG code for the desired icon.",
+      "text_4": "Finally, paste the copied SVG code into the location of the box selection code in the diagram, so that our icon library has successfully generated the icon, ready to be used directly."
+    }
   }
 }

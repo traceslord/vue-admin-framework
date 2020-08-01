@@ -17,7 +17,7 @@ export default [
     },
     children: [
       {
-        path: "/icon",
+        path: "/admin/icon",
         name: "IconSelf",
         component: Icon,
         // permission: "",
@@ -33,7 +33,7 @@ export default [
         }
       },
       {
-        path: "/icon/guide",
+        path: "/admin/icon/guide",
         name: "IconGuide",
         component: IconGuide,
         // permission: "",

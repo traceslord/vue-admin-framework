@@ -215,6 +215,7 @@ export default {
       svg,
       i {
         margin: 0 24px;
+        font-size: 24px;
       }
     }
     .demo-box-meta {
