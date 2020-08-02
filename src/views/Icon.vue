@@ -11,7 +11,11 @@
       <div class="icon-description">{{ $t("icon.description") }}</div>
       <div class="icon-use">
         <div class="icon-title">{{ $t("icon.usage") }}</div>
-        <div class="icon-use-demo-box">
+        <div
+          class="icon-use-demo-box"
+          @mouseenter="showDemoControlText = true"
+          @mouseleave="showDemoControlText = false"
+        >
           <div class="demo-box-source">
             <div>
               <i class="el-icon-s-home"></i>
@@ -91,9 +95,15 @@
               <i
                 :class="collapse ? 'el-icon-caret-bottom' : 'el-icon-caret-top'"
               ></i>
-              <span class="demo-box-control-text">{{
-                collapse ? $t("icon.showCode") : $t("icon.hiddenCode")
-              }}</span>
+              <transition name="el-fade-in-linear">
+                <span
+                  class="demo-box-control-text"
+                  v-show="showDemoControlText"
+                  >{{
+                    collapse ? $t("icon.showCode") : $t("icon.hiddenCode")
+                  }}</span
+                >
+              </transition>
             </div>
           </div>
         </div>
@@ -139,6 +149,7 @@ export default {
   data() {
     return {
       collapse: true,
+      showDemoControlText: false,
       activeName: "el",
       iconListWidth: "",
       elIcons: icon["el-icons"],
@@ -213,7 +224,6 @@ export default {
         0 2px 4px 0 rgba(232, 237, 250, 0.5);
       .demo-box-control-container {
         padding-left: 62px !important;
-        padding-right: 0 !important;
       }
     }
     .demo-box-source {
@@ -247,7 +257,7 @@ export default {
       }
       .demo-box-control-container {
         display: inline-block;
-        padding: 0 92px;
+        padding-left: 92px;
         width: 200px;
         height: 100%;
         text-align: left;
