@@ -87,12 +87,14 @@
             </div>
           </div>
           <div class="demo-box-control" @click="handleCollapse">
-            <i
-              :class="collapse ? 'el-icon-caret-bottom' : 'el-icon-caret-top'"
-            ></i>
-            <span class="demo-box-control-text">{{
-              collapse ? $t("icon.showCode") : $t("icon.hiddenCode")
-            }}</span>
+            <div class="demo-box-control-container">
+              <i
+                :class="collapse ? 'el-icon-caret-bottom' : 'el-icon-caret-top'"
+              ></i>
+              <span class="demo-box-control-text">{{
+                collapse ? $t("icon.showCode") : $t("icon.hiddenCode")
+              }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -209,6 +211,9 @@ export default {
     &:hover {
       box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6),
         0 2px 4px 0 rgba(232, 237, 250, 0.5);
+      .demo-box-control-container {
+        width: 100px !important;
+      }
     }
     .demo-box-source {
       padding: 24px 12px;
@@ -222,11 +227,10 @@ export default {
       height: 0;
       background-color: #fafafa;
       border-top: none;
-      transition: height 0.2s;
+      transition: height 0.15s linear;
       overflow: hidden;
     }
     .demo-box-control {
-      position: relative;
       height: 44px;
       color: #d3dce6;
       text-align: center;
@@ -234,19 +238,27 @@ export default {
       border-top: 1px solid #eaeefb;
       border-bottom-left-radius: 4px;
       border-bottom-right-radius: 4px;
+      transition: all 0.15s linear;
       cursor: pointer;
       &:hover {
         color: #409eff;
         background-color: #f9fafc;
       }
-      i {
-        font-size: 16px;
-        line-height: 44px;
-      }
-      .demo-box-control-text {
-        margin-left: 10px;
-        font-size: 14px;
-        line-height: 44px;
+      .demo-box-control-container {
+        display: inline-block;
+        width: 16px;
+        height: 44px;
+        transition: width 0.2s linear;
+        overflow: hidden;
+        i {
+          font-size: 16px;
+          line-height: 44px;
+        }
+        .demo-box-control-text {
+          margin-left: 10px;
+          font-size: 14px;
+          line-height: 44px;
+        }
       }
     }
   }
