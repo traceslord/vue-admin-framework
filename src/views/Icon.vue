@@ -212,7 +212,8 @@ export default {
       box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6),
         0 2px 4px 0 rgba(232, 237, 250, 0.5);
       .demo-box-control-container {
-        width: 100px !important;
+        padding-left: 62px !important;
+        padding-right: 0 !important;
       }
     }
     .demo-box-source {
@@ -246,18 +247,20 @@ export default {
       }
       .demo-box-control-container {
         display: inline-block;
-        width: 16px;
-        height: 44px;
-        transition: width 0.2s linear;
+        padding: 0 92px;
+        width: 200px;
+        height: 100%;
+        text-align: left;
+        transition: padding-left 0.2s linear;
         overflow: hidden;
         i {
           font-size: 16px;
-          line-height: 44px;
+          line-height: 43px;
         }
         .demo-box-control-text {
           margin-left: 10px;
           font-size: 14px;
-          line-height: 44px;
+          line-height: 43px;
         }
       }
     }
