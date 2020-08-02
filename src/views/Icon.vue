@@ -309,6 +309,8 @@ export default {
         transition: color 0.15s linear;
       }
       &:hover {
+        z-index: 2;
+        box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.1);
         i,
         svg,
         span {
