@@ -26,7 +26,7 @@
           </div>
           <div class="demo-box-meta" :style="demoMetaStyle">
             <div class="jk-highlight">
-              <code class="jkhl">
+              <code class="jkhl color-brewer">
                 <div>
                   <span class="jkhl-tag">
                     <span>&lt;</span>

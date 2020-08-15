@@ -22,7 +22,7 @@ export default [
         component: Icon,
         // permission: "",
         meta: {
-          title: `${i18n.t("common.brand")}-${i18n.t("nav.icon.name")}`,
+          title: `${i18n.t("common.brand")} - ${i18n.t("nav.icon.name")}`,
           nav: {
             svg: {
               class: "nav-svg",
@@ -38,6 +38,7 @@ export default [
         component: IconGuide,
         // permission: "",
         meta: {
+          title: `${i18n.t("common.brand")} - ${i18n.t("nav.icon.name")}`,
           breadcrumb: {
             title: i18n.t("common.guide")
           }
