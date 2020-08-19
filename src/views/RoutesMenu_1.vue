@@ -6,15 +6,13 @@
         <span class="brand-color">一级导航</span>
       </div>
       <div class="title">单页</div>
-      <div
-        class="demo-box"
-        @mouseenter="showDemoControlText = true"
-        @mouseleave="showDemoControlText = false"
-      >
-        <div class="demo-box-source">
-          <div class="demo-box-source-nav_1 light-green">一级导航</div>
-        </div>
-        <div class="demo-box-meta" :style="demoMetaStyle">
+      <demo-box class="nav-demo-box" height="380px" :time="0.25">
+        <template v-slot:demo-box-source>
+          <div class="demo-box-source">
+            <div class="demo-box-source-nav light-green">一级导航</div>
+          </div>
+        </template>
+        <template v-slot:demo-box-meta>
           <div class="jk-highlight">
             <code class="jkhl color-brewer">
               <div>
@@ -82,47 +80,222 @@
               </div>
             </code>
           </div>
-        </div>
-        <div class="demo-box-control" @click="handleCollapse">
-          <div class="demo-box-control-container">
-            <i
-              :class="collapse ? 'el-icon-caret-bottom' : 'el-icon-caret-top'"
-            ></i>
-            <transition name="el-fade-in-linear">
-              <span
-                class="demo-box-control-text"
-                v-show="showDemoControlText"
-                >{{
-                  collapse ? $t("icon.showCode") : $t("icon.hiddenCode")
-                }}</span
-              >
-            </transition>
+        </template>
+      </demo-box>
+      <div class="title">拥有子页面</div>
+      <demo-box class="nav-demo-box" height="1040px" :time="0.5">
+        <template v-slot:demo-box-source>
+          <div class="demo-box-source">
+            <div class="demo-box-source-nav_1 light-green">
+              <span>一级导航</span>
+              <div class="demo-box-source-nav_2">
+                <div class="light-sky-blue">详情页</div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </template>
+        <template v-slot:demo-box-meta>
+          <div class="jk-highlight">
+            <code class="jkhl color-brewer">
+              <div>
+                <span class="jkhl-keyword">import</span>
+                <span> Icon </span>
+                <span class="jkhl-keyword">from</span>
+                <span class="jkhl-string"> "@/views/Icon"</span>
+                <span>;</span>
+              </div>
+              <div>
+                <span class="jkhl-keyword">import</span>
+                <span> Icon </span>
+                <span class="jkhl-keyword">from</span>
+                <span class="jkhl-string"> "@/views/IconGuide"</span>
+                <span>;</span>
+              </div>
+              <div style="margin-top: 10px"></div>
+              <div>
+                <span class="jkhl-keyword">export</span>
+                <span class="jkhl-keyword"> default</span>
+                <span> [</span>
+              </div>
+              <div style="margin-left: 16px">
+                <span>{</span>
+              </div>
+              <div style="margin-left: 32px">
+                <span>path:</span>
+                <span class="jkhl-string"> "icon"</span>
+                <span>,</span>
+              </div>
+              <div style="margin-left: 32px">
+                <span>name:</span>
+                <span class="jkhl-string"> "Icon"</span>
+                <span>,</span>
+              </div>
+              <div style="margin-left: 32px">
+                <span>redirect: { name:</span>
+                <span class="jkhl-string"> "IconSelf"</span>
+                <span> },</span>
+              </div>
+              <div style="margin-left: 32px">
+                <span>component: { render: h => h(</span>
+                <span class="jkhl-string">"router-view"</span>
+                <span>) },</span>
+              </div>
+              <div style="margin-left: 32px">
+                <span>meta: {</span>
+              </div>
+              <div style="margin-left: 48px">
+                <span>breadcrumb: {</span>
+              </div>
+              <div style="margin-left: 64px">
+                <span>title:</span>
+                <span class="jkhl-string"> "{{ $t("nav.icon.name") }}"</span>
+                <span>,</span>
+              </div>
+              <div style="margin-left: 64px">
+                <span>replace:</span>
+                <span class="jkhl-literal"> true</span>
+              </div>
+              <div style="margin-left: 48px">
+                <span>}</span>
+              </div>
+              <div style="margin-left: 32px">
+                <span>},</span>
+              </div>
+              <div style="margin-left: 32px">
+                <span>children: [</span>
+              </div>
+              <div style="margin-left: 48px">
+                <span>{</span>
+              </div>
+              <div style="margin-left: 64px">
+                <span>path:</span>
+                <span class="jkhl-string"> "/admin/icon"</span>
+                <span>,</span>
+              </div>
+              <div style="margin-left: 64px">
+                <span>name:</span>
+                <span class="jkhl-string"> "IconSelf"</span>
+                <span>,</span>
+              </div>
+              <div style="margin-left: 64px">
+                <span>component:</span>
+                <span class="jkhl-string"> Icon</span>
+                <span>,</span>
+              </div>
+              <div style="margin-left: 64px">
+                <span class="jkhl-comment">// permission: "",</span>
+              </div>
+              <div style="margin-left: 64px">
+                <span>meta: {</span>
+              </div>
+              <div style="margin-left: 80px">
+                <span>title:</span>
+                <span class="jkhl-string">
+                  "{{ $t("common.brand") }} - {{ $t("nav.icon.name") }}"</span
+                >
+                <span>,</span>
+              </div>
+              <div style="margin-left: 80px">
+                <span>nav: {</span>
+              </div>
+              <div style="margin-left: 96px">
+                <span>svg: {</span>
+              </div>
+              <div style="margin-left: 112px">
+                <span>class:</span>
+                <span class="jkhl-string"> "nav-svg"</span>
+                <span>,</span>
+              </div>
+              <div style="margin-left: 112px">
+                <span>name:</span>
+                <span class="jkhl-string"> "iconfont"</span>
+              </div>
+              <div style="margin-left: 96px">
+                <span>},</span>
+              </div>
+              <div style="margin-left: 96px">
+                <span>title:</span>
+                <span class="jkhl-string"> "{{ $t("nav.icon.name") }}"</span>
+              </div>
+              <div style="margin-left: 80px">
+                <span>}</span>
+              </div>
+              <div style="margin-left: 64px">
+                <span>}</span>
+              </div>
+              <div style="margin-left: 48px">
+                <span>},</span>
+              </div>
+              <div style="margin-left: 48px">
+                <span>{</span>
+              </div>
+              <div style="margin-left: 64px">
+                <span>path:</span>
+                <span class="jkhl-string"> "/admin/icon/guide"</span>
+                <span>,</span>
+              </div>
+              <div style="margin-left: 64px">
+                <span>name:</span>
+                <span class="jkhl-string"> "IconGuide"</span>
+                <span>,</span>
+              </div>
+              <div style="margin-left: 64px">
+                <span>component:</span>
+                <span class="jkhl-string"> IconGuide</span>
+                <span>,</span>
+              </div>
+              <div style="margin-left: 64px">
+                <span class="jkhl-comment">// permission: "",</span>
+              </div>
+              <div style="margin-left: 64px">
+                <span>meta: {</span>
+              </div>
+              <div style="margin-left: 80px">
+                <span>title:</span>
+                <span class="jkhl-string">
+                  "{{ $t("common.brand") }} - {{ $t("nav.icon.name") }}"</span
+                >
+                <span>,</span>
+              </div>
+              <div style="margin-left: 80px">
+                <span>breadcrumb: {</span>
+              </div>
+              <div style="margin-left: 96px">
+                <span>title:</span>
+                <span class="jkhl-string"> "{{ $t("common.guide") }}"</span>
+              </div>
+              <div style="margin-left: 80px">
+                <span>}</span>
+              </div>
+              <div style="margin-left: 64px">
+                <span>}</span>
+              </div>
+              <div style="margin-left: 48px">
+                <span>}</span>
+              </div>
+              <div style="margin-left: 32px">
+                <span>]</span>
+              </div>
+              <div style="margin-left: 16px">
+                <span>}</span>
+              </div>
+              <div>
+                <span>];</span>
+              </div>
+            </code>
+          </div>
+        </template>
+      </demo-box>
     </el-card>
   </div>
 </template>
 
 <script>
+import DemoBox from "@/components/DemoBox.vue";
+
 export default {
-  data() {
-    return {
-      collapse: true,
-      showDemoControlText: false
-    };
-  },
-  computed: {
-    demoMetaStyle() {
-      return this.collapse
-        ? { height: 0, borderTop: "none" }
-        : { height: "380px", borderTop: "1px solid #eaeefb" };
-    }
-  },
-  methods: {
-    handleCollapse() {
-      this.collapse = !this.collapse;
-    }
+  components: {
+    DemoBox
   }
 };
 </script>
@@ -133,62 +306,35 @@ export default {
   font-size: 18px;
   color: #1f2f3d;
 }
-.demo-box {
+.nav-demo-box {
   margin-top: 12px;
-  border: 1px solid #ebebeb;
-  border-radius: 3px;
-  &:hover {
-    box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6),
-      0 2px 4px 0 rgba(232, 237, 250, 0.5);
-    .demo-box-control-container {
-      padding-left: 62px !important;
-    }
-  }
+  margin-bottom: 36px;
   .demo-box-source {
     padding: 24px;
-    .demo-box-source-nav_1 {
+    .demo-box-source-nav {
+      position: relative;
       padding: 24px 48px;
       height: 100px;
       color: #13ce66;
     }
-  }
-  .demo-box-meta {
-    height: 0;
-    background-color: #fafafa;
-    border-top: none;
-    transition: height 0.2s linear;
-    overflow: hidden;
-  }
-  .demo-box-control {
-    height: 44px;
-    color: #d3dce6;
-    text-align: center;
-    background-color: #fff;
-    border-top: 1px solid #eaeefb;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    transition: all 0.15s linear;
-    cursor: pointer;
-    &:hover {
-      color: #409eff;
-      background-color: #f9fafc;
-    }
-    .demo-box-control-container {
-      display: inline-block;
-      padding-left: 92px;
-      width: 200px;
-      height: 100%;
-      text-align: left;
-      transition: padding-left 0.2s linear;
-      overflow: hidden;
-      i {
-        font-size: 16px;
-        line-height: 43px;
-      }
-      .demo-box-control-text {
-        margin-left: 10px;
-        font-size: 14px;
-        line-height: 43px;
+    .demo-box-source-nav_1 {
+      position: relative;
+      padding: 24px 48px;
+      height: 140px;
+      color: #13ce66;
+      .demo-box-source-nav_2 {
+        position: absolute;
+        left: 50%;
+        display: inline-block;
+        width: 40%;
+        height: 92px;
+        background-color: #fff;
+        div {
+          padding: 16px 24px;
+          width: 100%;
+          height: 100%;
+          color: #409eff;
+        }
       }
     }
   }

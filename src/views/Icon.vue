@@ -11,20 +11,16 @@
       <div class="icon-description">{{ $t("icon.description") }}</div>
       <div class="icon-use">
         <div class="icon-title">{{ $t("icon.usage") }}</div>
-        <div
-          class="icon-use-demo-box"
-          @mouseenter="showDemoControlText = true"
-          @mouseleave="showDemoControlText = false"
-        >
-          <div class="demo-box-source">
-            <div>
+        <demo-box class="icon-use-demo-box" height="142px">
+          <template v-slot:demo-box-source>
+            <div class="demo-box-source">
               <i class="el-icon-s-home"></i>
               <i class="el-icon-menu"></i>
               <icon-svg svg-name="iconfont"></icon-svg>
               <icon-svg svg-name="menu"></icon-svg>
             </div>
-          </div>
-          <div class="demo-box-meta" :style="demoMetaStyle">
+          </template>
+          <template v-slot:demo-box-meta>
             <div class="jk-highlight">
               <code class="jkhl color-brewer">
                 <div>
@@ -89,24 +85,8 @@
                 </div>
               </code>
             </div>
-          </div>
-          <div class="demo-box-control" @click="handleCollapse">
-            <div class="demo-box-control-container">
-              <i
-                :class="collapse ? 'el-icon-caret-bottom' : 'el-icon-caret-top'"
-              ></i>
-              <transition name="el-fade-in-linear">
-                <span
-                  class="demo-box-control-text"
-                  v-show="showDemoControlText"
-                  >{{
-                    collapse ? $t("icon.showCode") : $t("icon.hiddenCode")
-                  }}</span
-                >
-              </transition>
-            </div>
-          </div>
-        </div>
+          </template>
+        </demo-box>
       </div>
       <div class="icon-icons" id="icons">
         <div class="icon-title">{{ $t("icon.icons") }}</div>
@@ -144,24 +124,19 @@
 <script>
 import icon from "@/data/icon";
 import elementResizeDetectorMaker from "element-resize-detector";
+import DemoBox from "@/components/DemoBox.vue";
 
 export default {
+  components: {
+    DemoBox
+  },
   data() {
     return {
-      collapse: true,
-      showDemoControlText: false,
       activeName: "el",
       iconListWidth: "",
       elIcons: icon["el-icons"],
       svgIcons: icon["svg-icons"]
     };
-  },
-  computed: {
-    demoMetaStyle() {
-      return this.collapse
-        ? { height: 0, borderTop: "none" }
-        : { height: "142px", borderTop: "1px solid #eaeefb" };
-    }
   },
   mounted() {
     const erd = elementResizeDetectorMaker();
@@ -191,9 +166,6 @@ export default {
   methods: {
     goGuide() {
       this.$router.push({ name: "IconGuide" });
-    },
-    handleCollapse() {
-      this.collapse = !this.collapse;
     }
   }
 };
@@ -217,61 +189,12 @@ export default {
   margin-top: 48px;
   .icon-use-demo-box {
     margin-top: 12px;
-    border: 1px solid #ebebeb;
-    border-radius: 3px;
-    &:hover {
-      box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6),
-        0 2px 4px 0 rgba(232, 237, 250, 0.5);
-      .demo-box-control-container {
-        padding-left: 62px !important;
-      }
-    }
     .demo-box-source {
       padding: 24px 12px;
       svg,
       i {
         margin: 0 24px;
         font-size: 24px;
-      }
-    }
-    .demo-box-meta {
-      height: 0;
-      background-color: #fafafa;
-      border-top: none;
-      transition: height 0.15s linear;
-      overflow: hidden;
-    }
-    .demo-box-control {
-      height: 44px;
-      color: #d3dce6;
-      text-align: center;
-      background-color: #fff;
-      border-top: 1px solid #eaeefb;
-      border-bottom-left-radius: 4px;
-      border-bottom-right-radius: 4px;
-      transition: all 0.15s linear;
-      cursor: pointer;
-      &:hover {
-        color: #409eff;
-        background-color: #f9fafc;
-      }
-      .demo-box-control-container {
-        display: inline-block;
-        padding-left: 92px;
-        width: 200px;
-        height: 100%;
-        text-align: left;
-        transition: padding-left 0.2s linear;
-        overflow: hidden;
-        i {
-          font-size: 16px;
-          line-height: 43px;
-        }
-        .demo-box-control-text {
-          margin-left: 10px;
-          font-size: 14px;
-          line-height: 43px;
-        }
       }
     }
   }
