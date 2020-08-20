@@ -3,13 +3,15 @@
     <bread-crumb></bread-crumb>
     <el-card shadow="hover">
       <div slot="header">
-        <span class="brand-color">一级导航</span>
+        <span class="brand-color">{{ $t("routes.nav_1") }}</span>
       </div>
-      <div class="title">单页</div>
+      <div class="title">{{ $t("routes.onePage") }}</div>
       <demo-box class="nav-demo-box" height="380px" :time="0.25">
         <template v-slot:demo-box-source>
           <div class="demo-box-source">
-            <div class="demo-box-source-nav light-green">一级导航</div>
+            <div class="demo-box-source-nav light-green">
+              {{ $t("routes.nav_1") }}
+            </div>
           </div>
         </template>
         <template v-slot:demo-box-meta>
@@ -82,14 +84,14 @@
           </div>
         </template>
       </demo-box>
-      <div class="title">拥有子页面</div>
+      <div class="title">{{ $t("routes.multipage") }}</div>
       <demo-box class="nav-demo-box" height="1040px" :time="0.4">
         <template v-slot:demo-box-source>
           <div class="demo-box-source">
             <div class="demo-box-source-nav_1 light-green">
-              <span>一级导航</span>
+              <span>{{ $t("routes.nav_1") }}</span>
               <div class="demo-box-source-nav_2">
-                <div class="light-sky-blue">详情页</div>
+                <div class="light-sky-blue">{{ $t("routes.detailsPage") }}</div>
               </div>
             </div>
           </div>

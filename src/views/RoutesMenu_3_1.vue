@@ -3,19 +3,19 @@
     <bread-crumb></bread-crumb>
     <el-card shadow="hover">
       <div slot="header">
-        <span class="brand-color">三级导航</span>
+        <span class="brand-color">{{ $t("routes.nav_3") }}</span>
       </div>
-      <div class="title">单页</div>
+      <div class="title">{{ $t("routes.onePage") }}</div>
       <demo-box class="nav-demo-box" height="1200px" :time="0.4">
         <template v-slot:demo-box-source>
           <div class="demo-box-source">
             <div class="demo-box-source-nav_1 light-green">
-              <span>一级导航</span>
+              <span>{{ $t("routes.nav_1") }}</span>
               <div class="demo-box-source-nav_2">
                 <div class="light-sky-blue">
-                  <span>二级导航</span>
+                  <span>{{ $t("routes.nav_2") }}</span>
                   <div class="demo-box-source-nav_3">
-                    <div class="violet">三级导航</div>
+                    <div class="violet">{{ $t("routes.nav_3") }}</div>
                   </div>
                 </div>
               </div>
@@ -79,7 +79,7 @@
               </div>
               <div style="margin-left: 64px">
                 <span>title:</span>
-                <span class="jkhl-string"> "路由嵌套"</span>
+                <span class="jkhl-string"> "{{ $t("nav.routes.name") }}"</span>
               </div>
               <div style="margin-left: 48px">
                 <span>},</span>
@@ -89,7 +89,7 @@
               </div>
               <div style="margin-left: 64px">
                 <span>title:</span>
-                <span class="jkhl-string"> "路由嵌套"</span>
+                <span class="jkhl-string"> "{{ $t("nav.routes.name") }}"</span>
               </div>
               <div style="margin-left: 48px">
                 <span>}</span>
@@ -126,7 +126,9 @@
               </div>
               <div style="margin-left: 96px">
                 <span>title:</span>
-                <span class="jkhl-string"> "菜单 3"</span>
+                <span class="jkhl-string">
+                  "{{ $t("nav.routes.children[2].name") }}"</span
+                >
               </div>
               <div style="margin-left: 80px">
                 <span>}</span>
@@ -136,7 +138,9 @@
               </div>
               <div style="margin-left: 96px">
                 <span>title:</span>
-                <span class="jkhl-string"> "菜单 3"</span>
+                <span class="jkhl-string">
+                  "{{ $t("nav.routes.children[2].name") }}"</span
+                >
               </div>
               <div style="margin-left: 80px">
                 <span>}</span>
@@ -173,7 +177,11 @@
               </div>
               <div style="margin-left: 112px">
                 <span>title:</span>
-                <span class="jkhl-string"> "路由嵌套 - 菜单 3 - 菜单 3-1"</span>
+                <span class="jkhl-string">
+                  "{{ $t("nav.routes.name") }} -
+                  {{ $t("nav.routes.children[2].name") }} -
+                  {{ $t("nav.routes.children[2].children[0].name") }}"</span
+                >
                 <span>,</span>
               </div>
               <div style="margin-left: 112px">
@@ -181,7 +189,9 @@
               </div>
               <div style="margin-left: 128px">
                 <span>title:</span>
-                <span class="jkhl-string"> "菜单 3-1"</span>
+                <span class="jkhl-string">
+                  "{{ $t("nav.routes.children[2].children[0].name") }}"</span
+                >
               </div>
               <div style="margin-left: 112px">
                 <span>},</span>
@@ -191,7 +201,9 @@
               </div>
               <div style="margin-left: 128px">
                 <span>title:</span>
-                <span class="jkhl-string"> "菜单 3-1"</span>
+                <span class="jkhl-string">
+                  "{{ $t("nav.routes.children[2].children[0].name") }}"</span
+                >
               </div>
               <div style="margin-left: 112px">
                 <span>}</span>
@@ -221,20 +233,22 @@
           </div>
         </template>
       </demo-box>
-      <div class="title">拥有子页面</div>
+      <div class="title">{{ $t("routes.multipage") }}</div>
       <demo-box class="nav-demo-box" height="1680px" :time="0.5">
         <template v-slot:demo-box-source>
           <div class="demo-box-source">
             <div class="demo-box-source-nav-1 light-green">
-              <span>一级导航</span>
+              <span>{{ $t("routes.nav_1") }}</span>
               <div class="demo-box-source-nav-2">
                 <div class="light-sky-blue">
-                  <span>二级导航</span>
+                  <span>{{ $t("routes.nav_2") }}</span>
                   <div class="demo-box-source-nav-3">
                     <div class="violet">
-                      <span>三级导航</span>
+                      <span>{{ $t("routes.nav_3") }}</span>
                       <span class="demo-box-source-nav-4">
-                        <div class="deep-pink">详情页</div>
+                        <div class="deep-pink">
+                          {{ $t("routes.detailsPage") }}
+                        </div>
                       </span>
                     </div>
                   </div>
@@ -307,7 +321,7 @@
               </div>
               <div style="margin-left: 64px">
                 <span>title:</span>
-                <span class="jkhl-string"> "路由嵌套"</span>
+                <span class="jkhl-string"> "{{ $t("nav.routes.name") }}"</span>
               </div>
               <div style="margin-left: 48px">
                 <span>},</span>
@@ -317,7 +331,7 @@
               </div>
               <div style="margin-left: 64px">
                 <span>title:</span>
-                <span class="jkhl-string"> "路由嵌套"</span>
+                <span class="jkhl-string"> "{{ $t("nav.routes.name") }}"</span>
               </div>
               <div style="margin-left: 48px">
                 <span>}</span>
@@ -354,7 +368,9 @@
               </div>
               <div style="margin-left: 96px">
                 <span>title:</span>
-                <span class="jkhl-string"> "菜单 3"</span>
+                <span class="jkhl-string">
+                  "{{ $t("nav.routes.children[2].name") }}"</span
+                >
               </div>
               <div style="margin-left: 80px">
                 <span>}</span>
@@ -364,7 +380,9 @@
               </div>
               <div style="margin-left: 96px">
                 <span>title:</span>
-                <span class="jkhl-string"> "菜单 3"</span>
+                <span class="jkhl-string">
+                  "{{ $t("nav.routes.children[2].name") }}"</span
+                >
               </div>
               <div style="margin-left: 80px">
                 <span>}</span>
@@ -406,7 +424,9 @@
               </div>
               <div style="margin-left: 128px">
                 <span>title:</span>
-                <span class="jkhl-string"> "菜单 3-1"</span>
+                <span class="jkhl-string">
+                  "{{ $t("nav.routes.children[2].children[0].name") }}"</span
+                >
                 <span>,</span>
               </div>
               <div style="margin-left: 128px">
@@ -448,7 +468,11 @@
               </div>
               <div style="margin-left: 144px">
                 <span>title:</span>
-                <span class="jkhl-string"> "路由嵌套 - 菜单 3 - 菜单 3-1"</span>
+                <span class="jkhl-string">
+                  "{{ $t("nav.routes.name") }} -
+                  {{ $t("nav.routes.children[2].name") }} -
+                  {{ $t("nav.routes.children[2].children[0].name") }}"</span
+                >
                 <span>,</span>
               </div>
               <div style="margin-left: 144px">
@@ -456,7 +480,9 @@
               </div>
               <div style="margin-left: 160px">
                 <span>title:</span>
-                <span class="jkhl-string"> "菜单 3-1"</span>
+                <span class="jkhl-string">
+                  "{{ $t("nav.routes.children[2].children[0].name") }}"</span
+                >
               </div>
               <div style="margin-left: 144px">
                 <span>}</span>
@@ -493,7 +519,11 @@
               </div>
               <div style="margin-left: 144px">
                 <span>title:</span>
-                <span class="jkhl-string"> "路由嵌套 - 菜单 3 - 菜单 3-1"</span>
+                <span class="jkhl-string">
+                  "{{ $t("nav.routes.name") }} -
+                  {{ $t("nav.routes.children[2].name") }} -
+                  {{ $t("nav.routes.children[2].children[0].name") }}"</span
+                >
                 <span>,</span>
               </div>
               <div style="margin-left: 144px">
@@ -501,7 +531,7 @@
               </div>
               <div style="margin-left: 160px">
                 <span>title:</span>
-                <span class="jkhl-string"> "详情"</span>
+                <span class="jkhl-string"> "{{ $t("common.detail") }}"</span>
               </div>
               <div style="margin-left: 144px">
                 <span>}</span>

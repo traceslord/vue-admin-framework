@@ -4,6 +4,7 @@
     "admin": "Admin",
     "login": "Log in",
     "logout": "Log out",
+    "detail": "Details",
     "guide": "Guide"
   },
   "success": {
@@ -23,6 +24,25 @@
     },
     "icon": {
       "name": "Icons"
+    },
+    "routes": {
+      "name": "Nested routes",
+      "children": [
+        {
+          "name": "Menu 1"
+        },
+        {
+          "name": "Menu 2"
+        },
+        {
+          "name": "Menu 3",
+          "children": [
+            {
+              "name": "Menu 3-1"
+            }
+          ]
+        }
+      ]
     }
   },
   "login": {
@@ -51,5 +71,13 @@
       "text_3": "After that, click \"Copy SVG\", and we have successfully generated the SVG code for the desired icon.",
       "text_4": "Finally, paste the copied SVG code into the location of the box selection code in the diagram, so that our icon library has successfully generated the icon, ready to be used directly."
     }
+  },
+  "routes": {
+    "nav_1": "Level 1 navigation",
+    "nav_2": "Level 2 navigation",
+    "nav_3": "Level 3 navigation",
+    "onePage": "One page",
+    "multipage": "Have child pages",
+    "detailsPage": "Details page"
   }
 }
