@@ -23,7 +23,7 @@ export default [
     },
     children: [
       {
-        path: "menu_1",
+        path: "/admin/routes/menu_1",
         name: "RoutesMenu_1",
         component: RoutesMenu_1,
         // permission: "",
@@ -38,7 +38,7 @@ export default [
         }
       },
       {
-        path: "menu_2",
+        path: "/admin/routes/menu_2",
         name: "RoutesMenu_2",
         component: RoutesMenu_2,
         // permission: "",
@@ -66,7 +66,7 @@ export default [
         },
         children: [
           {
-            path: "menu_3-1",
+            path: "/admin/routes/menu_3/menu_3-1",
             name: "RoutesMenu_3_1",
             component: RoutesMenu_3_1,
             // permission: "",

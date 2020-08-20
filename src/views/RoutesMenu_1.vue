@@ -83,7 +83,7 @@
         </template>
       </demo-box>
       <div class="title">拥有子页面</div>
-      <demo-box class="nav-demo-box" height="1040px" :time="0.5">
+      <demo-box class="nav-demo-box" height="1040px" :time="0.4">
         <template v-slot:demo-box-source>
           <div class="demo-box-source">
             <div class="demo-box-source-nav_1 light-green">
@@ -178,9 +178,7 @@
                 <span>,</span>
               </div>
               <div style="margin-left: 64px">
-                <span>component:</span>
-                <span class="jkhl-string"> Icon</span>
-                <span>,</span>
+                <span>component: Icon,</span>
               </div>
               <div style="margin-left: 64px">
                 <span class="jkhl-comment">// permission: "",</span>
@@ -240,9 +238,7 @@
                 <span>,</span>
               </div>
               <div style="margin-left: 64px">
-                <span>component:</span>
-                <span class="jkhl-string"> IconGuide</span>
-                <span>,</span>
+                <span>component: IconGuide,</span>
               </div>
               <div style="margin-left: 64px">
                 <span class="jkhl-comment">// permission: "",</span>

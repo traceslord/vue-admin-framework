@@ -11,7 +11,7 @@
       <div class="icon-description">{{ $t("icon.description") }}</div>
       <div class="icon-use">
         <div class="icon-title">{{ $t("icon.usage") }}</div>
-        <demo-box class="icon-use-demo-box" height="142px">
+        <demo-box class="icon-use-demo-box">
           <template v-slot:demo-box-source>
             <div class="demo-box-source">
               <i class="el-icon-s-home"></i>
