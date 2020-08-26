@@ -294,9 +294,6 @@
                 <span>) },</span>
               </div>
               <div style="margin-left: 64px">
-                <span class="jkhl-comment">// permission: "",</span>
-              </div>
-              <div style="margin-left: 64px">
                 <span>meta: {</span>
               </div>
               <div style="margin-left: 80px">
