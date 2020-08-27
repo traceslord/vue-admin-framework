@@ -1,0 +1,10 @@
+[
+  "vue-loader",
+  "define",
+  "case-sensitive-paths",
+  "friendly-errors",
+  "html",
+  "preload",
+  "prefetch",
+  "copy"
+];

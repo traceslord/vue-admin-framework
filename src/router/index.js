@@ -26,6 +26,7 @@ router.beforeEach(async (to, from, next) => {
     }
     if (TOKEN && to.name === "AccountLogin") {
       next({ name: "Home", replace: true });
+      return;
     }
     if (!router.firstInit && TOKEN) {
       router.firstInit = true;
