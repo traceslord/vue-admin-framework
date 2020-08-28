@@ -5,18 +5,23 @@
     "login": "登录",
     "logout": "登出",
     "detail": "详情",
-    "guide": "指南"
+    "guide": "指南",
+    "confirm": "确定",
+    "cancel": "取消"
   },
   "success": {
     "format": "{attribute}成功"
   },
   "error": {
-    "login": "手机号码格式有误，请重新填写。"
+    "missing": "缺少必要参数",
+    "login": "手机号码格式有误，请重新填写。",
+    "uploadLimit": "请上传不大于 {limit} 且格式为jpg、gif、png 的文件"
   },
   "api": {
     "forbidden": "没有权限！",
     "serverError": "服务器发送错误，请稍后再试",
-    "timeout": "网络超时"
+    "timeout": "网络超时",
+    "notWritten": "本地上传没写"
   },
   "nav": {
     "home": {
@@ -39,6 +44,27 @@
           "children": [
             {
               "name": "菜单 3-1"
+            }
+          ]
+        }
+      ]
+    },
+    "editor": {
+      "name": "文本编辑器",
+      "children": [
+        {
+          "name": "富文本",
+          "children": [
+            {
+              "name": "Quill"
+            }
+          ]
+        },
+        {
+          "name": "Markdown",
+          "children": [
+            {
+              "name": "Mavon"
             }
           ]
         }
@@ -79,5 +105,19 @@
     "onePage": "单页",
     "multipage": "拥有子页面",
     "detailsPage": "详情页"
+  },
+  "editor": {
+    "components": {
+      "placeholder": "开始编辑...",
+      "uploadVideo": "上传视频",
+      "obtainLink": "获取链接",
+      "videoLink": "视频链接：",
+      "coverLink": "封面链接：",
+      "videoLinkPlaceholder": "请输入视频链接地址",
+      "coverLinkPlaceholder": "请输入封面链接地址",
+      "copyLink": "点击链接即可复制～",
+      "selectFile": "选择文件",
+      "copy": "复制"
+    }
   }
 }

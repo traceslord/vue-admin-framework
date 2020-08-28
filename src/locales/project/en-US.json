@@ -5,18 +5,23 @@
     "login": "Log in",
     "logout": "Log out",
     "detail": "Details",
-    "guide": "Guide"
+    "guide": "Guide",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
   },
   "success": {
     "format": "{attribute} successfully"
   },
   "error": {
-    "login": "The format of mobile phone number is wrong, please fill in again."
+    "missing": "Required parameter missing",
+    "login": "The format of mobile phone number is wrong, please fill in again.",
+    "uploadLimit": "Upload files no larger than {limit} in JPG, GIF, PNG format"
   },
   "api": {
     "forbidden": "No permissions!",
     "serverError": "The server sent an error, please try again later",
-    "timeout": "Network timeout"
+    "timeout": "Network timeout",
+    "notWritten": "Local upload not written"
   },
   "nav": {
     "home": {
@@ -39,6 +44,27 @@
           "children": [
             {
               "name": "Menu 3-1"
+            }
+          ]
+        }
+      ]
+    },
+    "editor": {
+      "name": "Text editor",
+      "children": [
+        {
+          "name": "Rich text",
+          "children": [
+            {
+              "name": "Quill"
+            }
+          ]
+        },
+        {
+          "name": "Markdown",
+          "children": [
+            {
+              "name": "Mavon"
             }
           ]
         }
@@ -79,5 +105,19 @@
     "onePage": "One page",
     "multipage": "Have child pages",
     "detailsPage": "Details page"
+  },
+  "editor": {
+    "components": {
+      "placeholder": "Editing...",
+      "uploadVideo": "Video Upload",
+      "obtainLink": "Obtain the link",
+      "videoLink": "Video Link：",
+      "coverLink": "Cover Link：",
+      "videoLinkPlaceholder": "Please enter the video link address",
+      "coverLinkPlaceholder": "Please enter the cover link address",
+      "copyLink": "Click the link to copy",
+      "selectFile": "Select File",
+      "copy": "Copy"
+    }
   }
 }

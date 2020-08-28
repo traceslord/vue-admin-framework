@@ -5,18 +5,23 @@
     "login": "Connexion",
     "logout": "Se déconnecter",
     "detail": "Détails",
-    "guide": "Guide"
+    "guide": "Guide",
+    "confirm": "Confirmer",
+    "cancel": "Annuler"
   },
   "success": {
     "format": "{attribute} réussie"
   },
   "error": {
-    "login": "Il y a une erreur dans le format du numéro de téléphone portable, veuillez le remplir à nouveau."
+    "missing": "Paramètres nécessaires manquants",
+    "login": "Il y a une erreur dans le format du numéro de téléphone portable, veuillez le remplir à nouveau.",
+    "uploadLimit": "Veuillez télécharger un fichier qui n’est pas plus grand que {limit} et qui a le format JPG, gif, PNG"
   },
   "api": {
     "forbidden": "Pas de permis!",
     "serverError": "Le serveur a envoyé une erreur, essayez de nouveau plus tard.",
-    "timeout": "Temps d’attente du réseau"
+    "timeout": "Temps d’attente du réseau",
+    "notWritten": "Téléchargement local non écrit"
   },
   "nav": {
     "home": {
@@ -39,6 +44,27 @@
           "children": [
             {
               "name": "Menu 3-1"
+            }
+          ]
+        }
+      ]
+    },
+    "editor": {
+      "name": "Éditeur de textes",
+      "children": [
+        {
+          "name": "Texte riche",
+          "children": [
+            {
+              "name": "Quill"
+            }
+          ]
+        },
+        {
+          "name": "Markdown",
+          "children": [
+            {
+              "name": "Mavon"
             }
           ]
         }
@@ -79,5 +105,19 @@
     "onePage": "Page",
     "multipage": "Nombre de pages",
     "detailsPage": "Page des détails"
+  },
+  "editor": {
+    "components": {
+      "placeholder": "Éditer...",
+      "uploadVideo": "Télécharger une vidéo",
+      "obtainLink": "Liens d’accès",
+      "videoLink": "Liens vidéo：",
+      "coverLink": "Lien de couverture：",
+      "videoLinkPlaceholder": "Veuillez indiquer l’adresse du lien vidéo",
+      "coverLinkPlaceholder": "Veuillez indiquer l’adresse du lien de couverture",
+      "copyLink": "Vous pouvez le copier en cliquant sur le lien",
+      "selectFile": "Sélection des fichiers",
+      "copy": "Copies"
+    }
   }
 }

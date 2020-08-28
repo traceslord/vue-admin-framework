@@ -1,6 +1,7 @@
 import routesHome from "./routes-home";
 import routesIcon from "./routes-icon";
 import routesRoutes from "./routes-routes";
+import routesEditor from "./routes-editor";
 import TheLayout from "@/components/TheLayout.vue";
 import AccountLogin from "@/views/AccountLogin";
 import i18n from "@/locales/i18n";
@@ -20,6 +21,6 @@ export default [
     path: "/admin",
     component: TheLayout,
     redirect: { name: "Home" },
-    children: [...routesHome, ...routesIcon, ...routesRoutes]
+    children: [...routesHome, ...routesIcon, ...routesRoutes, ...routesEditor]
   }
 ];
