@@ -160,9 +160,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less" scoped>
-/deep/.ql-editor {
-  min-height: 300px;
-}
-</style>

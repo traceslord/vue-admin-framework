@@ -118,6 +118,12 @@
       "copyLink": "Vous pouvez le copier en cliquant sur le lien",
       "selectFile": "Sélection des fichiers",
       "copy": "Copies"
+    },
+    "views": {
+      "quill": {
+        "introduction_1": "Quill est un éditeur moderne de textes riches construit sur la base de la compatibilité et de l’extensibilité.",
+        "introduction_2": "Il a été créé par Jason Chen et Byron Milligan et géré activement par Slab."
+      }
     }
   }
 }

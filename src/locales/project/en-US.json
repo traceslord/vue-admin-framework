@@ -118,6 +118,12 @@
       "copyLink": "Click the link to copy",
       "selectFile": "Select File",
       "copy": "Copy"
+    },
+    "views": {
+      "quill": {
+        "introduction_1": "Quill is a modern rich text editor built for compatibility and extensibility.",
+        "introduction_2": "It was created by Jason Chen and Byron Milligan and actively maintained by Slab."
+      }
     }
   }
 }

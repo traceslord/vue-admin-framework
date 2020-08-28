@@ -118,6 +118,12 @@
       "copyLink": "点击链接即可复制～",
       "selectFile": "选择文件",
       "copy": "复制"
+    },
+    "views": {
+      "quill": {
+        "introduction_1": "Quill 是一款基于兼容性与可扩展性而构建的现代富文本编辑器。",
+        "introduction_2": "它由 Jason Chen 和 Byron Milligan 创建，并由 Slab 积极维护。"
+      }
     }
   }
 }
