@@ -123,6 +123,11 @@
       "quill": {
         "introduction_1": "Quill is a modern rich text editor built for compatibility and extensibility.",
         "introduction_2": "It was created by Jason Chen and Byron Milligan and actively maintained by Slab."
+      },
+      "mavon": {
+        "introduction": "A markdown editor based on Vue.",
+        "markdownIt": "jk-markdown-it",
+        "markdownItIntroduction": "Markdown parser, perfectly compatible with the mavon editor."
       }
     }
   }

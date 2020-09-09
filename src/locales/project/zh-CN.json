@@ -123,6 +123,11 @@
       "quill": {
         "introduction_1": "Quill 是一款基于兼容性与可扩展性而构建的现代富文本编辑器。",
         "introduction_2": "它由 Jason Chen 和 Byron Milligan 创建，并由 Slab 积极维护。"
+      },
+      "mavon": {
+        "introduction": "基于 Vue 的 markdown 编辑器。",
+        "markdownIt": "jk-markdown-it",
+        "markdownItIntroduction": "Markdown 解析器，完美兼容 mavon editor。"
       }
     }
   }

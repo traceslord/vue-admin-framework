@@ -259,13 +259,10 @@ export default {
     }
   },
   mounted() {
-    const md = this.$refs.md;
-    md.markdownIt.set({ breaks: false });
-    if (this.video) {
-      const toolbar_left = md.$refs.toolbar_left;
-      const diy = this.$refs.diy;
-      toolbar_left.$el.append(diy);
-    }
+    if (!this.video) return;
+    const toolbar_left = this.$refs.md.$refs.toolbar_left;
+    const diy = this.$refs.diy;
+    toolbar_left.$el.append(diy);
   },
   watch: {
     value(val) {

@@ -123,6 +123,11 @@
       "quill": {
         "introduction_1": "Quill est un éditeur moderne de textes riches construit sur la base de la compatibilité et de l’extensibilité.",
         "introduction_2": "Il a été créé par Jason Chen et Byron Milligan et géré activement par Slab."
+      },
+      "mavon": {
+        "introduction": "Éditeur markdown basé sur Vue.",
+        "markdownIt": "jk-markdown-it",
+        "markdownItIntroduction": "Le parser Markdown, parfaitement compatible avec mavon editor."
       }
     }
   }
