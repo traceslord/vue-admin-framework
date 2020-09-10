@@ -27,7 +27,7 @@
 
 <script>
 import Markdown from "@/components/editor/MarkdownMavon";
-import MarkdownIt from "@/components/jk/MarkdownIt";
+import MarkdownIt from "jk-markdown-it/MarkdownIt.vue";
 
 export default {
   components: {

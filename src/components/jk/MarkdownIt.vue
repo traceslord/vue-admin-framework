@@ -127,7 +127,7 @@ export default {
   line-height: 1.5;
   color: #24292e;
   word-wrap: break-word;
-  cursor: text;
+  cursor: default;
   > *:first-child {
     margin-top: 0 !important;
   }
@@ -330,7 +330,6 @@ export default {
     border-collapse: collapse;
     border-spacing: 0;
     overflow: auto;
-    cursor: default;
     thead {
       font-weight: bold;
     }
@@ -356,7 +355,7 @@ export default {
     vertical-align: middle;
   }
   video {
-    width: 100%;
+    max-width: 100%;
     max-height: 560px;
   }
 }
