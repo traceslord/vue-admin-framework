@@ -22,7 +22,6 @@ const optMarkdownIt = {
   html: true,
   xhtmlOut: true,
   breaks: true,
-  // langPrefix: 'lang-',
   linkify: false,
   typographer: true,
   quotes: "“”‘’"
@@ -91,7 +90,7 @@ export default {
 
 <style lang="less">
 /* KATEX 公式： */
-@import "https://q2.cdn.prodegree.com/neon/2020/0612/gZSNgPwOI4oSEt0UChGN1pHcbqEkIJqbJoabBsGZ.css";
+@import "../../assets/styles/katex/katex.css";
 
 .jk-markdown-it {
   /* 布局： */
@@ -106,15 +105,17 @@ export default {
   }
   /* 任务列表： */
   .contains-task-list {
-    padding: 0 !important;
+    padding-left: 4px;
     .task-list-item {
-      list-style: none !important;
+      list-style-type: none;
+      + .task-list-item {
+        margin-top: 4px;
+      }
+      input {
+        margin-right: 4px;
+        vertical-align: middle;
+      }
     }
-  }
-  /* 定义型列表： */
-  dt {
-    font-style: italic;
-    font-weight: 600;
   }
 }
 
@@ -251,6 +252,17 @@ export default {
         margin-bottom: 0;
         list-style-type: lower-alpha;
       }
+    }
+  }
+  dl {
+    margin-bottom: 16px;
+    dt {
+      font-style: italic;
+      font-weight: 600;
+    }
+    dd {
+      margin-bottom: 16px;
+      padding: 0 16px;
     }
   }
   blockquote {
