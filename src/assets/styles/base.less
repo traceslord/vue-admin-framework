@@ -8,7 +8,13 @@
 
 html, body {
   height: 100%;
-  background-color: #fafafa;
+}
+body {
+  background-color: #f6f7f9;
+  transition: background-color 0.2s ease-in-out;
+  &.dark {
+    background-color: #17181a;
+  }
 }
 
 a {

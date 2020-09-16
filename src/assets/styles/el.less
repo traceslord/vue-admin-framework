@@ -86,6 +86,38 @@
 }
 
 
+// el-dropdown-menu
+.el-dropdown-menu.el-popper.dark {
+  background-color: #2c2d2f;
+  border: 1px solid #2c2d2f;
+  .popper__arrow {
+    border: none;
+    &:after {
+      border-bottom-color: #2c2d2f;
+    }
+  }
+  .el-dropdown-menu__item {
+    color: #b2b4b8;
+    &:not(.is-disabled):hover {
+      background-color: #27282a; 
+    }
+  }
+}
+
+
+// el-scrollbar
+.scrollbar-section {
+  height: 100%;
+  .el-scrollbar__wrap {
+    overflow-x: auto;
+    min-height: 100%;
+  }
+  .el-scrollbar__view {
+    min-height: 100%;
+  }
+}
+
+
 // el菜单导航
 .el-menu {
   border-right: 0 !important;

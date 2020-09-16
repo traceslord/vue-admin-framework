@@ -23,5 +23,13 @@ module.exports = {
         symbolId: "icon-[name]"
       })
       .end();
+
+    // set text-loader
+    config.module
+      .rule("md")
+      .test(/\.md$/)
+      .use("text-loader")
+      .loader("text-loader")
+      .end();
   }
 };

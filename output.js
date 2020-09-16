@@ -1,10 +1,18 @@
 [
-  "vue-loader",
-  "define",
-  "case-sensitive-paths",
-  "friendly-errors",
-  "html",
-  "preload",
-  "prefetch",
-  "copy"
+  "vue",
+  "images",
+  "svg",
+  "media",
+  "fonts",
+  "pug",
+  "css",
+  "postcss",
+  "scss",
+  "sass",
+  "less",
+  "stylus",
+  "js",
+  "eslint",
+  "icons",
+  "md"
 ];

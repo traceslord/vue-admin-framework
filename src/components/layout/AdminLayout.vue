@@ -270,20 +270,6 @@ export default {
 };
 </script>
 
-<style lang="less">
-.page {
-  .scrollbar-section {
-    height: 100%;
-    .el-scrollbar__wrap {
-      overflow-x: auto;
-      min-height: 100%;
-    }
-    .el-scrollbar__view {
-      min-height: 100%;
-    }
-  }
-}
-</style>
 <style lang="less" scoped>
 .nav-svg {
   margin-right: 5px;
