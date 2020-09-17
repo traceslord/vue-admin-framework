@@ -78,7 +78,7 @@
           <div class="directory-dialog-header-content" :class="dark">
             <div
               class="directory-sort"
-              :class="[ascending ? 'ascending' : 'descending', dark]"
+              :class="[descending ? 'ascending' : 'descending', dark]"
               @click="toggleSort"
             >
               <icon-svg svg-name="descending"></icon-svg>
@@ -86,7 +86,7 @@
           </div>
         </div>
         <div class="directory-dialog-mainer">
-          <el-scrollbar class="scrollbar-section">
+          <el-scrollbar ref="directoryScrollbar" class="scrollbar-section">
             <div class="directory-dialog-mainer-list">
               <div
                 class="directory-dialog-mainer-item"
@@ -128,7 +128,7 @@ export default {
       contents: [],
       content: "",
       directoryVisible: false,
-      ascending: false
+      descending: false
     };
   },
   computed: {
@@ -202,10 +202,23 @@ export default {
       this.$store.dispatch("logout");
     },
     showDirectory() {
+      let currentIndex = null;
+      this.contents.forEach((data, index) => {
+        if (data.uuid === this.$route.query.subid) currentIndex = index;
+      });
       this.directoryVisible = true;
+      this.$nextTick(() => {
+        this.$refs["directoryScrollbar"].wrap.scrollTop = currentIndex * 52;
+      });
     },
     toggleSort() {
-      this.ascending = !this.ascending;
+      this.descending = !this.descending;
+      this.contents.reverse();
+      this.contents.forEach((data, index) => {
+        if (data.uuid === this.$route.query.subid) {
+          this.$refs["directoryScrollbar"].wrap.scrollTop = index * 52;
+        }
+      });
     },
     toggleContent(uuid) {
       if (this.$route.query.subid === uuid) return;
@@ -325,6 +338,15 @@ export default {
           code,
           pre {
             background-color: #3b3838;
+          }
+          table {
+            tr {
+              background-color: #3b3838;
+            }
+            th,
+            td {
+              border-color: rgba(255, 255, 255, 0.5);
+            }
           }
         }
       }
