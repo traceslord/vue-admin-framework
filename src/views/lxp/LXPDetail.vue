@@ -1,12 +1,8 @@
 <template>
-  <div class="learning-detail-page">
+  <div class="lxp-detail-page">
     <!-- <el-scrollbar class="scrollbar-section"> -->
-    <div
-      class="learning-detail-page-container"
-      :class="dark"
-      v-loading="loading"
-    >
-      <div class="learning-detail-header" :class="dark">
+    <div class="lxp-detail-page-container" :class="dark" v-loading="loading">
+      <div class="lxp-detail-header" :class="dark">
         <div class="header-left">
           <img class="header-logo" src="@/assets/images/logo.png" />
           <span class="header-title" :class="dark">{{ title }}</span>
@@ -39,19 +35,21 @@
               <p class="user-info-line" :class="dark"></p>
             </div>
             <el-dropdown-item style="text-align: center" command="handleLogout">
-              退出登录
+              {{ $t("common.logout") }}
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
-      <div class="learning-detail-mainer">
+      <div class="lxp-detail-mainer">
         <markdown-it :class="dark" :md="content"></markdown-it>
       </div>
-      <div class="learning-detail-footer">
+      <div class="lxp-detail-footer">
         <div v-if="!ending" class="next-btn" :class="dark" @click="goNext">
-          下一章
+          {{ $t("lxp.detail.next") }}
         </div>
-        <div v-else class="ending" :class="dark">全书完</div>
+        <div v-else class="ending" :class="dark">
+          {{ $t("lxp.detail.ending") }}
+        </div>
       </div>
     </div>
     <!-- </el-scrollbar> -->
@@ -112,7 +110,7 @@
 
 <script>
 import { mapState } from "vuex";
-import learning from "@/mock/learning";
+import lxp from "@/mock/lxp";
 import MarkdownIt from "jk-markdown-it/MarkdownIt.vue";
 
 export default {
@@ -159,7 +157,7 @@ export default {
       const id = this.$route.params.id;
       const subid = this.$route.query.subid;
       if (!subid) {
-        learning.forEach(data => {
+        lxp.forEach(data => {
           if (id === data.uuid) {
             const subid = data.contents[0].uuid;
             this.$router.push({
@@ -171,7 +169,7 @@ export default {
         this.getData();
         return;
       }
-      learning.forEach(data => {
+      lxp.forEach(data => {
         if (id === data.uuid) {
           this.title = data.name;
           this.contents = data.contents;
@@ -245,9 +243,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.learning-detail-page {
+.lxp-detail-page {
   height: 100%;
-  .learning-detail-page-container {
+  .lxp-detail-page-container {
     margin: 0 auto;
     width: 1000px;
     min-height: 100%;
@@ -256,7 +254,7 @@ export default {
     &.dark {
       background-color: #1f2022;
     }
-    .learning-detail-header {
+    .lxp-detail-header {
       z-index: 100;
       position: fixed;
       display: flex;
@@ -325,7 +323,7 @@ export default {
         }
       }
     }
-    .learning-detail-mainer {
+    .lxp-detail-mainer {
       padding: 100px 80px 0;
       /deep/.jk-markdown-it {
         * {
@@ -351,7 +349,7 @@ export default {
         }
       }
     }
-    .learning-detail-footer {
+    .lxp-detail-footer {
       padding: 80px 0 100px;
       .next-btn {
         margin: 0 auto;
@@ -387,6 +385,7 @@ export default {
         color: #5d646e;
         background-color: hsla(0, 0%, 100%, 0.05);
         border-radius: 100px;
+        transition: all 0.2s ease-in-out;
         &.dark {
           color: #b2b4b8;
         }

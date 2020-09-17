@@ -28,9 +28,9 @@ export default [
         component: RoutesMenu_1,
         // permission: "",
         meta: {
-          title: `${i18n.t("common.brand")} - ${i18n.t(
+          title: `${i18n.t("nav.routes.children[0].name")} - ${i18n.t(
             "nav.routes.name"
-          )} - ${i18n.t("nav.routes.children[0].name")}`,
+          )} - ${i18n.t("common.brand")}`,
           nav: {
             title: i18n.t("nav.routes.children[0].name")
           },
@@ -45,9 +45,9 @@ export default [
         component: RoutesMenu_2,
         // permission: "",
         meta: {
-          title: `${i18n.t("common.brand")} - ${i18n.t(
+          title: `${i18n.t("nav.routes.children[1].name")} - ${i18n.t(
             "nav.routes.name"
-          )} - ${i18n.t("nav.routes.children[1].name")}`,
+          )} - ${i18n.t("common.brand")}`,
           nav: {
             title: i18n.t("nav.routes.children[1].name")
           },
@@ -75,9 +75,11 @@ export default [
             component: RoutesMenu_3_1,
             // permission: "",
             meta: {
-              title: `${i18n.t("nav.routes.name")} - ${i18n.t(
-                "nav.routes.children[2].name"
-              )} - ${i18n.t("nav.routes.children[2].children[0].name")}`,
+              title: `${i18n.t(
+                "nav.routes.children[2].children[0].name"
+              )} - ${i18n.t("nav.routes.children[2].name")} - ${i18n.t(
+                "nav.routes.name"
+              )}`,
               nav: {
                 title: i18n.t("nav.routes.children[2].children[0].name")
               },

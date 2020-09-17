@@ -3,7 +3,7 @@
     "brand": "JK",
     "admin": "管理中心",
     "login": "登录",
-    "logout": "登出",
+    "logout": "退出登录",
     "detail": "详情",
     "guide": "指南",
     "confirm": "确定",
@@ -129,6 +129,13 @@
         "markdownIt": "jk-markdown-it",
         "markdownItIntroduction": "Markdown 解析器，完美兼容 mavon editor。"
       }
+    }
+  },
+  "lxp": {
+    "name": "学习体验平台",
+    "detail": {
+      "next": "下一章",
+      "ending": "全书完"
     }
   }
 }

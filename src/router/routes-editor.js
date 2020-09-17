@@ -40,9 +40,11 @@ export default [
             component: EditorRichTextQuill,
             // permission: "",
             meta: {
-              title: `${i18n.t("nav.editor.name")} - ${i18n.t(
-                "nav.editor.children[0].name"
-              )} - ${i18n.t("nav.editor.children[0].children[0].name")}`,
+              title: `${i18n.t(
+                "nav.editor.children[0].children[0].name"
+              )} - ${i18n.t("nav.editor.children[0].name")} - ${i18n.t(
+                "nav.editor.name"
+              )}`,
               nav: {
                 title: i18n.t("nav.editor.children[0].children[0].name")
               },
@@ -72,9 +74,11 @@ export default [
             component: EditorMarkdownMavon,
             // permission: "",
             meta: {
-              title: `${i18n.t("nav.editor.name")} - ${i18n.t(
-                "nav.editor.children[1].name"
-              )} - ${i18n.t("nav.editor.children[1].children[0].name")}`,
+              title: `${i18n.t(
+                "nav.editor.children[1].children[0].name"
+              )} - ${i18n.t("nav.editor.children[1].name")} - ${i18n.t(
+                "nav.editor.name"
+              )}`,
               nav: {
                 title: i18n.t("nav.editor.children[1].children[0].name")
               },

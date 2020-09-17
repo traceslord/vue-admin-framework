@@ -130,5 +130,12 @@
         "markdownItIntroduction": "Le parser Markdown, parfaitement compatible avec mavon editor."
       }
     }
+  },
+  "lxp": {
+    "name": "Plateforme d'expérience d'apprentissage",
+    "detail": {
+      "next": "Chapitre suivant",
+      "ending": "Fin du livre"
+    }
   }
 }

@@ -130,5 +130,12 @@
         "markdownItIntroduction": "Markdown parser, perfectly compatible with the mavon editor."
       }
     }
+  },
+  "lxp": {
+    "name": "Learning experience platform",
+    "detail": {
+      "next": "Next chapter",
+      "ending": "The end"
+    }
   }
 }
