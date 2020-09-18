@@ -4,7 +4,11 @@
     <div class="lxp-detail-page-container" :class="dark" v-loading="loading">
       <div class="lxp-detail-header" :class="dark">
         <div class="header-left">
-          <img class="header-logo" src="@/assets/images/logo.png" />
+          <img
+            class="header-logo"
+            src="@/assets/images/logo.png"
+            @click="goHomePage"
+          />
           <span class="header-title" :class="dark">{{ title }}</span>
           <span class="header-subtitle" :class="dark">{{ subtitle }}</span>
         </div>
@@ -58,7 +62,7 @@
       <div class="float-btn" :class="dark" @click="showDirectory">
         <icon-svg svg-class="directory-svg" svg-name="directory"></icon-svg>
       </div>
-      <div class="float-btn" :class="dark" @click="darkMode = !darkMode">
+      <div class="float-btn" :class="dark" @click="toggleMode">
         <icon-svg v-if="darkMode" svg-name="sun"></icon-svg>
         <icon-svg v-else svg-name="moon"></icon-svg>
       </div>
@@ -154,6 +158,7 @@ export default {
   },
   methods: {
     getData() {
+      this.darkMode = localStorage.getItem("jk-mode") === "dark" ? true : false;
       const id = this.$route.params.id;
       const subid = this.$route.query.subid;
       if (!subid) {
@@ -161,7 +166,8 @@ export default {
           if (id === data.uuid) {
             const subid = data.contents[0].uuid;
             this.$router.push({
-              name: "LearngingDetail",
+              name: "LXPDetail",
+              params: { id },
               query: { subid }
             });
           }
@@ -193,6 +199,9 @@ export default {
       if (this.darkMode) document.body.className = "dark";
       else document.body.className = "";
     },
+    goHomePage() {
+      this.$router.push({ name: "LXP" });
+    },
     handleCommand(command) {
       this[command]();
     },
@@ -221,7 +230,7 @@ export default {
     toggleContent(uuid) {
       if (this.$route.query.subid === uuid) return;
       this.$router.push({
-        name: "LearngingDetail",
+        name: "LXPDetail",
         query: { subid: uuid }
       });
       this.directoryVisible = false;
@@ -232,11 +241,16 @@ export default {
         if (data.uuid === subid) {
           const id = self[index + 1].uuid;
           this.$router.push({
-            name: "LearngingDetail",
+            name: "LXPDetail",
             query: { subid: id }
           });
         }
       });
+    },
+    toggleMode() {
+      this.darkMode = !this.darkMode;
+      if (this.darkMode) localStorage.setItem("jk-mode", "dark");
+      else localStorage.setItem("jk-mode", "sun");
     }
   }
 };

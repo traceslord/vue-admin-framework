@@ -290,7 +290,9 @@ const icon = {
     "directory",
     "descending",
     "sun",
-    "moon"
+    "moon",
+    "search",
+    "enter"
   ]
 };
 
