@@ -63,7 +63,9 @@
               :key="index"
               @click="goDetail(item.uuid)"
             >
-              <div class="my_favorite-item-image"></div>
+              <div class="my_favorite-item-image">
+                <img :src="item.url" />
+              </div>
               <div class="my_favorite-item-content">
                 <div class="item-title">{{ item.name }}</div>
                 <div class="item-description">{{ item.description }}</div>
@@ -90,7 +92,9 @@
               :key="index"
               @click="goDetail(item.uuid)"
             >
-              <div class="item-image"></div>
+              <div class="item-image">
+                <img :src="item.url" />
+              </div>
               <div class="item-title">{{ item.name }}</div>
               <div class="item-description">
                 共 {{ item.contents.length }} 章
@@ -175,7 +179,8 @@ export default {
       this[command]();
     },
     handleLogout() {
-      this.$store.dispatch("logout");
+      localStorage.removeItem("jk_admin_token");
+      this.$router.replace({ name: "AccountLogin" });
     }
   }
 };

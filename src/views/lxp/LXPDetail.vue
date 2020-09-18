@@ -206,7 +206,8 @@ export default {
       this[command]();
     },
     handleLogout() {
-      this.$store.dispatch("logout");
+      localStorage.removeItem("jk_admin_token");
+      this.$router.replace({ name: "AccountLogin" });
     },
     showDirectory() {
       let currentIndex = null;

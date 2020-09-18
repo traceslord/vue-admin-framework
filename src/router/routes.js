@@ -9,6 +9,10 @@ import i18n from "@/locales/i18n";
 
 export default [
   {
+    path: "/",
+    redirect: { name: "Home" }
+  },
+  {
     path: "/admin/login",
     name: "AccountLogin",
     component: AccountLogin,

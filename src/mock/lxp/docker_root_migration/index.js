@@ -9,6 +9,8 @@ import summary from "./7_summary.md";
 export default {
   uuid: "0210E512-A8A7-4B53-B584-B04EEE582AF5",
   name: "生产环境中 docker root 迁移",
+  url:
+    "https://assets.jiker.com/_for_plus_sub_project/2020/0918/admin/SJ9P9lZJFKDAQbDXfgvhrhDUSmrXGMmkDN3TSc0D.png",
   contents: [
     {
       uuid: "417D4290-40C2-430D-9AA6-261E694F05F0",

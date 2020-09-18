@@ -10,6 +10,8 @@ import standard from "./8_standard.md";
 export default {
   uuid: "0LARAVEL-AAAA-BBBB-CCCC-000000000000",
   name: "Laravel",
+  url:
+    "https://assets.jiker.com/_for_plus_sub_project/2020/0918/admin/M9Dgz7kBVlbJLkezRMeNl2qr4h4QbiloJpkYexkv.png",
   contents: [
     {
       uuid: "0LARAVEL-AAAA-BBBB-CCCC-000000000001",

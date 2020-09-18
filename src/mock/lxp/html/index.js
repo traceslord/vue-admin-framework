@@ -9,6 +9,8 @@ import baidu from "./7_baidu.md";
 export default {
   uuid: "0000HTML-AAAA-BBBB-CCCC-000000000000",
   name: "HTML",
+  url:
+    "https://assets.jiker.com/_for_plus_sub_project/2020/0918/admin/PqeJE6mUhAxcXg5DhhjKMsmnFeB40q3Ep9e0ipDU.png",
   contents: [
     {
       uuid: "0000HTML-AAAA-BBBB-CCCC-000000000001",

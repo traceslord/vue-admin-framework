@@ -11,6 +11,8 @@ import baidu from "./9_baidu.md";
 export default {
   uuid: "00000CSS-AAAA-BBBB-CCCC-000000000000",
   name: "CSS",
+  url:
+    "https://assets.jiker.com/_for_plus_sub_project/2020/0918/admin/lAQnotBjCarRlLPJ3BX6DlwL09bsU3T0Rfw1R6CF.png",
   contents: [
     {
       uuid: "00000CSS-AAAA-BBBB-CCCC-000000000001",
