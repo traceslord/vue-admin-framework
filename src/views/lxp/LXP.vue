@@ -52,8 +52,12 @@
       <div class="mainer-container">
         <div class="my_favorite">
           <div class="my_favorite-top">
-            <div class="my_favorite-title" :class="mode">我的收藏</div>
-            <div class="my_favorite-link" :class="mode">查看我的收藏</div>
+            <div class="my_favorite-title" :class="mode">
+              {{ $t("lxp.index.myFavorite") }}
+            </div>
+            <div class="my_favorite-link" :class="mode">
+              {{ $t("lxp.index.myFavoriteMore") }}
+            </div>
           </div>
           <div class="my_favorite-list">
             <div
@@ -75,13 +79,15 @@
         </div>
         <div class="guess_you_like">
           <div class="guess_you_like-top">
-            <div class="guess_you_like-title" :class="mode">猜你喜欢</div>
+            <div class="guess_you_like-title" :class="mode">
+              {{ $t("lxp.index.recommend") }}
+            </div>
             <div
               class="guess_you_like-link"
               :class="mode"
               @click="getGuessYouLike"
             >
-              换一批
+              {{ $t("lxp.index.InBatch") }}
             </div>
           </div>
           <div class="guess_you_like-list">

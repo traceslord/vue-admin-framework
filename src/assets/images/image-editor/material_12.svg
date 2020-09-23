@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="90px" height="72px" viewBox="0 0 90 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>编组</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="形状素材" transform="translate(-742.000000, -286.000000)">
+            <g id="编组" transform="translate(742.000000, 286.000000)">
+                <polyline id="Fill-408" fill="#838383" points="51.7504454 0 17.2495546 0 0 30 17.2495546 60 51.7504454 60 69 30 51.7504454 0"></polyline>
+                <path d="M37.7776246,70.2050317 L71.2223754,70.2050317 L87.945641,40.9991025 L71.2223754,11.7949683 L37.7776246,11.7949683 L21.054359,40.9991025 L37.7776246,70.2050317 Z M72.2513352,72 L36.7486648,72 L19,40.9991025 L36.7486648,10 L72.2513352,10 L90,40.9991025 L72.2513352,72 L72.2513352,72 Z" id="Fill-409" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -69,6 +69,9 @@
           ]
         }
       ]
+    },
+    "image": {
+      "name": "Image editor"
     }
   },
   "login": {
@@ -133,6 +136,12 @@
   },
   "lxp": {
     "name": "Learning experience platform",
+    "index": {
+      "myFavorite": "My favorite",
+      "myFavoriteMore": "See more",
+      "recommend": "Recommend",
+      "InBatch": "In a batch"
+    },
     "detail": {
       "next": "Next chapter",
       "ending": "The end"

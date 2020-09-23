@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="107px" height="122px" viewBox="0 0 107 122" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>编组 16</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polyline id="path-1" points="53.863 0.538 106.795 92.219 0.931 92.219 53.863 0.538"></polyline>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="形状素材" transform="translate(-1318.000000, -727.000000)">
+            <g id="编组-16" transform="translate(1318.000000, 727.000000)">
+                <polyline id="Fill-134" fill="#838383" points="53.863 -2.84217094e-14 102.056 83.473 5.67 83.473 53.863 -2.84217094e-14"></polyline>
+                <g id="编组" transform="translate(0.000000, 29.234000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-136"></g>
+                    <path d="M-38.077,-2.041 L148.886,-2.041 M-38.077,2.726 L148.886,2.726 M-38.077,7.493 L148.886,7.493 M-38.077,12.26 L148.886,12.26 M-38.077,17.027 L148.886,17.027 M-38.077,21.793 L148.886,21.793 M-38.077,26.56 L148.886,26.56 M-38.077,31.327 L148.886,31.327 M-38.077,36.094 L148.886,36.094 M-38.077,40.861 L148.886,40.861 M-38.077,45.628 L148.886,45.628 M-38.077,50.394 L148.886,50.394 M-38.077,55.161 L148.886,55.161 M-38.077,59.928 L148.886,59.928 M-38.077,64.695 L148.886,64.695 M-38.077,69.462 L148.886,69.462 M-38.077,74.229 L148.886,74.229 M-38.077,78.995 L148.886,78.995 M-38.077,83.762 L148.886,83.762 M-38.077,88.529 L148.886,88.529 M-38.077,93.296 L148.886,93.296 M-38.077,98.063 L148.886,98.063" id="Stroke-135" stroke="#FFFFFF" stroke-width="1.62" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

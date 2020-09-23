@@ -15,6 +15,7 @@
     "element-resize-detector": "^1.2.1",
     "element-ui": "^2.13.2",
     "highlight.js": "^10.1.2",
+    "html2canvas": "^1.0.0-rc.7",
     "jk-markdown-it": "^1.0.5",
     "markdown-it": "^11.0.0",
     "markdown-it-abbr": "^1.0.4",

@@ -2,6 +2,7 @@ import routesHome from "./routes-home";
 import routesIcon from "./routes-icon";
 import routesRoutes from "./routes-routes";
 import routesEditor from "./routes-editor";
+import routesImage from "./routes-image";
 import routesLXP from "./routes-lxp";
 import AccountLogin from "@/views/AccountLogin";
 import AdminLayout from "@/components/layout/AdminLayout.vue";
@@ -26,7 +27,13 @@ export default [
     path: "/admin",
     component: AdminLayout,
     redirect: { name: "Home" },
-    children: [...routesHome, ...routesIcon, ...routesRoutes, ...routesEditor]
+    children: [
+      ...routesHome,
+      ...routesIcon,
+      ...routesRoutes,
+      ...routesEditor,
+      ...routesImage
+    ]
   },
   ...routesLXP
 ];

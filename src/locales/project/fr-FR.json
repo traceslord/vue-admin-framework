@@ -69,6 +69,9 @@
           ]
         }
       ]
+    },
+    "image": {
+      "name": "Éditeur d’images"
     }
   },
   "login": {
@@ -133,6 +136,12 @@
   },
   "lxp": {
     "name": "Plateforme d'expérience d'apprentissage",
+    "index": {
+      "myFavorite": "Ma collection",
+      "myFavoriteMore": "Voir plus",
+      "recommend": "Recommandée",
+      "InBatch": "Autre lot"
+    },
     "detail": {
       "next": "Chapitre suivant",
       "ending": "Fin du livre"

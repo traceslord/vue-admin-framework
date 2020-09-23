@@ -292,7 +292,8 @@ const icon = {
     "sun",
     "moon",
     "search",
-    "enter"
+    "enter",
+    "image"
   ]
 };
 
