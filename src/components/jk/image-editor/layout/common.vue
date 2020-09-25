@@ -283,10 +283,14 @@ export default {
   },
   created() {
     this.getData();
-    this.preventDefault();
-    this.getInfo();
-    this.move();
-    this.release();
+    this.bind();
+  },
+  destroyed() {
+    window.removeEventListener("dragstart", this.preventDefault);
+    window.removeEventListener("dragend", this.preventDefault);
+    window.removeEventListener("mousedown", this.getInfo);
+    window.removeEventListener("mousemove", this.move);
+    window.removeEventListener("mouseup", this.release);
   },
   methods: {
     getData() {
@@ -295,13 +299,15 @@ export default {
         this.fileList.push({ name, url: data });
       });
     },
-    preventDefault() {
-      document.ondragstart = function(ev) {
-        ev.preventDefault();
-      };
-      document.ondragend = function(ev) {
-        ev.preventDefault();
-      };
+    bind() {
+      window.addEventListener("dragstart", this.preventDefault);
+      window.addEventListener("dragend", this.preventDefault);
+      window.addEventListener("mousedown", this.getInfo);
+      window.addEventListener("mousemove", this.move);
+      window.addEventListener("mouseup", this.release);
+    },
+    preventDefault(e) {
+      e.preventDefault();
     },
     previewImage() {
       this.$refs["imageEditor"].previewImage();
@@ -370,62 +376,53 @@ export default {
       this.fonts[index].zIndex = this.zIndex;
       this.zIndex++;
     },
-    getInfo() {
-      document.onmousedown = e => {
-        const index = this.currentIndex;
-        const fontIndex = this.fontIndex;
-        if (index || index === 0) {
-          this.images[index].x = e.x;
-          this.images[index].y = e.y;
-          this.images[index].offsetTop = this.$refs[
-            `image_${index}`
-          ][0].offsetTop;
-          this.images[index].offsetLeft = this.$refs[
-            `image_${index}`
-          ][0].offsetLeft;
-        }
-        if (fontIndex || fontIndex === 0) {
-          this.fonts[fontIndex].mouseX = e.x;
-          this.fonts[fontIndex].mouseY = e.y;
-          this.fonts[fontIndex].oldX = this.fonts[fontIndex].x;
-          this.fonts[fontIndex].oldY = this.fonts[fontIndex].y;
-        }
-      };
+    getInfo(e) {
+      const index = this.currentIndex;
+      const fontIndex = this.fontIndex;
+      if (index || index === 0) {
+        this.images[index].x = e.x;
+        this.images[index].y = e.y;
+        this.images[index].offsetTop = this.$refs[
+          `image_${index}`
+        ][0].offsetTop;
+        this.images[index].offsetLeft = this.$refs[
+          `image_${index}`
+        ][0].offsetLeft;
+      }
+      if (fontIndex || fontIndex === 0) {
+        this.fonts[fontIndex].mouseX = e.x;
+        this.fonts[fontIndex].mouseY = e.y;
+        this.fonts[fontIndex].oldX = this.fonts[fontIndex].x;
+        this.fonts[fontIndex].oldY = this.fonts[fontIndex].y;
+      }
     },
-    move() {
-      document.onmousemove = e => {
-        const index = this.currentIndex;
-        const fontIndex = this.fontIndex;
-        if (index || index === 0) {
-          const top = e.y - this.images[index].y + this.images[index].offsetTop;
-          const left =
-            e.x - this.images[index].x + this.images[index].offsetLeft;
-          this.$refs[`image_${index}`][0].style.top = top + "px";
-          this.$refs[`image_${index}`][0].style.left = left + "px";
-        }
-        if (fontIndex || fontIndex === 0) {
-          const maxWidth =
-            this.width - this.$refs[`font_${fontIndex}`][0].offsetWidth;
-          const maxHeight =
-            this.height - this.$refs[`font_${fontIndex}`][0].offsetHeight;
-          let x =
-            e.x - this.fonts[fontIndex].mouseX + this.fonts[fontIndex].oldX;
-          let y =
-            e.y - this.fonts[fontIndex].mouseY + this.fonts[fontIndex].oldY;
-          x = x > maxWidth ? maxWidth : x;
-          x = x < 0 ? 0 : x;
-          y = y > maxHeight ? maxHeight : y;
-          y = y < 0 ? 0 : y;
-          this.fonts[fontIndex].x = x;
-          this.fonts[fontIndex].y = y;
-        }
-      };
+    move(e) {
+      const index = this.currentIndex;
+      const fontIndex = this.fontIndex;
+      if (index || index === 0) {
+        const top = e.y - this.images[index].y + this.images[index].offsetTop;
+        const left = e.x - this.images[index].x + this.images[index].offsetLeft;
+        this.$refs[`image_${index}`][0].style.top = top + "px";
+        this.$refs[`image_${index}`][0].style.left = left + "px";
+      }
+      if (fontIndex || fontIndex === 0) {
+        const maxWidth =
+          this.width - this.$refs[`font_${fontIndex}`][0].offsetWidth;
+        const maxHeight =
+          this.height - this.$refs[`font_${fontIndex}`][0].offsetHeight;
+        let x = e.x - this.fonts[fontIndex].mouseX + this.fonts[fontIndex].oldX;
+        let y = e.y - this.fonts[fontIndex].mouseY + this.fonts[fontIndex].oldY;
+        x = x > maxWidth ? maxWidth : x;
+        x = x < 0 ? 0 : x;
+        y = y > maxHeight ? maxHeight : y;
+        y = y < 0 ? 0 : y;
+        this.fonts[fontIndex].x = x;
+        this.fonts[fontIndex].y = y;
+      }
     },
     release() {
-      document.onmouseup = () => {
-        this.currentIndex = null;
-        this.fontIndex = null;
-      };
+      this.currentIndex = null;
+      this.fontIndex = null;
     },
     querySearch(queryString, cb) {
       cb([

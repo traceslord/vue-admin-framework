@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ImageEditor from "@/components/jk/image-editor/layout/common";
+import ImageEditor from "jk-image-editor/layout/common";
 
 export default {
   components: {
