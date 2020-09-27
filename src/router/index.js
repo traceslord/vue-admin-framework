@@ -6,6 +6,8 @@ import "nprogress/nprogress.css";
 // import userService from "@/global/service/user";
 import Store from "@/store/index";
 
+NProgress.configure({ showSpinner: false });
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({

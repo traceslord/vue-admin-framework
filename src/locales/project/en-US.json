@@ -17,6 +17,9 @@
     "login": "The format of mobile phone number is wrong, please fill in again.",
     "uploadLimit": "Upload files no larger than {limit} in JPG, GIF, PNG format"
   },
+  "warning": {
+    "browser": "You browser can not work"
+  },
   "api": {
     "forbidden": "No permissions!",
     "serverError": "The server sent an error, please try again later",

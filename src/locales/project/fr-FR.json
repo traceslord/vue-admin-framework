@@ -17,6 +17,9 @@
     "login": "Il y a une erreur dans le format du numéro de téléphone portable, veuillez le remplir à nouveau.",
     "uploadLimit": "Veuillez télécharger un fichier qui n’est pas plus grand que {limit} et qui a le format JPG, gif, PNG"
   },
+  "warning": {
+    "browser": "Le navigateur actuel ne permet pas le fonctionnement à écran complet"
+  },
   "api": {
     "forbidden": "Pas de permis!",
     "serverError": "Le serveur a envoyé une erreur, essayez de nouveau plus tard.",

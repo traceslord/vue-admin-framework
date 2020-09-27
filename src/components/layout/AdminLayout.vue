@@ -109,52 +109,71 @@
         </div>
         <div class="sidebar-footer">
           <div class="collapse-icon-container" @click="handleCollapse">
-            <img
-              class="collapse-icon"
-              :class="{ unfold: collapse }"
-              src="@/assets/images/fold.svg"
-            />
+            <icon-svg
+              :svg-class="collapse ? 'collapse-icon unfold' : 'collapse-icon'"
+              svg-name="fold_1"
+            ></icon-svg>
           </div>
         </div>
       </div>
     </div>
     <div class="page-right-container">
       <div class="page-header">
-        <div class="page-header-left"></div>
-        <div class="page-header-middle">
-          <span v-for="(lang, index) in supportedLangs" :key="index">
-            <el-link
-              :type="$i18n.locale === lang ? 'primary' : ''"
-              :underline="false"
-              @click="changeLocale(lang)"
-            >
-              {{ langs[lang] }}
-            </el-link>
-            <el-divider
-              direction="vertical"
-              v-if="index !== supportedLangs.length - 1"
-            ></el-divider>
-          </span>
-        </div>
-        <el-dropdown style="height: 100%" @command="handleCommand">
-          <div class="page-header-right">
-            <img v-if="userAvatar" class="user-avatar" :src="userAvatar" />
-            <img
-              v-else
-              class="user-avatar"
-              src="@/assets/images/default-avatar.png"
-            />
-            <span class="user-name">{{ userName || userPhone }}</span>
-            <i class="el-icon-arrow-down"></i>
+        <div class="page-header-left">
+          <div class="fullscreen-icon-container" @click="toggleScreenfull">
+            <icon-svg
+              svg-class="fullscreen-icon"
+              :svg-name="
+                isFullscreen
+                  ? 'fullscreen-shrink-round'
+                  : 'fullscreen-expand-round'
+              "
+            ></icon-svg>
           </div>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item
-              icon="el-icon-video-pause"
-              command="handleLogout"
-              >{{ $t("common.logout") }}</el-dropdown-item
-            >
-          </el-dropdown-menu>
-        </el-dropdown>
+        </div>
+        <div class="page-header-middle">
+          <el-link type="primary" :underline="false" @click="goLxp">{{
+            $t("lxp.name")
+          }}</el-link>
+        </div>
+        <div class="page-header-right">
+          <el-dropdown style="height: 100%" @command="handleCommand">
+            <div class="language-icon-container">
+              <icon-svg
+                svg-class="language-icon"
+                svg-name="language"
+              ></icon-svg>
+            </div>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item
+                v-for="(lang, index) in supportedLangs"
+                :key="index"
+                :command="{ method: 'changeLocale', lang }"
+                :disabled="$i18n.locale === lang ? true : false"
+                >{{ langs[lang] }}</el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </el-dropdown>
+          <el-dropdown style="height: 100%" @command="handleCommand">
+            <div class="user-info">
+              <img v-if="userAvatar" class="user-avatar" :src="userAvatar" />
+              <img
+                v-else
+                class="user-avatar"
+                src="@/assets/images/default-avatar.png"
+              />
+              <span class="user-name">{{ userName || userPhone }}</span>
+              <i class="el-icon-arrow-down"></i>
+            </div>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item
+                icon="el-icon-video-pause"
+                command="handleLogout"
+                >{{ $t("common.logout") }}</el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
       </div>
       <div class="page-content">
         <el-scrollbar class="scrollbar-section">
@@ -166,6 +185,7 @@
 </template>
 
 <script>
+import screenfull from "screenfull";
 import { mapState } from "vuex";
 import routesAll from "@/router/routes";
 import { SUPPORTED_LANGS, setLocale } from "@/locales/i18n";
@@ -178,6 +198,7 @@ export default {
       navActiveTextColor: "",
       navRoutes: [],
       collapse: false,
+      isFullscreen: false,
       supportedLangs: SUPPORTED_LANGS,
       langs: {
         "en-US": "English",
@@ -194,6 +215,14 @@ export default {
   },
   created() {
     this.getRoutes();
+    if (screenfull.isEnabled) {
+      screenfull.on("change", this.getIsFullscreen);
+    }
+  },
+  beforeDestroy() {
+    if (screenfull.isEnabled) {
+      screenfull.off("change", this.getIsFullscreen);
+    }
   },
   methods: {
     getRoutes() {
@@ -253,8 +282,22 @@ export default {
     handleCollapse() {
       this.collapse = !this.collapse;
     },
+    getIsFullscreen() {
+      this.isFullscreen = screenfull.isFullscreen;
+    },
+    toggleScreenfull() {
+      if (!screenfull.isEnabled) {
+        this.$message.warning(this.$i18n.t("warning.browser"));
+        return;
+      }
+      screenfull.toggle();
+    },
     handleCommand(command) {
-      this[command]();
+      if (typeof command == "string") this[command]();
+      else this[command.method](command.lang);
+    },
+    goLxp() {
+      this.$router.push({ name: "LXP" });
     },
     handleLogout() {
       localStorage.removeItem("jk_admin_token");
@@ -335,6 +378,7 @@ export default {
             margin-top: 6px;
             width: 20px;
             height: 20px;
+            color: #fff;
             transition: all 0.2s ease-out;
             &.unfold {
               transform: rotate(-180deg);
@@ -363,27 +407,58 @@ export default {
       background: #fff;
       box-shadow: 0 1px 2px 0 rgba(9, 18, 26, 0.06),
         0 4px 8px 0 rgba(39, 56, 73, 0.08);
+      .page-header-left {
+        .fullscreen-icon-container {
+          padding: 0 10px;
+          width: 36px;
+          height: 100%;
+          cursor: pointer;
+          &:hover {
+            background: rgba(0, 0, 0, 0.025);
+          }
+          .fullscreen-icon {
+            width: 16px;
+            height: 100%;
+          }
+        }
+      }
       .page-header-right {
         display: flex;
-        align-items: center;
-        padding: 0 10px;
-        height: 100%;
-        transition: all 0.2s ease;
-        cursor: pointer;
-        &:hover {
-          background: rgba(0, 0, 0, 0.025);
+        .language-icon-container {
+          padding: 0 10px;
+          width: 38px;
+          height: 100%;
+          cursor: pointer;
+          &:hover {
+            background: rgba(0, 0, 0, 0.025);
+          }
+          .language-icon {
+            width: 18px;
+            height: 100%;
+          }
         }
-        .user-avatar {
-          margin: 0 8px;
-          width: 30px;
-          height: 30px;
-          object-fit: cover;
-          border-radius: 50%;
-        }
-        .user-name {
-          margin-right: 8px;
-          font-size: 12px;
-          vertical-align: middle;
+        .user-info {
+          display: flex;
+          align-items: center;
+          padding: 0 10px;
+          height: 100%;
+          transition: all 0.2s ease;
+          cursor: pointer;
+          &:hover {
+            background: rgba(0, 0, 0, 0.025);
+          }
+          .user-avatar {
+            margin: 0 8px;
+            width: 30px;
+            height: 30px;
+            object-fit: cover;
+            border-radius: 50%;
+          }
+          .user-name {
+            margin-right: 8px;
+            font-size: 13px;
+            vertical-align: middle;
+          }
         }
       }
     }

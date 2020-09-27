@@ -17,6 +17,9 @@
     "login": "手机号码格式有误，请重新填写。",
     "uploadLimit": "请上传不大于 {limit} 且格式为jpg、gif、png 的文件"
   },
+  "warning": {
+    "browser": "当前浏览器不支持全屏操作"
+  },
   "api": {
     "forbidden": "没有权限！",
     "serverError": "服务器发送错误，请稍后再试",

@@ -293,7 +293,12 @@ const icon = {
     "moon",
     "search",
     "enter",
-    "image"
+    "image",
+    "fullscreen-expand",
+    "fullscreen-shrink",
+    "fullscreen-expand-round",
+    "fullscreen-shrink-round",
+    "language"
   ]
 };
 
