@@ -4,8 +4,13 @@ import routesRoutes from "./routes-routes";
 import routesEditor from "./routes-editor";
 import routesImage from "./routes-image";
 import routesLXP from "./routes-lxp";
+import routesSavierHome from "./savier/home";
+import routesSavierIcon from "./savier/icon";
+import routesSavierRoutes from "./savier/routes";
+import routesSavierEditor from "./savier/editor";
 import AccountLogin from "@/views/AccountLogin";
 import AdminLayout from "@/components/layout/AdminLayout.vue";
+import SavierLayout from "@/components/layout/SavierLayout.vue";
 import i18n from "@/locales/i18n";
 
 export default [
@@ -35,5 +40,16 @@ export default [
       ...routesImage
     ]
   },
-  ...routesLXP
+  ...routesLXP,
+  {
+    path: "/savier",
+    component: SavierLayout,
+    redirect: { name: "SavierHome" },
+    children: [
+      ...routesSavierHome,
+      ...routesSavierIcon,
+      ...routesSavierRoutes,
+      ...routesSavierEditor
+    ]
+  }
 ];

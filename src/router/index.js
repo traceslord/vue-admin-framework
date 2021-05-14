@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import routes from "./routes";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
+import supersetService from "@/components/jk/superset-charts/service";
 // import userService from "@/global/service/user";
 import Store from "@/store/index";
 
@@ -21,6 +22,17 @@ router.beforeEach(async (to, from, next) => {
   NProgress.start();
   if (to.meta.title) document.title = to.meta.title;
   try {
+    const SUPERSETTOKEN = localStorage.getItem("jk_superset_token");
+    if (!SUPERSETTOKEN) {
+      const params = {
+        username: "vip",
+        password: "123456",
+        provider: "db",
+        refresh: true
+      };
+      const superset = await supersetService.securityLogin(params);
+      localStorage.setItem("jk_superset_token", superset.access_token);
+    }
     const TOKEN = localStorage.getItem("jk_admin_token");
     if (!TOKEN && to.name !== "AccountLogin") {
       next({ name: "AccountLogin", replace: true });
