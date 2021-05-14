@@ -3,8 +3,13 @@
     shadow="hover"
     :style="{ width: `${width}px`, height: `${height}px` }"
   >
-    <div class="superset-charts-title">{{ chartTitle }}</div>
-    <el-table border :data="chartList" :max-height="maxHeight" :stripe="true">
+    <div class="superset-charts-title">{{ chartName }}</div>
+    <el-table
+      border
+      :data="chartDataArr[paginationCurrentPage - 1]"
+      :max-height="maxHeight"
+      :stripe="true"
+    >
       <el-table-column
         v-for="(data, index) in chartColnames"
         :key="index"
@@ -16,7 +21,6 @@
       small
       background
       layout="total, prev, pager, next, jumper"
-      @current-change="handleCurrentChange"
       :current-page.sync="paginationCurrentPage"
       :page-size="paginationPageSize"
       :total="paginationTotal"
@@ -29,7 +33,7 @@
 <script>
 export default {
   props: {
-    chartTitle: {
+    chartName: {
       type: String,
       default: ""
     },
@@ -60,7 +64,6 @@ export default {
   },
   data() {
     return {
-      chartList: [],
       paginationCurrentPage: 1,
       maxHeight: 280
     };
@@ -76,16 +79,8 @@ export default {
     }
   },
   watch: {
-    chartDataArr(val) {
-      this.chartList = val[0];
-    },
     height(val) {
       this.maxHeight = val - 120;
-    }
-  },
-  methods: {
-    handleCurrentChange(val) {
-      this.chartList = this.chartDataArr[val - 1];
     }
   }
 };

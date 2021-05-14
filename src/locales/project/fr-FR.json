@@ -149,5 +149,13 @@
       "next": "Chapitre suivant",
       "ending": "Fin du livre"
     }
+  },
+  "savier": {
+    "addChart": "Ajout de diagrammes",
+    "chartType": "Type de diagramme",
+    "chartId": "ID de diagramme",
+    "table": "Le formulaire",
+    "add": "Créer",
+    "immediatelyAdd": "Ajouter immédiatement"
   }
 }

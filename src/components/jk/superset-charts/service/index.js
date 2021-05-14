@@ -16,12 +16,22 @@ const supersetService = {
       .get(API.chartItem(id))
       .then(res => {
         return {
-          title: res.result.slice_name,
+          name: res.result.slice_name,
           params: JSON.parse(res.result.params)
         };
       })
       .then(res => {
         const ds = res.params.datasource.split("__");
+        const columns =
+          res.params.groupby.length === 0
+            ? res.params.all_columns
+            : res.params.groupby;
+        const orderby =
+          res.params.groupby.length === 0
+            ? res.params.order_by_cols.map(data => JSON.parse(data))
+            : [[res.params.timeseries_limit_metric, true]];
+        const metrics =
+          res.params.groupby.length === 0 ? [] : res.params.metrics;
         const params = {
           datasource: { id: Number(ds[0]), type: ds[1] },
           force: false,
@@ -29,7 +39,7 @@ const supersetService = {
             {
               annotation_layers: [],
               applied_time_extras: {},
-              columns: res.params.groupby,
+              columns,
               custom_params: {},
               extras: {
                 having: "",
@@ -39,9 +49,9 @@ const supersetService = {
               },
               filters: [],
               granularity: res.params.granularity_sqla,
-              metrics: res.params.metrics,
+              metrics,
               order_desc: res.params.order_desc,
-              orderby: [[res.params.timeseries_limit_metric, true]],
+              orderby,
               post_processing: [],
               row_limit: res.params.row_limit,
               time_range: res.params.time_range,
@@ -54,7 +64,7 @@ const supersetService = {
           result_type: "full"
         };
         return Promise.all([
-          Promise.resolve(res.title),
+          Promise.resolve(res.name),
           Promise.resolve(res.params),
           axios.post(API.chartData, params)
         ]);

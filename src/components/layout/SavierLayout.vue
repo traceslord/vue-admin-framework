@@ -400,6 +400,7 @@ export default {
     display: flex;
     flex-direction: column;
     min-width: 1000px;
+    background: #f4f6f9;
     overflow-y: auto;
     .page-header-container {
       z-index: 1;
@@ -475,7 +476,6 @@ export default {
       position: relative;
       flex: 1;
       margin: 0 30px;
-      background: #f4f6f9;
       .page-content-header {
         z-index: 2;
         position: absolute;

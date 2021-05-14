@@ -8,12 +8,6 @@ export default [
     name: "SavierIcon",
     redirect: { name: "SavierIconSelf" },
     component: { render: h => h("router-view") },
-    meta: {
-      breadcrumb: {
-        title: i18n.t("nav.icon.name"),
-        replace: true
-      }
-    },
     children: [
       {
         path: "/savier/icon",

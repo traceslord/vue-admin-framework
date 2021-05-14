@@ -11,13 +11,6 @@ export default [
     component: { render: h => h("router-view") },
     meta: {
       navigation: {
-        svg: {
-          class: "nav-svg",
-          name: "menu"
-        },
-        title: i18n.t("nav.routes.name")
-      },
-      breadcrumb: {
         title: i18n.t("nav.routes.name")
       }
     },
@@ -32,9 +25,10 @@ export default [
             "nav.routes.name"
           )} - ${i18n.t("common.brand")}`,
           navigation: {
-            title: i18n.t("nav.routes.children[0].name")
-          },
-          breadcrumb: {
+            svg: {
+              class: "nav-svg",
+              name: "menu"
+            },
             title: i18n.t("nav.routes.children[0].name")
           }
         }
@@ -49,9 +43,10 @@ export default [
             "nav.routes.name"
           )} - ${i18n.t("common.brand")}`,
           navigation: {
-            title: i18n.t("nav.routes.children[1].name")
-          },
-          breadcrumb: {
+            svg: {
+              class: "nav-svg",
+              name: "menu"
+            },
             title: i18n.t("nav.routes.children[1].name")
           }
         }
@@ -62,9 +57,6 @@ export default [
         component: { render: h => h("router-view") },
         meta: {
           navigation: {
-            title: i18n.t("nav.routes.children[2].name")
-          },
-          breadcrumb: {
             title: i18n.t("nav.routes.children[2].name")
           }
         },
@@ -81,9 +73,6 @@ export default [
                 "nav.routes.name"
               )}`,
               navigation: {
-                title: i18n.t("nav.routes.children[2].children[0].name")
-              },
-              breadcrumb: {
                 title: i18n.t("nav.routes.children[2].children[0].name")
               }
             }

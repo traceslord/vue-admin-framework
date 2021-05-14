@@ -10,13 +10,6 @@ export default [
     component: { render: h => h("router-view") },
     meta: {
       navigation: {
-        svg: {
-          class: "nav-svg",
-          name: "editor"
-        },
-        title: i18n.t("nav.editor.name")
-      },
-      breadcrumb: {
         title: i18n.t("nav.editor.name")
       }
     },
@@ -27,9 +20,10 @@ export default [
         component: { render: h => h("router-view") },
         meta: {
           navigation: {
-            title: i18n.t("nav.editor.children[0].name")
-          },
-          breadcrumb: {
+            svg: {
+              class: "nav-svg",
+              name: "editor"
+            },
             title: i18n.t("nav.editor.children[0].name")
           }
         },
@@ -47,9 +41,6 @@ export default [
               )}`,
               navigation: {
                 title: i18n.t("nav.editor.children[0].children[0].name")
-              },
-              breadcrumb: {
-                title: i18n.t("nav.editor.children[0].children[0].name")
               }
             }
           }
@@ -61,9 +52,10 @@ export default [
         component: { render: h => h("router-view") },
         meta: {
           navigation: {
-            title: i18n.t("nav.editor.children[1].name")
-          },
-          breadcrumb: {
+            svg: {
+              class: "nav-svg",
+              name: "editor"
+            },
             title: i18n.t("nav.editor.children[1].name")
           }
         },
@@ -80,9 +72,6 @@ export default [
                 "nav.editor.name"
               )}`,
               navigation: {
-                title: i18n.t("nav.editor.children[1].children[0].name")
-              },
-              breadcrumb: {
                 title: i18n.t("nav.editor.children[1].children[0].name")
               }
             }

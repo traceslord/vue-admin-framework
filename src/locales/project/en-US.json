@@ -149,5 +149,13 @@
       "next": "Next chapter",
       "ending": "The end"
     }
+  },
+  "savier": {
+    "addChart": "Add chart",
+    "chartType": "Chart type",
+    "chartId": "Chart ID",
+    "table": "Table",
+    "add": "Added",
+    "immediatelyAdd": "Immediately add"
   }
 }
