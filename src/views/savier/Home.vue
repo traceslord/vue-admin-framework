@@ -7,7 +7,13 @@
       @click="addVisible = true"
       >{{ $t("savier.addChart") }}</el-button
     >
-    <div class="dashboard-container">
+    <draggable
+      class="dashboard-container"
+      ghost-class="ghost-class"
+      v-model="charts"
+      :animation="150"
+      :forceFallback="true"
+    >
       <div
         class="charts-item"
         v-for="(item, index) in charts"
@@ -43,7 +49,7 @@
           ></jk-table>
         </template>
       </div>
-    </div>
+    </draggable>
 
     <el-dialog
       :title="`${$t('savier.addChart')}：`"
@@ -118,11 +124,13 @@
 </template>
 
 <script>
+import Draggable from "@/plugins/draggable";
 import supersetService from "@/components/jk/superset-charts/service";
 import { JkTable } from "@/components/jk/superset-charts/components";
 
 export default {
   components: {
+    Draggable,
     JkTable
   },
   data() {
@@ -406,6 +414,9 @@ export default {
       transform: rotate(90deg);
       overflow: hidden;
     }
+  }
+  .ghost-class .el-card {
+    box-shadow: 0 2px 12px 0 #6777ef99;
   }
 }
 </style>
