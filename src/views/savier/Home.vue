@@ -63,11 +63,6 @@
         :rules="rules"
         ref="addInfo"
       >
-        <el-form-item :label="$t('savier.chartType')">
-          <el-select class="w-90pc" v-model="addInfo.type">
-            <el-option :label="$t('savier.table')" value="table"></el-option>
-          </el-select>
-        </el-form-item>
         <el-form-item :label="$t('savier.chartId')" prop="id">
           <el-input class="w-90pc" v-model.number="addInfo.id"></el-input>
         </el-form-item>
@@ -140,14 +135,12 @@ export default {
         {
           id: 1,
           chart_id: 7,
-          type: "table",
           width: 600,
           height: 400
         },
         {
           id: 2,
           chart_id: 6,
-          type: "table",
           width: 600,
           height: 400
         }
@@ -155,7 +148,6 @@ export default {
       addVisible: false,
       addBtnLoading: false,
       addInfo: {
-        type: "table",
         id: null,
         width: 600,
         height: 400
@@ -265,7 +257,7 @@ export default {
   computed: {
     addInfoLabelWidth() {
       return this.$i18n.locale === "zh-CN"
-        ? "95px"
+        ? "90px"
         : this.$i18n.locale === "en-US"
         ? "100px"
         : "150px";
@@ -284,15 +276,14 @@ export default {
   methods: {
     getData() {
       this.charts.forEach(data => {
-        if (data.type === "table") {
-          supersetService.TableData(data.chart_id).then(res => {
-            this.$set(data, "name", res[0]);
-            this.$set(data, "data", res[2].result[0].data);
-            this.$set(data, "colnames", res[2].result[0].colnames);
-            this.$set(data, "paginationPageSize", res[1].page_length);
-            this.$set(data, "paginationTotal", res[2].result[0].rowcount);
-          });
-        }
+        supersetService.getData(data.chart_id).then(res => {
+          this.$set(data, "type", res[1].viz_type);
+          this.$set(data, "name", res[0]);
+          this.$set(data, "data", res[2].result[0].data);
+          this.$set(data, "colnames", res[2].result[0].colnames);
+          this.$set(data, "paginationPageSize", res[1].page_length);
+          this.$set(data, "paginationTotal", res[2].result[0].rowcount);
+        });
       });
     },
     deleteChart(index) {
@@ -305,44 +296,40 @@ export default {
           return;
         }
         const id = this.addInfo.id;
-        const type = this.addInfo.type;
         const width = this.addInfo.width;
         const height = this.addInfo.height;
         this.addBtnLoading = true;
-        if (type === "table") {
-          supersetService
-            .TableData(id)
-            .then(res => {
-              this.charts.push({
-                tid: this.tid,
-                chart_id: id,
-                type,
-                width,
-                height,
-                name: res[0],
-                data: res[2].result[0].data,
-                colnames: res[2].result[0].colnames,
-                paginationPageSize: res[1].page_length,
-                paginationTotal: res[2].result[0].rowcount
-              });
-              this.tid++;
-              this.clearAddInfo();
-              this.$message.success(
-                this.$i18n.t("success.format", {
-                  attribute: this.$i18n.t("savier.add")
-                })
-              );
-            })
-            .finally(() => {
-              this.addBtnLoading = false;
+        supersetService
+          .getData(id)
+          .then(res => {
+            this.charts.push({
+              tid: this.tid,
+              chart_id: id,
+              width,
+              height,
+              type: res[1].viz_type,
+              name: res[0],
+              data: res[2].result[0].data,
+              colnames: res[2].result[0].colnames,
+              paginationPageSize: res[1].page_length,
+              paginationTotal: res[2].result[0].rowcount
             });
-        }
+            this.tid++;
+            this.clearAddInfo();
+            this.$message.success(
+              this.$i18n.t("success.format", {
+                attribute: this.$i18n.t("savier.add")
+              })
+            );
+          })
+          .finally(() => {
+            this.addBtnLoading = false;
+          });
       });
     },
     clearAddInfo() {
       this.addVisible = false;
       this.addInfo.id = null;
-      this.addInfo.type = "table";
       this.addInfo.width = 600;
       this.addInfo.height = 400;
       this.$refs["addInfo"].clearValidate();

@@ -161,11 +161,9 @@
   "savier": {
     "addChart": "Add chart",
     "editChart": "Edit wide high",
-    "chartType": "Chart type",
     "chartId": "Chart ID",
     "width": "Width",
     "height": "Height",
-    "table": "Table",
     "add": "Added",
     "immediatelyAdd": "Immediately add"
   }

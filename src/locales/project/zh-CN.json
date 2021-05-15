@@ -161,11 +161,9 @@
   "savier": {
     "addChart": "添加图表",
     "editChart": "编辑宽高",
-    "chartType": "图表类型",
     "chartId": "图表ID",
     "width": "宽度",
     "height": "高度",
-    "table": "表格",
     "add": "添加",
     "immediatelyAdd": "立即添加"
   }

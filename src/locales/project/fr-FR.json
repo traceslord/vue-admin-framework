@@ -161,11 +161,9 @@
   "savier": {
     "addChart": "Ajout de diagrammes",
     "editChart": "Taille de l’éditeur",
-    "chartType": "Type de diagramme",
     "chartId": "ID de diagramme",
     "width": "Largeur",
     "height": "hauteur",
-    "table": "Le formulaire",
     "add": "Créer",
     "immediatelyAdd": "Ajouter immédiatement"
   }

@@ -11,64 +11,72 @@ const supersetService = {
   chartData(params = {}) {
     return axios.post(API.chartData, params);
   },
-  TableData(id) {
-    return axios
-      .get(API.chartItem(id))
-      .then(res => {
-        return {
-          name: res.result.slice_name,
-          params: JSON.parse(res.result.params)
-        };
-      })
-      .then(res => {
-        const ds = res.params.datasource.split("__");
-        const columns =
-          res.params.groupby.length === 0
-            ? res.params.all_columns
-            : res.params.groupby;
-        const orderby =
-          res.params.groupby.length === 0
-            ? res.params.order_by_cols.map(data => JSON.parse(data))
-            : [[res.params.timeseries_limit_metric, true]];
-        const metrics =
-          res.params.groupby.length === 0 ? [] : res.params.metrics;
-        const params = {
-          datasource: { id: Number(ds[0]), type: ds[1] },
-          force: false,
-          queries: [
-            {
-              annotation_layers: [],
-              applied_time_extras: {},
-              columns,
-              custom_params: {},
-              extras: {
-                having: "",
-                having_druid: [],
-                time_grain_sqla: res.params.time_grain_sqla,
-                time_range_endpoints: res.params.time_range_endpoints
-              },
-              filters: [],
-              granularity: res.params.granularity_sqla,
-              metrics,
-              order_desc: res.params.order_desc,
-              orderby,
-              post_processing: [],
-              row_limit: res.params.row_limit,
-              time_range: res.params.time_range,
-              timeseries_limit: 0,
-              timeseries_limit_metric: res.params.timeseries_limit_metric,
-              url_params: res.params.url_params
-            }
-          ],
-          result_format: "json",
-          result_type: "full"
-        };
-        return Promise.all([
-          Promise.resolve(res.name),
-          Promise.resolve(res.params),
-          axios.post(API.chartData, params)
-        ]);
-      });
+  async getData(id) {
+    const res = await axios.get(API.chartItem(id));
+    const config = JSON.parse(res.result.params);
+    const ds = config.datasource.split("__");
+    const params = {
+      datasource: { id: Number(ds[0]), type: ds[1] },
+      force: false,
+      queries: [
+        {
+          annotation_layers: [],
+          applied_time_extras: {},
+          columns: [],
+          custom_params: {},
+          extras: {
+            having: "",
+            having_druid: [],
+            time_grain_sqla: config.time_grain_sqla,
+            time_range_endpoints: config.time_range_endpoints
+          },
+          filters: [],
+          granularity: config.granularity_sqla,
+          metrics: config.metrics,
+          order_desc: true,
+          orderby: [],
+          time_range: config.time_range,
+          timeseries_limit: 0,
+          url_params: {}
+        }
+      ],
+      result_format: "json",
+      result_type: "full"
+    };
+    config.adhoc_filters.forEach(data => {
+      if (data.expressionType === "SIMPLE") {
+        params.queries[0].filters.push({
+          col: data.subject,
+          op: data.operator,
+          val: data.comparator
+        });
+      } else {
+        params.queries[0].extras.where = params.queries[0].extras.where
+          ? params.queries[0].extras.where + ` AND (${data.sqlExpression})`
+          : `(${data.sqlExpression})`;
+      }
+    });
+    const type = config.viz_type;
+    if (type === "table") {
+      const isGroupby = config.groupby.length !== 0;
+      params.queries[0].columns = isGroupby
+        ? config.groupby
+        : config.all_columns;
+      params.queries[0].metrics = isGroupby ? config.metrics : [];
+      params.queries[0].orderby = isGroupby
+        ? [[config.timeseries_limit_metric, true]]
+        : config.order_by_cols.map(data => JSON.parse(data));
+      params.queries[0].order_desc = config.order_desc;
+      params.queries[0].post_processing = [];
+      params.queries[0].row_limit = config.row_limit;
+      params.queries[0].timeseries_limit_metric =
+        config.timeseries_limit_metric;
+    }
+    return await Promise.all([
+      Promise.resolve(res.result.slice_name),
+      Promise.resolve(config),
+      axios.post(API.chartData, params)
+    ]);
   }
 };
 
