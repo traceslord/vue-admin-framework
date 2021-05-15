@@ -330,18 +330,31 @@ export default {
         supersetService
           .getData(id)
           .then(res => {
-            this.charts.push({
-              tid: this.tid,
-              chart_id: id,
-              width,
-              height,
-              type: res[1].viz_type,
-              name: res[0],
-              data: res[2].result[0].data,
-              colnames: res[2].result[0].colnames,
-              paginationPageSize: res[1].page_length,
-              paginationTotal: res[2].result[0].rowcount
-            });
+            if (res[1].viz_type === "table") {
+              this.charts.push({
+                tid: this.tid,
+                chart_id: id,
+                width,
+                height,
+                type: res[1].viz_type,
+                name: res[0],
+                data: res[2].result[0].data,
+                colnames: res[2].result[0].colnames,
+                paginationPageSize: res[1].page_length,
+                paginationTotal: res[2].result[0].rowcount
+              });
+            } else {
+              this.charts.push({
+                tid: this.tid,
+                chart_id: id,
+                width,
+                height,
+                type: res[1].viz_type,
+                name: res[0],
+                data: res[2].result[0].data,
+                config: res[1]
+              });
+            }
             this.tid++;
             this.clearAddInfo();
             this.$message.success(
