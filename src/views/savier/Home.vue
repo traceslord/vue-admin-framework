@@ -19,7 +19,7 @@
         v-for="(item, index) in charts"
         :key="item.id || item.tid"
       >
-        <div class="charts-item-operation">
+        <div class="charts-item-operation" v-if="item.type">
           <el-dropdown @command="handleCommand" size="small" trigger="click">
             <el-link icon="el-icon-more" :underline="false"></el-link>
             <el-dropdown-menu slot="dropdown">
@@ -47,6 +47,17 @@
             :width="item.width"
             :height="item.height"
           ></jk-table>
+        </template>
+
+        <template v-if="item.type === 'echarts_line'">
+          <jk-line
+            :id="item.id || item.tid"
+            :chart-name="item.name"
+            :chart-config="item.config"
+            :chart-data="item.data"
+            :width="item.width"
+            :height="item.height"
+          ></jk-line>
         </template>
       </div>
     </draggable>
@@ -121,12 +132,13 @@
 <script>
 import Draggable from "@/plugins/draggable";
 import supersetService from "@/components/jk/superset-charts/service";
-import { JkTable } from "@/components/jk/superset-charts/components";
+import { JkTable, JkLine } from "@/components/jk/superset-charts/components";
 
 export default {
   components: {
     Draggable,
-    JkTable
+    JkTable,
+    JkLine
   },
   data() {
     return {
@@ -141,6 +153,18 @@ export default {
         {
           id: 2,
           chart_id: 6,
+          width: 600,
+          height: 400
+        },
+        // {
+        //   id: 3,
+        //   chart_id: 5,
+        //   width: 600,
+        //   height: 400
+        // },
+        {
+          id: 4,
+          chart_id: 1,
           width: 600,
           height: 400
         }
@@ -280,9 +304,13 @@ export default {
           this.$set(data, "type", res[1].viz_type);
           this.$set(data, "name", res[0]);
           this.$set(data, "data", res[2].result[0].data);
-          this.$set(data, "colnames", res[2].result[0].colnames);
-          this.$set(data, "paginationPageSize", res[1].page_length);
-          this.$set(data, "paginationTotal", res[2].result[0].rowcount);
+          if (res[1].viz_type === "table") {
+            this.$set(data, "colnames", res[2].result[0].colnames);
+            this.$set(data, "paginationPageSize", res[1].page_length);
+            this.$set(data, "paginationTotal", res[2].result[0].rowcount);
+          } else {
+            this.$set(data, "config", res[1]);
+          }
         });
       });
     },
