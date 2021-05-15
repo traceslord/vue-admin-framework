@@ -4,6 +4,19 @@
     :style="{ width: `${width}px`, height: `${height}px` }"
   >
     <div class="superset-charts-title">{{ chartName }}</div>
+    <el-select
+      v-if="chartConfig.echarts_select"
+      v-model="selectIndex"
+      placeholder="请选择"
+    >
+      <el-option
+        v-for="(item, index) in selectOptions"
+        :key="item"
+        :label="item"
+        :value="index"
+      >
+      </el-option>
+    </el-select>
     <div
       :ref="id"
       :style="{ width: width - 40 + 'px', height: height - 80 + 'px' }"
@@ -45,7 +58,9 @@ export default {
   },
   data() {
     return {
-      chart: null
+      chart: null,
+      selectOptions: [],
+      selectIndex: 0
     };
   },
   computed: {
@@ -67,12 +82,29 @@ export default {
       this.$nextTick(() => {
         this.chart.resize();
       });
+    },
+    selectIndex() {
+      this.chart.dispose();
+      this.chart = null;
+      this.drawChart();
     }
   },
   methods: {
     drawChart() {
       const config = defaultby(this.chartConfig);
       let chartData = this.chartData;
+      if (config.echarts_select) {
+        this.selectOptions = [];
+        chartData.forEach(data => {
+          if (this.selectOptions.indexOf(data[config.echarts_select]) === -1) {
+            this.selectOptions.push(data[config.echarts_select]);
+          }
+        });
+        const datas = this.selectOptions.map(t =>
+          chartData.filter(d => d[config.echarts_select] === t)
+        );
+        chartData = datas[this.selectIndex];
+      }
       if (config.echarts_groupby) {
         chartData = groupby(
           chartData,

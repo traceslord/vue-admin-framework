@@ -156,12 +156,12 @@ export default {
           width: 600,
           height: 400
         },
-        // {
-        //   id: 3,
-        //   chart_id: 5,
-        //   width: 600,
-        //   height: 400
-        // },
+        {
+          id: 3,
+          chart_id: 3,
+          width: 600,
+          height: 400
+        },
         {
           id: 4,
           chart_id: 1,
