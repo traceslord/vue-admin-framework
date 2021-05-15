@@ -5,6 +5,9 @@
     "login": "Connexion",
     "logout": "Se déconnecter",
     "detail": "Détails",
+    "edit": "Modifier",
+    "save": "Sauvegarder",
+    "delete": "Supprimer",
     "guide": "Guide",
     "confirm": "Confirmer",
     "cancel": "Annuler"
@@ -13,7 +16,12 @@
     "format": "{attribute} réussie"
   },
   "error": {
+    "format": "{attribute} {message}",
     "missing": "Paramètres nécessaires manquants",
+    "notEmpty": "doit être rempli(e)",
+    "number": "doit être numérique",
+    "integer": "doit être nombres entiers",
+    "minLimit": "pas moins de {limit}",
     "login": "Il y a une erreur dans le format du numéro de téléphone portable, veuillez le remplir à nouveau.",
     "uploadLimit": "Veuillez télécharger un fichier qui n’est pas plus grand que {limit} et qui a le format JPG, gif, PNG"
   },
@@ -152,8 +160,11 @@
   },
   "savier": {
     "addChart": "Ajout de diagrammes",
+    "editChart": "Taille de l’éditeur",
     "chartType": "Type de diagramme",
     "chartId": "ID de diagramme",
+    "width": "Largeur",
+    "height": "hauteur",
     "table": "Le formulaire",
     "add": "Créer",
     "immediatelyAdd": "Ajouter immédiatement"

@@ -5,6 +5,9 @@
     "login": "Log in",
     "logout": "Log out",
     "detail": "Details",
+    "edit": "Edit",
+    "save": "Save",
+    "delete": "Delete",
     "guide": "Guide",
     "confirm": "Confirm",
     "cancel": "Cancel"
@@ -13,7 +16,12 @@
     "format": "{attribute} successfully"
   },
   "error": {
+    "format": "{attribute} {message}",
     "missing": "Required parameter missing",
+    "notEmpty": "can't be empty",
+    "number": "must be a number",
+    "integer": "must be an integer",
+    "minLimit": "can't be less than {limit}",
     "login": "The format of mobile phone number is wrong, please fill in again.",
     "uploadLimit": "Upload files no larger than {limit} in JPG, GIF, PNG format"
   },
@@ -152,8 +160,11 @@
   },
   "savier": {
     "addChart": "Add chart",
+    "editChart": "Edit wide high",
     "chartType": "Chart type",
     "chartId": "Chart ID",
+    "width": "Width",
+    "height": "Height",
     "table": "Table",
     "add": "Added",
     "immediatelyAdd": "Immediately add"

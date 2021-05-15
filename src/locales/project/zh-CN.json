@@ -5,6 +5,9 @@
     "login": "登录",
     "logout": "退出登录",
     "detail": "详情",
+    "edit": "编辑",
+    "save": "保存",
+    "delete": "删除",
     "guide": "指南",
     "confirm": "确定",
     "cancel": "取消"
@@ -13,7 +16,12 @@
     "format": "{attribute}成功"
   },
   "error": {
+    "format": "{attribute}{message}",
     "missing": "缺少必要参数",
+    "notEmpty": "不能为空",
+    "number": "必须为数字值",
+    "integer": "必须为整数值",
+    "minLimit": "不能小于 {limit}",
     "login": "手机号码格式有误，请重新填写。",
     "uploadLimit": "请上传不大于 {limit} 且格式为jpg、gif、png 的文件"
   },
@@ -152,8 +160,11 @@
   },
   "savier": {
     "addChart": "添加图表",
+    "editChart": "编辑宽高",
     "chartType": "图表类型",
-    "chartId": "图表 ID",
+    "chartId": "图表ID",
+    "width": "宽度",
+    "height": "高度",
     "table": "表格",
     "add": "添加",
     "immediatelyAdd": "立即添加"

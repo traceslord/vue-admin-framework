@@ -7,7 +7,7 @@
     <el-table
       border
       :data="chartDataArr[paginationCurrentPage - 1]"
-      :max-height="maxHeight"
+      :max-height="height - 120"
       :stripe="true"
     >
       <el-table-column
@@ -76,11 +76,6 @@ export default {
         result.push(this.chartData.slice(i, i + this.paginationPageSize));
       }
       return result;
-    }
-  },
-  watch: {
-    height(val) {
-      this.maxHeight = val - 120;
     }
   }
 };
