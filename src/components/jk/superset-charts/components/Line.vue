@@ -19,7 +19,12 @@
     </el-select>
     <div
       :ref="id"
-      :style="{ width: width - 40 + 'px', height: height - 80 + 'px' }"
+      :style="{
+        width: width - 40 + 'px',
+        height: chartConfig.echarts_select
+          ? height - 110 + 'px'
+          : height - 72 + 'px'
+      }"
     ></div>
   </el-card>
 </template>
@@ -70,6 +75,7 @@ export default {
     }
   },
   mounted() {
+    this.chart = echarts.init(this.$refs[this.id]);
     this.drawChart();
   },
   beforeDestroy() {
@@ -84,8 +90,6 @@ export default {
       });
     },
     selectIndex() {
-      this.chart.dispose();
-      this.chart = null;
       this.drawChart();
     }
   },
@@ -187,7 +191,6 @@ export default {
           }))
         );
 
-      this.chart = echarts.init(this.$refs[this.id]);
       this.chart.setOption({
         legend: {
           show: config.echarts_legend_show,
