@@ -7,7 +7,12 @@
     <el-select
       v-if="chartConfig.echarts_select"
       v-model="selectIndex"
+      size="small"
       placeholder="请选择"
+      multiple
+      clearable
+      filterable
+      collapse-tags
     >
       <el-option
         v-for="(item, index) in selectOptions"
@@ -22,7 +27,7 @@
       :style="{
         width: width - 40 + 'px',
         height: chartConfig.echarts_select
-          ? height - 110 + 'px'
+          ? height - 104 + 'px'
           : height - 72 + 'px'
       }"
     ></div>
@@ -64,14 +69,32 @@ export default {
   data() {
     return {
       chart: null,
-      selectOptions: [],
-      selectIndex: 0
+      selectIndex: [0]
     };
   },
   computed: {
     size() {
       const { width, height } = this;
       return { width, height };
+    },
+    selectOptions() {
+      const options = [];
+      this.chartData.forEach(data => {
+        if (options.indexOf(data[this.chartConfig.echarts_select]) === -1) {
+          options.push(data[this.chartConfig.echarts_select]);
+        }
+      });
+      return options;
+    },
+    selectData() {
+      const selected = [];
+      const datas = this.selectOptions.map(t =>
+        this.chartData.filter(d => d[this.chartConfig.echarts_select] === t)
+      );
+      this.selectIndex.forEach(index => {
+        selected.push(datas[index]);
+      });
+      return selected.flat();
     }
   },
   mounted() {
@@ -98,16 +121,7 @@ export default {
       const config = defaultby(this.chartConfig);
       let chartData = this.chartData;
       if (config.echarts_select) {
-        this.selectOptions = [];
-        chartData.forEach(data => {
-          if (this.selectOptions.indexOf(data[config.echarts_select]) === -1) {
-            this.selectOptions.push(data[config.echarts_select]);
-          }
-        });
-        const datas = this.selectOptions.map(t =>
-          chartData.filter(d => d[config.echarts_select] === t)
-        );
-        chartData = datas[this.selectIndex];
+        chartData = this.selectData;
       }
       if (config.echarts_groupby) {
         chartData = groupby(

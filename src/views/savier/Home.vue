@@ -158,7 +158,7 @@ export default {
         },
         {
           id: 3,
-          chart_id: 3,
+          chart_id: 8,
           width: 600,
           height: 400
         },
