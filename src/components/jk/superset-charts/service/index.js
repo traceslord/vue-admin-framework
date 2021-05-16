@@ -50,9 +50,13 @@ const supersetService = {
           op: data.operator,
           val: data.comparator
         });
-      } else {
+      } else if (data.clause === "WHERE") {
         params.queries[0].extras.where = params.queries[0].extras.where
           ? params.queries[0].extras.where + ` AND (${data.sqlExpression})`
+          : `(${data.sqlExpression})`;
+      } else {
+        params.queries[0].extras.having = params.queries[0].extras.having
+          ? params.queries[0].extras.having + ` AND (${data.sqlExpression})`
           : `(${data.sqlExpression})`;
       }
     });
