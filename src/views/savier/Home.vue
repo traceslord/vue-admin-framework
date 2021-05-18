@@ -59,6 +59,17 @@
             :height="item.height"
           ></jk-line>
         </template>
+
+        <template v-if="item.type === 'echarts_bar'">
+          <jk-bar
+            :id="item.id || item.tid"
+            :chart-name="item.name"
+            :chart-config="item.config"
+            :chart-data="item.data"
+            :width="item.width"
+            :height="item.height"
+          ></jk-bar>
+        </template>
       </div>
     </draggable>
 
@@ -132,13 +143,18 @@
 <script>
 import Draggable from "@/plugins/draggable";
 import supersetService from "@/components/jk/superset-charts/service";
-import { JkTable, JkLine } from "@/components/jk/superset-charts/components";
+import {
+  JkTable,
+  JkLine,
+  JkBar
+} from "@/components/jk/superset-charts/components";
 
 export default {
   components: {
     Draggable,
     JkTable,
-    JkLine
+    JkLine,
+    JkBar
   },
   data() {
     return {
@@ -158,15 +174,87 @@ export default {
         },
         {
           id: 3,
+          chart_id: 1,
+          width: 1220,
+          height: 500
+        },
+        {
+          id: 4,
+          chart_id: 9,
+          width: 1220,
+          height: 500
+        },
+        {
+          id: 5,
           chart_id: 8,
           width: 600,
           height: 400
         },
         {
-          id: 4,
-          chart_id: 1,
+          id: 6,
+          chart_id: 8,
           width: 600,
           height: 400
+        },
+        {
+          id: 7,
+          chart_id: 8,
+          width: 200,
+          height: 200
+        },
+        {
+          id: 8,
+          chart_id: 8,
+          width: 200,
+          height: 200
+        },
+        {
+          id: 9,
+          chart_id: 8,
+          width: 200,
+          height: 200
+        },
+        {
+          id: 10,
+          chart_id: 8,
+          width: 200,
+          height: 200
+        },
+        {
+          id: 11,
+          chart_id: 8,
+          width: 200,
+          height: 200
+        },
+        {
+          id: 12,
+          chart_id: 8,
+          width: 200,
+          height: 200
+        },
+        {
+          id: 13,
+          chart_id: 8,
+          width: 200,
+          height: 200
+        },
+        {
+          id: 14,
+          chart_id: 8,
+          width: 200,
+          height: 200
+        },
+        {
+          id: 15,
+          chart_id: 8,
+          width: 200,
+          height: 200
+        },
+        {
+          id: 16,
+          chart_id: 8,
+          width: 200,
+          height: 200
         }
       ],
       addVisible: false,
