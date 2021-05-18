@@ -4,24 +4,41 @@
     :style="{ width: `${width}px`, height: `${height}px` }"
   >
     <div class="superset-charts-title">{{ chartName }}</div>
-    <el-select
-      v-if="chartConfig.echarts_select"
-      v-model="selectIndex"
-      size="small"
-      placeholder="请选择"
-      multiple
-      clearable
-      filterable
-      collapse-tags
-    >
-      <el-option
-        v-for="(item, index) in selectOptions"
-        :key="item"
-        :label="item"
-        :value="index"
+    <div style="display: flex">
+      <el-select
+        v-if="chartConfig.echarts_select"
+        style="margin-right: 10px"
+        v-model="selectIndex"
+        size="small"
+        placeholder="请选择"
+        multiple
+        clearable
+        filterable
+        collapse-tags
+        @change="changeSelect"
       >
-      </el-option>
-    </el-select>
+        <el-option
+          v-for="(item, index) in selectOptions"
+          :key="item"
+          :label="item"
+          :value="index"
+        >
+        </el-option>
+      </el-select>
+      <el-date-picker
+        v-if="chartConfig.echarts_picker"
+        type="datetimerange"
+        v-model="selectTime"
+        :picker-options="pickerOptions"
+        size="small"
+        start-placeholder="开始时间"
+        end-placeholder="结束时间"
+        range-separator="至"
+        value-format="timestamp"
+        @change="changeSelect"
+      >
+      </el-date-picker>
+    </div>
     <div
       :ref="id"
       :style="{
@@ -69,7 +86,39 @@ export default {
   data() {
     return {
       chart: null,
-      selectIndex: [0]
+      selectIndex: [0],
+      selectTime: null,
+      pickerOptions: {
+        shortcuts: [
+          {
+            text: "最近一周",
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit("pick", [start, end]);
+            }
+          },
+          {
+            text: "最近一个月",
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+              picker.$emit("pick", [start, end]);
+            }
+          },
+          {
+            text: "最近三个月",
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+              picker.$emit("pick", [start, end]);
+            }
+          }
+        ]
+      }
     };
   },
   computed: {
@@ -111,9 +160,6 @@ export default {
       this.$nextTick(() => {
         this.chart.resize();
       });
-    },
-    selectIndex() {
-      this.drawChart();
     }
   },
   methods: {
@@ -122,6 +168,13 @@ export default {
       let chartData = this.chartData;
       if (config.echarts_select) {
         chartData = this.selectData;
+      }
+      if (this.selectTime) {
+        chartData = chartData.filter(
+          d =>
+            d[config.echarts_picker] >= this.selectTime[0] &&
+            d[config.echarts_picker] <= this.selectTime[1]
+        );
       }
       if (config.echarts_groupby) {
         chartData = groupby(
@@ -342,6 +395,9 @@ export default {
         series,
         backgroundColor: formatColor(config.echarts_background_color)
       });
+    },
+    changeSelect() {
+      this.drawChart();
     }
   }
 };
