@@ -70,6 +70,29 @@ export const defaultby = config => {
     val.echarts_series_bar_category_gap = "";
   if (!val.echarts_axis_swap) val.echarts_axis_swap = false;
 
+  if (!val.echarts_series_name) val.echarts_series_name = "";
+  if (!val.echarts_pie_start_angle) val.echarts_pie_start_angle = 0;
+  if (!val.echarts_pie_min_angle) val.echarts_pie_min_angle = 0;
+  if (!val.echarts_pie_min_show_label_angle)
+    val.echarts_pie_min_show_label_angle = 0;
+  if (!val.echarts_pie_rose_type) val.echarts_pie_rose_type = null;
+  if (!val.echarts_pie_top) val.echarts_pie_top = "";
+  if (!val.echarts_pie_bottom) val.echarts_pie_bottom = "";
+  if (!val.echarts_pie_left) val.echarts_pie_left = "";
+  if (!val.echarts_pie_right) val.echarts_pie_right = "";
+  if (!val.echarts_pie_width) val.echarts_pie_width = "";
+  if (!val.echarts_pie_height) val.echarts_pie_height = "";
+  if (!val.echarts_series_center_1) val.echarts_series_center_1 = "";
+  if (!val.echarts_series_center_2) val.echarts_series_center_2 = "";
+  if (!val.echarts_series_radius_1) val.echarts_series_radius_1 = "";
+  if (!val.echarts_series_radius_2) val.echarts_series_radius_2 = "";
+  if (!val.echarts_pie_label_show) val.echarts_pie_label_show = false;
+  if (!val.echarts_pie_clockwise) val.echarts_pie_clockwise = false;
+  if (!val.echarts_pie_avoid_label_overlap)
+    val.echarts_pie_avoid_label_overlap = false;
+  if (!val.echarts_pie_still_show_zero_sum)
+    val.echarts_pie_still_show_zero_sum = false;
+
   // legend
   if (!val.echarts_legend_show) val.echarts_legend_show = false;
   if (!val.echarts_legend_top) val.echarts_legend_top = "";

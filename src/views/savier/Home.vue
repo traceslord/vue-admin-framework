@@ -70,6 +70,17 @@
             :height="item.height"
           ></jk-bar>
         </template>
+
+        <template v-if="item.type === 'echarts_pie'">
+          <jk-pie
+            :id="item.id || item.tid"
+            :chart-name="item.name"
+            :chart-config="item.config"
+            :chart-data="item.data"
+            :width="item.width"
+            :height="item.height"
+          ></jk-pie>
+        </template>
       </div>
     </draggable>
 
@@ -146,7 +157,8 @@ import supersetService from "@/components/jk/superset-charts/service";
 import {
   JkTable,
   JkLine,
-  JkBar
+  JkBar,
+  JkPie
 } from "@/components/jk/superset-charts/components";
 
 export default {
@@ -154,7 +166,8 @@ export default {
     Draggable,
     JkTable,
     JkLine,
-    JkBar
+    JkBar,
+    JkPie
   },
   data() {
     return {
@@ -192,7 +205,7 @@ export default {
         },
         {
           id: 6,
-          chart_id: 8,
+          chart_id: 10,
           width: 600,
           height: 400
         },

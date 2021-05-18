@@ -57,7 +57,6 @@ import { defaultby } from "../utils/defaultby";
 import { groupby } from "../utils/groupby";
 import { sort } from "../utils/sort";
 import { formatColor } from "../utils/colors";
-import { formatDate } from "../utils/dates";
 
 export default {
   props: {
@@ -192,53 +191,47 @@ export default {
       config.echarts_legend_not_selected.forEach(data => {
         legendNotSelected[data] = false;
       });
-      const xAxis = {
-        show: config.echarts_x_axis_show,
-        type: "category",
-        name: config.echarts_x_axis_name,
-        nameLocation: config.echarts_x_axis_name_location,
-        nameGap: config.echarts_x_axis_name_gap,
-        nameRotate: config.echarts_x_axis_name_rotate,
-        inverse: config.echarts_x_axis_inverse,
-        axisLabel: {
-          interval: config.echarts_x_axis_label_interval,
-          rotate: config.echarts_x_axis_label_rotate
-        },
-        data: chartData.map(data => {
-          if (config.echarts_x_axis_data_format) {
-            return formatDate.formatBox(
-              config.echarts_x_axis_data_format_type,
-              data[config.echarts_x]
-            );
-          }
-          return data[config.echarts_x];
-        })
-      };
-      const yAxis = {
-        show: config.echarts_y_axis_show,
-        type: "value",
-        name: config.echarts_y_axis_name,
-        nameLocation: config.echarts_y_axis_name_location,
-        nameGap: config.echarts_y_axis_name_gap,
-        nameRotate: config.echarts_y_axis_name_rotate,
-        inverse: config.echarts_y_axis_inverse,
-        axisLabel: {
-          rotate: config.echarts_y_axis_label_rotate
+      const seriesValues = config.echarts_indicators.map(
+        data => chartData[0][data]
+      );
+      const series = [
+        {
+          type: "pie",
+          legendHoverLink: config.echarts_series_legend_hover_link,
+          clockwise: config.echarts_pie_clockwise,
+          startAngle: config.echarts_pie_start_angle,
+          minAngle: config.echarts_pie_min_angle,
+          minShowLabelAngle: config.echarts_pie_min_show_label_angle,
+          roseType: config.echarts_pie_rose_type,
+          avoidLabelOverlap: config.echarts_pie_avoid_label_overlap,
+          stillShowZeroSum: config.echarts_pie_still_show_zero_sum,
+          top: config.echarts_pie_top,
+          bottom: config.echarts_pie_bottom,
+          left: config.echarts_pie_left,
+          right: config.echarts_pie_right,
+          width: config.echarts_pie_width,
+          height: config.echarts_pie_height,
+          label: {
+            show: config.echarts_pie_label_show,
+            position: config.echarts_pie_label_position
+          },
+          center: [
+            config.echarts_series_center_1,
+            config.echarts_series_center_2
+          ],
+          radius: [
+            config.echarts_series_radius_1,
+            config.echarts_series_radius_2
+          ],
+          data: config.echarts_indicators.map((data, index) => ({
+            name: data,
+            value: seriesValues[index]
+          }))
         }
-      };
-      const series = config.echarts_indicators.map(item => ({
-        type: "bar",
-        name: item,
-        stack: config.echarts_series_stack,
-        barWidth: config.echarts_series_bar_width,
-        barMaxWidth: config.echarts_series_bar_max_width,
-        barMinWidth: config.echarts_series_bar_min_width,
-        barMinHeight: config.echarts_series_bar_min_height,
-        barGap: config.echarts_series_bar_gap,
-        barCategoryGap: config.echarts_series_bar_category_gap,
-        legendHoverLink: config.echarts_series_legend_hover_link,
-        data: chartData.map(data => data[item])
-      }));
+      ];
+      if (config.echarts_series_name) {
+        series[0].name = config.echarts_series_name;
+      }
 
       this.chart.setOption({
         legend: {
@@ -265,27 +258,9 @@ export default {
           selected: legendNotSelected,
           data: config.echarts_indicators
         },
-        grid: {
-          show: config.echarts_grid_show,
-          top: config.echarts_grid_top,
-          bottom: config.echarts_grid_bottom,
-          left: config.echarts_grid_left,
-          right: config.echarts_grid_right,
-          width: config.echarts_grid_width,
-          height: config.echarts_grid_height,
-          borderWidth: config.echarts_grid_border_width,
-          borderColor: formatColor(config.echarts_grid_border_color),
-          backgroundColor: formatColor(config.echarts_grid_background_color),
-          containLabel: config.echarts_grid_contain_label
-        },
-        xAxis: config.echarts_axis_swap ? yAxis : xAxis,
-        yAxis: config.echarts_axis_swap ? xAxis : yAxis,
         tooltip: {
           show: config.echarts_tooltip_show,
           trigger: config.echarts_tooltip_trigger,
-          axisPointer: {
-            type: config.echarts_tooltip_axis_pointer_type
-          },
           triggerOn: config.echarts_tooltip_trigger_on,
           formatter: new Function(
             `return ${config.echarts_tooltip_formatter}`
