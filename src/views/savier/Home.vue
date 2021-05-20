@@ -154,12 +154,7 @@
 <script>
 import Draggable from "@/plugins/draggable";
 import supersetService from "@/components/jk/superset-charts/service";
-import {
-  JkTable,
-  JkLine,
-  JkBar,
-  JkPie
-} from "@/components/jk/superset-charts/components";
+import { JkTable, JkLine, JkBar, JkPie } from "@/components/jk/superset-charts";
 
 export default {
   components: {

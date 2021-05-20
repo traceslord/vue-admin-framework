@@ -33,8 +33,6 @@ const handleErrorRequest = error => {
       // 页面过期;
       localStorage.clear();
       sessionStorage.clear();
-    } else if (status === 422 || status === 423 || status === 429) {
-      Message.error(message);
     } else {
       Message.error(message);
     }
@@ -44,24 +42,7 @@ const handleErrorRequest = error => {
 };
 
 supersetAxios.interceptors.response.use(
-  res => {
-    switch (true) {
-      case res.status === 200:
-        return res.data;
-      case res.data.code === 200:
-        return res.data.data;
-      case res.data.error_code === 0:
-        return res.data.data;
-      // case !!res.status:
-      //   Message.error({
-      //     dangerouslyUseHTMLString: true,
-      //     message: `<pre>${res.data.message}</pre>`
-      //   });
-      //   return Promise.reject(res.data);
-      default:
-        return res.data;
-    }
-  },
+  res => res.data,
   error => {
     handleErrorRequest(error);
     return Promise.reject(error);

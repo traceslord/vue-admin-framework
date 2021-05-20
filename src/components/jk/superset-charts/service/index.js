@@ -1,7 +1,7 @@
 import axios from "./axios";
 import API from "./api";
 
-const supersetService = {
+const service = {
   securityLogin(params = {}) {
     return axios.post(API.securityLogin, params);
   },
@@ -84,4 +84,4 @@ const supersetService = {
   }
 };
 
-export default supersetService;
+export default service;
