@@ -75,6 +75,43 @@ const service = {
       params.queries[0].row_limit = config.row_limit;
       params.queries[0].timeseries_limit_metric =
         config.timeseries_limit_metric;
+    } else {
+      const echartsIndicator = config.echarts_indicator
+        ? [config.echarts_indicator]
+        : [];
+      const echartsIndicators = config.echarts_indicators || [];
+      const echartsX = config.echarts_x ? [config.echarts_x] : [];
+      const echartsY = config.echarts_y ? [config.echarts_y] : [];
+      const echartsYLeft = config.echarts_y_left || [];
+      const echartsYRight = config.echarts_y_right || [];
+
+      const echartsSelect = config.echarts_select
+        ? [config.echarts_select]
+        : [];
+      const echartsPicker = config.echarts_picker
+        ? [config.echarts_picker]
+        : [];
+      const echartsGroupby = config.echarts_groupby
+        ? [config.echarts_groupby]
+        : [];
+      const echartsSort = config.echarts_sort ? [config.echarts_sort] : [];
+
+      const tempArr = [
+        ...echartsIndicator,
+        ...echartsIndicators,
+        ...echartsX,
+        ...echartsY,
+        ...echartsYLeft,
+        ...echartsYRight,
+        ...echartsSelect,
+        ...echartsPicker,
+        ...echartsGroupby,
+        ...echartsSort
+      ];
+      tempArr.forEach(data => {
+        if (params.queries[0].columns.indexOf(data) === -1)
+          params.queries[0].columns.push(data);
+      });
     }
     return await Promise.all([
       Promise.resolve(res.result.slice_name),
