@@ -19,7 +19,7 @@
         v-for="(item, index) in charts"
         :key="item.id || item.tid"
       >
-        <div class="charts-item-operation" v-if="item.type">
+        <div class="charts-item-operation">
           <el-dropdown @command="handleCommand" size="small" trigger="click">
             <el-link icon="el-icon-more" :underline="false"></el-link>
             <el-dropdown-menu slot="dropdown">
@@ -80,6 +80,13 @@
             :width="item.width"
             :height="item.height"
           ></jk-pie>
+        </template>
+
+        <template v-if="!item.type">
+          <el-card
+            shadow="hover"
+            :style="{ width: `${item.width}px`, height: `${item.height}px` }"
+          ></el-card>
         </template>
       </div>
     </draggable>
