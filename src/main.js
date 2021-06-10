@@ -8,11 +8,13 @@ import "element-ui/lib/theme-chalk/index.css";
 
 import IconSvg from "./plugins/icons";
 import BreadCrumb from "./components/BreadCrumb";
+import JkBtn from "./components/JkBtn.vue";
 
 Vue.use(ElementUI, { i18n: (key, value) => i18n.t(key, value) });
 Vue.use(IconSvg);
 
 Vue.component("bread-crumb", BreadCrumb);
+Vue.component("jk-btn", JkBtn);
 
 Vue.config.productionTip = false;
 

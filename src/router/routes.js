@@ -3,6 +3,7 @@ import routesIcon from "./routes-icon";
 import routesRoutes from "./routes-routes";
 import routesEditor from "./routes-editor";
 import routesImage from "./routes-image";
+import routesDashboard from "./routes-dashboard";
 import routesLXP from "./routes-lxp";
 import routesSavierHome from "./savier/home";
 import routesSavierIcon from "./savier/icon";
@@ -37,7 +38,8 @@ export default [
       ...routesIcon,
       ...routesRoutes,
       ...routesEditor,
-      ...routesImage
+      ...routesImage,
+      ...routesDashboard
     ]
   },
   ...routesLXP,

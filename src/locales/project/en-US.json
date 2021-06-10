@@ -83,6 +83,9 @@
     },
     "image": {
       "name": "Image editor"
+    },
+    "dashboard": {
+      "name": "Dashboards"
     }
   },
   "login": {
@@ -90,6 +93,11 @@
       "phone": "Mobile phone number",
       "password": "Password"
     }
+  },
+  "home": {
+    "title": "Data Management System",
+    "tip_1": "Hi, {name}! Welcome to the Data Management System of JK.",
+    "tip_2": "Please contact us via shengdandan@jk.com. We will reply within 24hrs."
   },
   "icon": {
     "name": "Icons",
@@ -165,6 +173,9 @@
     "width": "Width",
     "height": "Height",
     "add": "Added",
-    "immediatelyAdd": "Immediately add"
+    "edit": "Edit",
+    "save": "Save",
+    "immediatelyAdd": "Immediately add",
+    "saveSuccess": "Save dashboard message successfully"
   }
 }

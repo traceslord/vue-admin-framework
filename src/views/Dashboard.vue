@@ -5,13 +5,6 @@
     v-loading="loading"
     element-loading-background="rgba(0, 0, 0, 0)"
   >
-    <el-button
-      class="header-btn"
-      size="small"
-      icon="el-icon-plus"
-      @click="addVisible = true"
-      >{{ $t("savier.addChart") }}</el-button
-    >
     <jk-btn
       class="update-btn"
       jk-class="jk-btn-round"
@@ -627,20 +620,6 @@ export default {
 <style lang="less" scoped>
 .min-h-600 {
   min-height: 600px;
-}
-.header-btn {
-  z-index: 2;
-  position: absolute;
-  top: -80px;
-  right: 20px;
-  color: #fff !important;
-  background-color: #6777ef !important;
-  border-color: #6777ef !important;
-  box-shadow: 0 2px 6px #acb5f6;
-  &:hover {
-    background-color: #394eea !important;
-    border-color: transparent !important;
-  }
 }
 .update-btn {
   position: fixed;

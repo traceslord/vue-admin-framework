@@ -298,7 +298,8 @@ const icon = {
     "fullscreen-shrink",
     "fullscreen-expand-round",
     "fullscreen-shrink-round",
-    "language"
+    "language",
+    "dashboard"
   ]
 };
 

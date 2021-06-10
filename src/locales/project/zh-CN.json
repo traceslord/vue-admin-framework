@@ -83,6 +83,9 @@
     },
     "image": {
       "name": "图像编辑器"
+    },
+    "dashboard": {
+      "name": "看板"
     }
   },
   "login": {
@@ -90,6 +93,11 @@
       "phone": "手机号码",
       "password": "密码"
     }
+  },
+  "home": {
+    "title": "JK 数据管理中心",
+    "tip_1": "Hi，{name}！欢迎使用数据后台管理系统",
+    "tip_2": "申请权限请联系：zhuhuajian@jk.com，并邮件抄送部门负责人。"
   },
   "icon": {
     "name": "图标",
@@ -165,6 +173,9 @@
     "width": "宽度",
     "height": "高度",
     "add": "添加",
-    "immediatelyAdd": "立即添加"
+    "edit": "编辑看板",
+    "save": "保存看板",
+    "immediatelyAdd": "立即添加",
+    "saveSuccess": "保存看板信息成功"
   }
 }

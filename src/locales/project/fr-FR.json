@@ -83,6 +83,9 @@
     },
     "image": {
       "name": "Éditeur d’images"
+    },
+    "dashboard": {
+      "name": "Tableaux de bords"
     }
   },
   "login": {
@@ -90,6 +93,11 @@
       "phone": "Numéro de téléphone mobile",
       "password": "Mot de passe"
     }
+  },
+  "home": {
+    "title": "Système de gestion Data",
+    "tip_1": "Bonjour, {name}！Bienvenue dans le système de gestion Data de JK.",
+    "tip_2": "Veuillez consulter le manuel d'administration Data pour la navigation et les opérations.Pour les autres questions, veuillez contacter shengdandan@jk.com. Nous vous répondrons sous 24 heures maximum."
   },
   "icon": {
     "name": "Icônes",
@@ -165,6 +173,9 @@
     "width": "Largeur",
     "height": "hauteur",
     "add": "Créer",
-    "immediatelyAdd": "Ajouter immédiatement"
+    "edit": "Modifier",
+    "save": "Sauvegarder",
+    "immediatelyAdd": "Ajouter immédiatement",
+    "saveSuccess": "Le succès de la conservation de l’information tableau de bord"
   }
 }
