@@ -93,6 +93,18 @@ export const defaultby = config => {
   if (!val.echarts_pie_still_show_zero_sum)
     val.echarts_pie_still_show_zero_sum = false;
 
+  if (!val.echarts_hydrograph_font_size) val.echarts_hydrograph_font_size = 0;
+  if (!val.echarts_hydrograph_warning_threshold)
+    val.echarts_hydrograph_warning_threshold = 0;
+  if (!val.echarts_hydrograph_danger_threshold)
+    val.echarts_hydrograph_danger_threshold = 0;
+  if (!val.echarts_hydrograph_outline_show)
+    val.echarts_hydrograph_outline_show = false;
+  if (!val.echarts_hydrograph_outline_border_width)
+    val.echarts_hydrograph_outline_border_width = 0;
+  if (!val.echarts_hydrograph_outline_border_distance)
+    val.echarts_hydrograph_outline_border_distance = 0;
+
   // legend
   if (!val.echarts_legend_show) val.echarts_legend_show = false;
   if (!val.echarts_legend_top) val.echarts_legend_top = "";

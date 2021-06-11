@@ -142,6 +142,18 @@
           ></jk-pie>
         </template>
 
+        <template v-if="item.type === 'echarts_hydrograph'">
+          <jk-hydrograph
+            v-loading="item.loading"
+            :id="item.id || item.tid"
+            :chart-name="item.name"
+            :chart-config="item.config"
+            :chart-data="item.data"
+            :width="formatWidth(item.width)"
+            :height="item.height"
+          ></jk-hydrograph>
+        </template>
+
         <template v-if="!item.type">
           <el-card
             v-loading="item.loading"
@@ -226,7 +238,13 @@
 import elementResizeDetectorMaker from "element-resize-detector";
 import Draggable from "@/plugins/draggable";
 import supersetService from "@/components/jk/superset-charts/service";
-import { JkTable, JkLine, JkBar, JkPie } from "@/components/jk/superset-charts";
+import {
+  JkTable,
+  JkLine,
+  JkBar,
+  JkPie,
+  JkHydrograph
+} from "@/components/jk/superset-charts";
 
 export default {
   components: {
@@ -234,7 +252,8 @@ export default {
     JkTable,
     JkLine,
     JkBar,
-    JkPie
+    JkPie,
+    JkHydrograph
   },
   data() {
     return {
@@ -275,7 +294,7 @@ export default {
         },
         {
           id: 6,
-          chart_id: 10,
+          chart_id: 12,
           width: 600,
           height: 400
         }

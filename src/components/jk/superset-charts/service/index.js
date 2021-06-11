@@ -112,6 +112,7 @@ const service = {
         if (params.queries[0].columns.indexOf(data) === -1)
           params.queries[0].columns.push(data);
       });
+      if (!tempArr.length) params.queries[0].metrics = [config.metric];
     }
     return await Promise.all([
       Promise.resolve(res.result.slice_name),
