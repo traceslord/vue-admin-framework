@@ -154,6 +154,16 @@
           ></jk-hydrograph>
         </template>
 
+        <template v-if="item.type === 'jk_number'">
+          <jk-number
+            v-loading="item.loading"
+            :chart-config="item.config"
+            :chart-data="item.data"
+            :width="formatWidth(item.width)"
+            :height="item.height"
+          ></jk-number>
+        </template>
+
         <template v-if="!item.type">
           <el-card
             v-loading="item.loading"
@@ -243,7 +253,8 @@ import {
   JkLine,
   JkBar,
   JkPie,
-  JkHydrograph
+  JkHydrograph,
+  JkNumber
 } from "@/components/jk/superset-charts";
 
 export default {
@@ -253,7 +264,8 @@ export default {
     JkLine,
     JkBar,
     JkPie,
-    JkHydrograph
+    JkHydrograph,
+    JkNumber
   },
   data() {
     return {
@@ -264,36 +276,60 @@ export default {
       charts: [
         {
           id: 1,
+          chart_id: 13,
+          width: 290,
+          height: 150
+        },
+        {
+          id: 2,
+          chart_id: 13,
+          width: 290,
+          height: 150
+        },
+        {
+          id: 3,
+          chart_id: 13,
+          width: 290,
+          height: 150
+        },
+        {
+          id: 4,
+          chart_id: 13,
+          width: 290,
+          height: 150
+        },
+        {
+          id: 5,
           chart_id: 7,
           width: 600,
           height: 400
         },
         {
-          id: 2,
+          id: 6,
           chart_id: 6,
           width: 600,
           height: 400
         },
         {
-          id: 3,
+          id: 7,
           chart_id: 1,
           width: 1220,
           height: 500
         },
         {
-          id: 4,
+          id: 8,
           chart_id: 9,
           width: 1220,
           height: 500
         },
         {
-          id: 5,
+          id: 9,
           chart_id: 10,
           width: 600,
           height: 400
         },
         {
-          id: 6,
+          id: 10,
           chart_id: 12,
           width: 600,
           height: 400
