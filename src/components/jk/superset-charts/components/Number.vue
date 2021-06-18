@@ -73,7 +73,12 @@ export default {
         config.metric && config.metric.label
           ? config.metric.label
           : config.metric;
-      return this.chartData[0][metricName];
+      let value = this.chartData[0][metricName];
+      if (config.jk_number_formatter)
+        value = new Function("num", `return ${config.jk_number_formatter}`)()(
+          value
+        );
+      return value;
     }
   }
 };
