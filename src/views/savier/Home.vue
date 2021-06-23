@@ -93,31 +93,6 @@
           </el-dropdown>
         </div>
 
-        <template v-if="item.type === 'table'">
-          <jk-table
-            v-loading="item.loading"
-            :chart-name="item.name"
-            :chart-data="item.data"
-            :chart-colnames="item.colnames"
-            :pagination-page-size="item.paginationPageSize"
-            :pagination-total="item.paginationTotal"
-            :width="formatWidth(item.width)"
-            :height="item.height"
-          ></jk-table>
-        </template>
-
-        <template v-if="item.type === 'echarts_line'">
-          <jk-line
-            v-loading="item.loading"
-            :id="item.id || item.tid"
-            :chart-name="item.name"
-            :chart-config="item.config"
-            :chart-data="item.data"
-            :width="formatWidth(item.width)"
-            :height="item.height"
-          ></jk-line>
-        </template>
-
         <template v-if="item.type === 'echarts_bar'">
           <jk-bar
             v-loading="item.loading"
@@ -128,18 +103,6 @@
             :width="formatWidth(item.width)"
             :height="item.height"
           ></jk-bar>
-        </template>
-
-        <template v-if="item.type === 'echarts_pie'">
-          <jk-pie
-            v-loading="item.loading"
-            :id="item.id || item.tid"
-            :chart-name="item.name"
-            :chart-config="item.config"
-            :chart-data="item.data"
-            :width="formatWidth(item.width)"
-            :height="item.height"
-          ></jk-pie>
         </template>
 
         <template v-if="item.type === 'echarts_hydrograph'">
@@ -154,6 +117,30 @@
           ></jk-hydrograph>
         </template>
 
+        <template v-if="item.type === 'echarts_line'">
+          <jk-line
+            v-loading="item.loading"
+            :id="item.id || item.tid"
+            :chart-name="item.name"
+            :chart-config="item.config"
+            :chart-data="item.data"
+            :width="formatWidth(item.width)"
+            :height="item.height"
+          ></jk-line>
+        </template>
+
+        <template v-if="item.type === 'echarts_line_bar'">
+          <jk-line-bar
+            v-loading="item.loading"
+            :id="item.id || item.tid"
+            :chart-name="item.name"
+            :chart-config="item.config"
+            :chart-data="item.data"
+            :width="formatWidth(item.width)"
+            :height="item.height"
+          ></jk-line-bar>
+        </template>
+
         <template v-if="item.type === 'jk_number'">
           <jk-number
             v-loading="item.loading"
@@ -162,6 +149,31 @@
             :width="formatWidth(item.width)"
             :height="item.height"
           ></jk-number>
+        </template>
+
+        <template v-if="item.type === 'echarts_pie'">
+          <jk-pie
+            v-loading="item.loading"
+            :id="item.id || item.tid"
+            :chart-name="item.name"
+            :chart-config="item.config"
+            :chart-data="item.data"
+            :width="formatWidth(item.width)"
+            :height="item.height"
+          ></jk-pie>
+        </template>
+
+        <template v-if="item.type === 'table'">
+          <jk-table
+            v-loading="item.loading"
+            :chart-name="item.name"
+            :chart-data="item.data"
+            :chart-colnames="item.colnames"
+            :pagination-page-size="item.paginationPageSize"
+            :pagination-total="item.paginationTotal"
+            :width="formatWidth(item.width)"
+            :height="item.height"
+          ></jk-table>
         </template>
 
         <template v-if="!item.type">
@@ -249,23 +261,25 @@ import elementResizeDetectorMaker from "element-resize-detector";
 import Draggable from "@/plugins/draggable";
 import supersetService from "@/components/jk/superset-charts/service";
 import {
-  JkTable,
-  JkLine,
   JkBar,
-  JkPie,
   JkHydrograph,
-  JkNumber
+  JkLine,
+  JkLineBar,
+  JkNumber,
+  JkPie,
+  JkTable
 } from "@/components/jk/superset-charts";
 
 export default {
   components: {
     Draggable,
-    JkTable,
-    JkLine,
     JkBar,
-    JkPie,
     JkHydrograph,
-    JkNumber
+    JkLine,
+    JkLineBar,
+    JkNumber,
+    JkPie,
+    JkTable
   },
   data() {
     return {
@@ -324,12 +338,18 @@ export default {
         },
         {
           id: 9,
+          chart_id: 14,
+          width: 1220,
+          height: 500
+        },
+        {
+          id: 10,
           chart_id: 10,
           width: 600,
           height: 400
         },
         {
-          id: 10,
+          id: 11,
           chart_id: 12,
           width: 600,
           height: 400
