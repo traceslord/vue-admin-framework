@@ -6540,10 +6540,10 @@ jk-image-editor@^1.0.2:
   dependencies:
     html2canvas "^1.0.0-rc.7"
 
-jk-markdown-it@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/jk-markdown-it/-/jk-markdown-it-1.0.5.tgz#a592659c03f53539ebc536fe1770fba9e9f8650e"
-  integrity sha512-tK5p01fRw9qhShHPQa9lXXC0y/cd0oaXmjoA2It/2xab1wUdWxyuWyDPwk7PeD2yciqdQga8RtzrkzfUaPTP4g==
+jk-markdown-it@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/jk-markdown-it/-/jk-markdown-it-1.0.6.tgz#0f42c1123b1fca8b1e51ab5ec8532d6a92f15b5a"
+  integrity sha512-2GYkG4+Axm8quNGDt8d8eeAYoZ9FH+6vBm3VY36GKEh/7d817WHMyAm/mw8nr4pgS/jex+YOiS9KCgWRmOa3aw==
   dependencies:
     highlight.js "^10.1.2"
     markdown-it "^11.0.0"

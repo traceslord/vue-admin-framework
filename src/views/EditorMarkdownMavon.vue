@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="markdown-it-card">
-          <markdown-it :md="value"></markdown-it>
+          <div class="jk-markdown-it" v-html="render(value)"></div>
         </div>
       </div>
     </el-card>
@@ -27,17 +27,25 @@
 
 <script>
 import Markdown from "@/components/editor/MarkdownMavon";
-import MarkdownIt from "jk-markdown-it/MarkdownIt.vue";
+import { default as markdownIt, md } from "jk-markdown-it";
+import "jk-markdown-it/styles/markdown-it.css";
 
 export default {
   components: {
-    Markdown,
-    MarkdownIt
+    Markdown
   },
   data() {
     return {
       value: ""
     };
+  },
+  created() {
+    md.options.linkify = true;
+  },
+  methods: {
+    render(val) {
+      return markdownIt(val);
+    }
   }
 };
 </script>
