@@ -32,7 +32,7 @@
         }"
       >
         {{ chartConfig.jk_title }}
-        <el-tooltip :content="chartDescription || '暂无描述'">
+        <el-tooltip v-if="chartDescription" :content="chartDescription">
           <el-link
             icon="el-icon-info superset-charts-description"
             :underline="false"

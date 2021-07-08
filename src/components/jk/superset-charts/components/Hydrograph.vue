@@ -5,7 +5,11 @@
   >
     <div class="superset-charts-title">
       {{ chartName }}
-      <el-tooltip :content="chartDescription || '暂无描述'" placement="top">
+      <el-tooltip
+        v-if="chartDescription"
+        :content="chartDescription"
+        placement="top"
+      >
         <el-link
           icon="el-icon-info superset-charts-description"
           :underline="false"
