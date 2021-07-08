@@ -32,6 +32,12 @@
         }"
       >
         {{ chartConfig.jk_title }}
+        <el-tooltip :content="chartDescription || '暂无描述'">
+          <el-link
+            icon="el-icon-info superset-charts-description"
+            :underline="false"
+          ></el-link>
+        </el-tooltip>
       </div>
     </div>
   </div>
@@ -42,6 +48,10 @@ import { formatColor } from "../utils/colors";
 
 export default {
   props: {
+    chartDescription: {
+      type: String,
+      default: ""
+    },
     chartConfig: {
       type: Object,
       default: () => {}

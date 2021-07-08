@@ -3,7 +3,15 @@
     shadow="hover"
     :style="{ width: `${width}px`, height: `${height}px` }"
   >
-    <div class="superset-charts-title">{{ chartName }}</div>
+    <div class="superset-charts-title">
+      {{ chartName }}
+      <el-tooltip :content="chartDescription || '暂无描述'" placement="top">
+        <el-link
+          icon="el-icon-info superset-charts-description"
+          :underline="false"
+        ></el-link>
+      </el-tooltip>
+    </div>
     <el-table
       border
       :data="chartDataArr[paginationCurrentPage - 1]"
@@ -34,6 +42,10 @@
 export default {
   props: {
     chartName: {
+      type: String,
+      default: ""
+    },
+    chartDescription: {
       type: String,
       default: ""
     },
@@ -87,5 +99,9 @@ export default {
   font-size: 16px;
   font-weight: 600;
   color: #303133;
+}
+.superset-charts-description {
+  margin-left: 2px;
+  color: #909399;
 }
 </style>

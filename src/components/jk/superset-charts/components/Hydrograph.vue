@@ -3,7 +3,15 @@
     shadow="hover"
     :style="{ width: `${width}px`, height: `${height}px` }"
   >
-    <div class="superset-charts-title">{{ chartName }}</div>
+    <div class="superset-charts-title">
+      {{ chartName }}
+      <el-tooltip :content="chartDescription || '暂无描述'" placement="top">
+        <el-link
+          icon="el-icon-info superset-charts-description"
+          :underline="false"
+        ></el-link>
+      </el-tooltip>
+    </div>
     <div
       :ref="id"
       :style="{
@@ -24,6 +32,10 @@ export default {
   props: {
     id: [String, Number],
     chartName: {
+      type: String,
+      default: ""
+    },
+    chartDescription: {
       type: String,
       default: ""
     },

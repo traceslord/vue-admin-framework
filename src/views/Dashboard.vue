@@ -91,6 +91,7 @@
             v-loading="item.loading"
             :id="item.id || item.tid"
             :chart-name="item.name"
+            :chart-description="item.description"
             :chart-config="item.config"
             :chart-data="item.data"
             :width="formatWidth(item.width)"
@@ -103,6 +104,7 @@
             v-loading="item.loading"
             :id="item.id || item.tid"
             :chart-name="item.name"
+            :chart-description="item.description"
             :chart-config="item.config"
             :chart-data="item.data"
             :width="formatWidth(item.width)"
@@ -115,6 +117,7 @@
             v-loading="item.loading"
             :id="item.id || item.tid"
             :chart-name="item.name"
+            :chart-description="item.description"
             :chart-config="item.config"
             :chart-data="item.data"
             :width="formatWidth(item.width)"
@@ -127,6 +130,7 @@
             v-loading="item.loading"
             :id="item.id || item.tid"
             :chart-name="item.name"
+            :chart-description="item.description"
             :chart-config="item.config"
             :chart-data="item.data"
             :width="formatWidth(item.width)"
@@ -137,6 +141,7 @@
         <template v-if="item.type === 'jk_number'">
           <jk-number
             v-loading="item.loading"
+            :chart-description="item.description"
             :chart-config="item.config"
             :chart-data="item.data"
             :width="formatWidth(item.width)"
@@ -149,6 +154,7 @@
             v-loading="item.loading"
             :id="item.id || item.tid"
             :chart-name="item.name"
+            :chart-description="item.description"
             :chart-config="item.config"
             :chart-data="item.data"
             :width="formatWidth(item.width)"
@@ -160,6 +166,7 @@
           <jk-table
             v-loading="item.loading"
             :chart-name="item.name"
+            :chart-description="item.description"
             :chart-data="item.data"
             :chart-colnames="item.colnames"
             :pagination-page-size="item.paginationPageSize"
@@ -505,15 +512,16 @@ export default {
         supersetService
           .getData(data.chart_id)
           .then(res => {
-            this.$set(data, "type", res[1].viz_type);
+            this.$set(data, "type", res[2].viz_type);
             this.$set(data, "name", res[0]);
-            this.$set(data, "data", res[2].result[0].data);
-            if (res[1].viz_type === "table") {
-              this.$set(data, "colnames", res[2].result[0].colnames);
-              this.$set(data, "paginationPageSize", res[1].page_length);
-              this.$set(data, "paginationTotal", res[2].result[0].rowcount);
+            this.$set(data, "description", res[1]);
+            this.$set(data, "data", res[3].result[0].data);
+            if (res[2].viz_type === "table") {
+              this.$set(data, "colnames", res[3].result[0].colnames);
+              this.$set(data, "paginationPageSize", res[2].page_length);
+              this.$set(data, "paginationTotal", res[3].result[0].rowcount);
             } else {
-              this.$set(data, "config", res[1]);
+              this.$set(data, "config", res[2]);
             }
           })
           .finally(() => {
@@ -537,18 +545,19 @@ export default {
         supersetService
           .getData(id)
           .then(res => {
-            if (res[1].viz_type === "table") {
+            if (res[2].viz_type === "table") {
               this.charts.push({
                 tid: this.tid,
                 chart_id: id,
                 width,
                 height,
-                type: res[1].viz_type,
+                type: res[2].viz_type,
                 name: res[0],
-                data: res[2].result[0].data,
-                colnames: res[2].result[0].colnames,
-                paginationPageSize: res[1].page_length,
-                paginationTotal: res[2].result[0].rowcount
+                description: res[1],
+                data: res[3].result[0].data,
+                colnames: res[3].result[0].colnames,
+                paginationPageSize: res[2].page_length,
+                paginationTotal: res[3].result[0].rowcount
               });
             } else {
               this.charts.push({
@@ -556,10 +565,11 @@ export default {
                 chart_id: id,
                 width,
                 height,
-                type: res[1].viz_type,
+                type: res[2].viz_type,
                 name: res[0],
-                data: res[2].result[0].data,
-                config: res[1]
+                description: res[1],
+                data: res[3].result[0].data,
+                config: res[2]
               });
             }
             this.tid++;

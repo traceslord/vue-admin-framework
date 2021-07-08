@@ -116,6 +116,7 @@ const service = {
     }
     return await Promise.all([
       Promise.resolve(res.result.slice_name),
+      Promise.resolve(res.result.description),
       Promise.resolve(config),
       axios.post(API.chartData, params)
     ]);
