@@ -92,6 +92,9 @@
             </el-dropdown-menu>
           </el-dropdown>
         </div>
+        <div v-show="!editing" @click="skip(item.chart_id)">
+          <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+        </div>
 
         <template v-if="item.type === 'echarts_bar'">
           <jk-bar
@@ -321,42 +324,30 @@ export default {
         },
         {
           id: 5,
-          chart_id: 7,
-          width: 600,
-          height: 400
-        },
-        {
-          id: 6,
-          chart_id: 6,
-          width: 600,
-          height: 400
-        },
-        {
-          id: 7,
           chart_id: 1,
           width: 1220,
           height: 500
         },
         {
-          id: 8,
+          id: 6,
           chart_id: 9,
           width: 1220,
           height: 500
         },
         {
-          id: 9,
+          id: 7,
           chart_id: 14,
           width: 1220,
           height: 500
         },
         {
-          id: 10,
+          id: 8,
           chart_id: 10,
           width: 600,
           height: 400
         },
         {
-          id: 11,
+          id: 9,
           chart_id: 12,
           width: 600,
           height: 400
@@ -505,6 +496,11 @@ export default {
     this.unbind();
   },
   methods: {
+    skip(id) {
+      window.open(
+        `https://superset.zhuhuajian.com/superset/explore/?form_data=%7B%22slice_id%22%3A%20${id}%7D`
+      );
+    },
     getDashboard() {
       this.loading = true;
       this.charts.forEach(data => {
@@ -813,12 +809,28 @@ export default {
         height: 100%;
       }
     }
+    .charts-item-skip {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: none;
+      width: 20px;
+      height: 20px;
+      color: #909399;
+      cursor: pointer;
+      &:hover {
+        color: #409eff;
+      }
+    }
     &:hover .charts-item-mask {
       border: 1px dashed #409eff;
       background: rgba(255, 255, 255, 0);
     }
     &:hover .charts-item-operation {
       z-index: 3;
+    }
+    &:hover .charts-item-skip {
+      display: block;
     }
   }
   .ghost-class .charts-item-mask,
