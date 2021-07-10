@@ -209,10 +209,36 @@ export default {
         legendNotSelected[data] = false;
       });
       let legendData = config.echarts_y_left.concat(config.echarts_y_right);
+      const swap = config.echarts_base_swap;
+      const yAxisLine = {
+        show: config.echarts_y_axis_show,
+        type: "value",
+        name: config.echarts_y_axis_name,
+        nameLocation: config.echarts_y_axis_name_location,
+        nameGap: config.echarts_y_axis_name_gap,
+        nameRotate: config.echarts_y_axis_name_rotate,
+        inverse: config.echarts_y_axis_inverse,
+        axisLabel: {
+          rotate: config.echarts_y_axis_label_rotate
+        }
+      };
+      const yAxisBar = {
+        show: config.echarts_y_axis_show_2,
+        type: "value",
+        name: config.echarts_y_axis_name_2,
+        nameLocation: config.echarts_y_axis_name_location_2,
+        nameGap: config.echarts_y_axis_name_gap_2,
+        nameRotate: config.echarts_y_axis_name_rotate_2,
+        inverse: config.echarts_y_axis_inverse_2,
+        axisLabel: {
+          rotate: config.echarts_y_axis_label_rotate_2
+        }
+      };
       const series = config.echarts_y_left
         .map(item => ({
           type: "line",
           name: item,
+          yAxisIndex: swap ? 0 : 1,
           showSymbol: config.echarts_series_show_symbol,
           showAllSymbol: config.echarts_series_show_all_symbol,
           symbol: config.echarts_series_symbol,
@@ -244,7 +270,7 @@ export default {
           config.echarts_y_right.map(item => ({
             type: "bar",
             name: item,
-            yAxisIndex: 1,
+            yAxisIndex: swap ? 1 : 0,
             stack: config.echarts_series_stack_2,
             barWidth: config.echarts_series_bar_width,
             barMaxWidth: config.echarts_series_bar_max_width,
@@ -317,32 +343,7 @@ export default {
             return data[config.echarts_x];
           })
         },
-        yAxis: [
-          {
-            show: config.echarts_y_axis_show,
-            type: "value",
-            name: config.echarts_y_axis_name,
-            nameLocation: config.echarts_y_axis_name_location,
-            nameGap: config.echarts_y_axis_name_gap,
-            nameRotate: config.echarts_y_axis_name_rotate,
-            inverse: config.echarts_y_axis_inverse,
-            axisLabel: {
-              rotate: config.echarts_y_axis_label_rotate
-            }
-          },
-          {
-            show: config.echarts_y_axis_show_2,
-            type: "value",
-            name: config.echarts_y_axis_name_2,
-            nameLocation: config.echarts_y_axis_name_location_2,
-            nameGap: config.echarts_y_axis_name_gap_2,
-            nameRotate: config.echarts_y_axis_name_rotate_2,
-            inverse: config.echarts_y_axis_inverse_2,
-            axisLabel: {
-              rotate: config.echarts_y_axis_label_rotate_2
-            }
-          }
-        ],
+        yAxis: swap ? [yAxisLine, yAxisBar] : [yAxisBar, yAxisLine],
         tooltip: {
           show: config.echarts_tooltip_show,
           trigger: config.echarts_tooltip_trigger,
