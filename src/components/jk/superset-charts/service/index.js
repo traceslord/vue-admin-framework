@@ -32,7 +32,7 @@ const service = {
           },
           filters: [],
           granularity: config.granularity_sqla,
-          metrics: config.metrics,
+          metrics: config.metrics || [],
           order_desc: true,
           orderby: [],
           time_range: config.time_range,
@@ -96,6 +96,13 @@ const service = {
         : [];
       const echartsSort = config.echarts_sort ? [config.echarts_sort] : [];
 
+      const echartsStartTime = config.echarts_start_time
+        ? [config.echarts_start_time]
+        : [];
+      const echartsEndTime = config.echarts_end_time
+        ? [config.echarts_end_time]
+        : [];
+
       const tempArr = [
         ...echartsIndicator,
         ...echartsIndicators,
@@ -106,7 +113,9 @@ const service = {
         ...echartsSelect,
         ...echartsPicker,
         ...echartsGroupby,
-        ...echartsSort
+        ...echartsSort,
+        ...echartsStartTime,
+        ...echartsEndTime
       ];
       tempArr.forEach(data => {
         if (params.queries[0].columns.indexOf(data) === -1)
