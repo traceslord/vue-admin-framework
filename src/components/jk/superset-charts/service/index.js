@@ -81,7 +81,11 @@ const service = {
         : [];
       const echartsIndicators = config.echarts_indicators || [];
       const echartsX = config.echarts_x ? [config.echarts_x] : [];
-      const echartsY = config.echarts_y ? [config.echarts_y] : [];
+      const echartsY = config.echarts_y
+        ? typeof config.echarts_y === "string"
+          ? [config.echarts_y]
+          : config.echarts_y
+        : [];
       const echartsYLeft = config.echarts_y_left || [];
       const echartsYRight = config.echarts_y_right || [];
 

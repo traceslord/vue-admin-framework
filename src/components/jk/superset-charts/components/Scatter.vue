@@ -65,11 +65,11 @@
 
 <script>
 import * as echarts from "echarts";
+import ecStat from "echarts-stat";
 import { defaultby } from "../utils/defaultby";
 import { groupby } from "../utils/groupby";
 import { sort } from "../utils/sort";
 import { formatColor } from "../utils/colors";
-import { formatDate } from "../utils/dates";
 
 export default {
   props: {
@@ -196,8 +196,7 @@ export default {
         chartData = groupby(
           chartData,
           config.echarts_groupby,
-          config.echarts_groupby_aggregate,
-          config.echarts_x
+          config.echarts_groupby_aggregate
         );
       }
       if (config.echarts_sort) {
@@ -208,114 +207,79 @@ export default {
       config.echarts_legend_not_selected.forEach(data => {
         legendNotSelected[data] = false;
       });
-
-      const planData = chartData.map(item => {
-        const startTime = new Date(item[config.echarts_start_time]).getTime();
-        const endTime = new Date(item[config.echarts_end_time]).getTime();
-        return {
-          yAxis: item[config.echarts_y],
-          startTime,
-          endTime: item[config.echarts_end_time]
-            ? endTime
-            : startTime + 86400000 * config.echarts_plan_period,
-          progress: item[config.echarts_x]
-        };
-      });
-      const currentProgress = planData.map(
-        data =>
-          ((data.endTime - data.startTime) * data.progress) / 100 +
-          data.startTime
-      );
-      const otherData = chartData.map(item => {
-        const obj = {};
-        config.echarts_indicators.forEach(data => {
-          obj[data] = item[data];
-        });
-        return obj;
-      });
-
-      const series = [
-        {
-          type: "bar",
-          name: "计划开始时间",
-          stack: "time",
-          itemStyle: {
-            color: formatColor(config.echarts_gantt_hidden),
-            borderColor: formatColor(config.echarts_gantt_hidden)
-          },
-          emphasis: {
-            itemStyle: {
-              color: formatColor(config.echarts_gantt_hidden),
-              borderColor: formatColor(config.echarts_gantt_hidden)
-            }
-          },
-          barWidth: 15,
-          zlevel: -1,
-          z: 4,
-          data: planData.map(item => item.startTime)
-        },
-        {
-          type: "bar",
-          name: "计划结束时间",
-          stack: "time",
-          itemStyle: {
-            color: formatColor(config.echarts_gantt_period),
-            borderColor: formatColor(config.echarts_gantt_hidden)
-          },
-          emphasis: {
-            itemStyle: {
-              color: formatColor(config.echarts_gantt_period),
-              borderColor: formatColor(config.echarts_gantt_hidden)
-            }
-          },
-          barWidth: 15,
-          zlevel: -1,
-          z: 2,
-          data: planData.map(item => item.endTime),
-          markLine: {
-            symbol: ["none", "none"],
-            label: {
-              formatter: params =>
-                config.echarts_series_mark_line_formatter_prefix +
-                formatDate.formatDay(params.value)
-            },
-            lineStyle: {
-              color: "#909399"
-            },
-            data: [
-              {
-                xAxis:
-                  new Date().getTime() +
-                  config.echarts_series_mark_line_formatter_num * 86400000
-              }
-            ]
+      const series = config.echarts_y.map(item => ({
+        type: "scatter",
+        name: item,
+        symbolSize: params => params[3],
+        emphasis: {
+          focus: "series",
+          label: {
+            show: true,
+            position: "top",
+            formatter: params => params.data[2]
           }
         },
-        {
-          type: "bar",
-          name: "当前进度",
-          stack: "time",
-          itemStyle: {
-            color: formatColor(config.echarts_gantt_progress),
-            borderColor: formatColor(config.echarts_gantt_hidden)
-          },
-          emphasis: {
-            itemStyle: {
-              color: formatColor(config.echarts_gantt_progress),
-              borderColor: formatColor(config.echarts_gantt_hidden)
-            }
-          },
-          barWidth: 15,
-          zlevel: -1,
-          z: 3,
-          data: currentProgress
+        itemStyle: {
+          shadowBlur: 10,
+          shadowColor: "rgba(0, 0, 0, 0.2)",
+          shadowOffsetY: 5
         },
-        {
-          type: "bar",
-          name: "其他指标",
-          data: otherData
+        data: chartData.map(subitem => [
+          subitem[config.echarts_x],
+          subitem[item],
+          subitem[config.echarts_indicator],
+          (subitem[item] / subitem[config.echarts_x]) * config.echarts_radius
+        ]),
+        markLine: {
+          lineStyle: {
+            color: "#909399",
+            type: "dashed"
+          },
+          data: [
+            { type: "average", name: "平均值" },
+            { type: "average", valueDim: "x" }
+          ]
         }
-      ];
+      }));
+      if (config.echarts_regression_type) {
+        config.echarts_y.forEach(item => {
+          const lineData = chartData.map(subitem => [
+            subitem[config.echarts_x],
+            subitem[item]
+          ]);
+          const myRegression = ecStat.regression(
+            config.echarts_regression_type,
+            lineData
+          );
+          myRegression.points.sort((a, b) => a[0] - b[0]);
+          series.push({
+            type: "line",
+            name: `${item}的回归线`,
+            showSymbol: false,
+            lineStyle: {
+              color: "#2f4554"
+            },
+            data: myRegression.points,
+            markPoint: {
+              label: {
+                show: true,
+                position: "left",
+                formatter: myRegression.expression,
+                color: "#333",
+                fontSize: 14
+              },
+              itemStyle: {
+                color: "transparent"
+              },
+              data: [
+                {
+                  coord: myRegression.points[myRegression.points.length - 1]
+                }
+              ]
+            }
+          });
+        });
+      }
 
       this.chart.setOption({
         legend: {
@@ -340,7 +304,7 @@ export default {
           itemHeight: config.echarts_legend_item_height,
           icon: config.echarts_legend_icon,
           selected: legendNotSelected,
-          data: ["当前进度", "计划结束时间"]
+          data: config.echarts_y
         },
         grid: {
           show: config.echarts_grid_show,
@@ -357,26 +321,15 @@ export default {
         },
         xAxis: {
           show: config.echarts_x_axis_show,
-          type: "time",
+          type: "value",
           name: config.echarts_x_axis_name,
           nameLocation: config.echarts_x_axis_name_location,
-          nameTextStyle: {
-            color: "#303133"
-          },
           nameGap: config.echarts_x_axis_name_gap,
           nameRotate: config.echarts_x_axis_name_rotate,
           inverse: config.echarts_x_axis_inverse,
-          axisLine: {
-            lineStyle: {
-              color: formatColor(config.echarts_grid_border_color),
-              width: 0
-            }
-          },
+          scale: true,
           axisLabel: {
-            rotate: config.echarts_x_axis_label_rotate,
-            margin: 12,
-            formatter: value => formatDate.formatDay(value),
-            color: "#303133"
+            rotate: config.echarts_x_axis_label_rotate
           },
           splitLine: {
             show: false
@@ -384,57 +337,19 @@ export default {
         },
         yAxis: {
           show: config.echarts_y_axis_show,
-          type: "category",
+          type: "value",
           name: config.echarts_y_axis_name,
           nameLocation: config.echarts_y_axis_name_location,
-          nameTextStyle: {
-            color: "#303133"
-          },
           nameGap: config.echarts_y_axis_name_gap,
           nameRotate: config.echarts_y_axis_name_rotate,
           inverse: config.echarts_y_axis_inverse,
-          axisLine: {
-            lineStyle: {
-              color: formatColor(config.echarts_grid_border_color),
-              width: 0
-            }
-          },
-          axisTick: {
-            show: false
-          },
+          scale: true,
           axisLabel: {
-            interval: 0,
-            rotate: config.echarts_y_axis_label_rotate,
-            formatter: new Function(
-              `return ${config.echarts_y_axis_label_formatter}`
-            )(),
-            color: "#303133"
+            rotate: config.echarts_y_axis_label_rotate
           },
           splitLine: {
-            show: true,
-            lineStyle: {
-              color: "#eaeaea"
-            }
-          },
-          data: chartData.map(item => {
-            const obj = JSON.parse(JSON.stringify(item));
-            const startTime = obj[config.echarts_start_time];
-            const endTime = obj[config.echarts_end_time];
-            obj[config.echarts_start_time] = formatDate.formatDay(startTime);
-            obj[config.echarts_end_time] = endTime
-              ? formatDate.formatDay(endTime)
-              : formatDate.formatDay(
-                  startTime + 86400000 * config.echarts_plan_period
-                );
-            obj[config.echarts_x] =
-              Math.round(obj[config.echarts_x] * 100) / 100;
-            let str = `${config.echarts_y}：${obj[config.echarts_y]}`;
-            Object.keys(obj).forEach(data => {
-              if (data === config.echarts_y) return;
-              str += `|||${data}：${obj[data]}`;
-            });
-            return str;
-          })
+            show: false
+          }
         },
         tooltip: {
           show: config.echarts_tooltip_show,

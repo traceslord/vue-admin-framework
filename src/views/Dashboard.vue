@@ -178,6 +178,19 @@
           ></jk-pie>
         </template>
 
+        <template v-if="item.type === 'echarts_scatter'">
+          <jk-scatter
+            v-loading="item.loading"
+            :id="item.id || item.tid"
+            :chart-name="item.name"
+            :chart-description="item.description"
+            :chart-config="item.config"
+            :chart-data="item.data"
+            :width="formatWidth(item.width)"
+            :height="item.height"
+          ></jk-scatter>
+        </template>
+
         <template v-if="item.type === 'table'">
           <jk-table
             v-loading="item.loading"
@@ -284,6 +297,7 @@ import {
   JkLineBar,
   JkNumber,
   JkPie,
+  JkScatter,
   JkTable
 } from "@/components/jk/superset-charts";
 
@@ -297,6 +311,7 @@ export default {
     JkLineBar,
     JkNumber,
     JkPie,
+    JkScatter,
     JkTable
   },
   data() {
@@ -356,12 +371,18 @@ export default {
         },
         {
           id: 9,
+          chart_id: 16,
+          width: 1220,
+          height: 800
+        },
+        {
+          id: 10,
           chart_id: 10,
           width: 600,
           height: 400
         },
         {
-          id: 10,
+          id: 11,
           chart_id: 12,
           width: 600,
           height: 400

@@ -4089,6 +4089,11 @@ echarts-liquidfill@^3.0.0:
   resolved "https://registry.yarnpkg.com/echarts-liquidfill/-/echarts-liquidfill-3.0.0.tgz#1d41e6cd4016281b525f2f7b5be7879deffa821d"
   integrity sha512-asBu62Zxpod9ZRYHweBoBvp7e+XtQbQoha19aTEJf2UptJJ2Bppcx8TdwQZnTjPM9s/yYD6Tk4/qcRqZ6s8HZA==
 
+echarts-stat@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/echarts-stat/-/echarts-stat-1.2.0.tgz#d1e7a05d1827724c5cde81f76ee1d75a901746a2"
+  integrity sha512-zLd7Kgs+tuTSeaK0VQEMNmnMivEkhvHIk1gpBtLzpRerfcIQ+Bd5XudOMmtwpaTc1WDZbA7d1V//iiBccR46Qg==
+
 echarts@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/echarts/-/echarts-5.1.1.tgz#b186f162f017c555cfd67b12ede6762bdc3ddfda"
@@ -6559,14 +6564,15 @@ jk-markdown-it@^1.0.6:
     markdown-it-sup "^1.0.0"
     markdown-it-task-lists "^2.1.1"
 
-jk-superset-charts@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/jk-superset-charts/-/jk-superset-charts-2.5.0.tgz#29507f4aefc7200a85ec5c4af0c587a4798c9625"
-  integrity sha512-bj4FGby160moaAlTzi8ogZd6f09GnHgMcPBM7JifEImVn8hcqnxNw8AGVWuMzyrZNwEiM3Y+A/AEwaKQ5jhDhQ==
+jk-superset-charts@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/jk-superset-charts/-/jk-superset-charts-2.6.0.tgz#a6e6c04e9db6be04874e05bf1246bc063323ece2"
+  integrity sha512-bWJjD5/H8hs8/NtvqH3VmCvM6W0jtify3aJStbHQHxfbqtff0zfmlulTdP0/x0qL0nQxlDZD706RiNeuDphD0Q==
   dependencies:
     axios "^0.19.2"
     echarts "^5.1.1"
     echarts-liquidfill "^3.0.0"
+    echarts-stat "^1.2.0"
 
 js-base64@^2.1.9:
   version "2.6.3"
