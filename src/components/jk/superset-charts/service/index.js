@@ -35,6 +35,7 @@ const service = {
           metrics: config.metrics || [],
           order_desc: true,
           orderby: [],
+          row_limit: config.row_limit,
           time_range: config.time_range,
           timeseries_limit: 0,
           url_params: {}
@@ -72,7 +73,6 @@ const service = {
         : config.order_by_cols.map(data => JSON.parse(data));
       params.queries[0].order_desc = config.order_desc;
       params.queries[0].post_processing = [];
-      params.queries[0].row_limit = config.row_limit;
       params.queries[0].timeseries_limit_metric =
         config.timeseries_limit_metric;
     } else {
