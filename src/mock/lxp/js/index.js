@@ -1,4 +1,4 @@
-import whatIsJavaScript from "./1_whatIsJavaScript.md";
+import whatIsJavascript from "./1_what-is-javascript.md";
 
 export default {
   uuid: "000000JS-AAAA-BBBB-CCCC-000000000000",
@@ -9,7 +9,7 @@ export default {
     {
       uuid: "000000JS-AAAA-BBBB-CCCC-000000000001",
       name: "第 1 章　什么是JavaScript",
-      content: whatIsJavaScript
+      content: whatIsJavascript
     }
   ]
 };
