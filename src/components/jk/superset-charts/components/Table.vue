@@ -14,10 +14,18 @@
         ></el-link>
       </el-popover>
     </div>
+    <el-input
+      v-if="chartConfig.include_search"
+      style="margin-bottom: 12px; width: 180px"
+      v-model="search"
+      placeholder="输入关键字搜索..."
+      size="mini"
+      clearable
+    ></el-input>
     <el-table
       border
-      :data="chartDataArr[paginationCurrentPage - 1]"
-      :max-height="height - 120"
+      :data="tableList[paginationCurrentPage - 1]"
+      :max-height="chartConfig.include_search ? height - 150 : height - 110"
       :stripe="true"
     >
       <el-table-column
@@ -34,7 +42,7 @@
       layout="total, prev, pager, next, jumper"
       :current-page.sync="paginationCurrentPage"
       :page-size="paginationPageSize"
-      :total="paginationTotal"
+      :total="chartList.length"
       :hide-on-single-page="true"
     >
     </el-pagination>
@@ -52,6 +60,10 @@ export default {
       type: String,
       default: ""
     },
+    chartConfig: {
+      type: Object,
+      default: () => {}
+    },
     chartData: {
       type: Array,
       default: () => []
@@ -59,14 +71,6 @@ export default {
     chartColnames: {
       type: Array,
       default: () => []
-    },
-    paginationPageSize: {
-      type: Number,
-      default: 20
-    },
-    paginationTotal: {
-      type: Number,
-      default: 0
     },
     width: {
       type: Number,
@@ -79,18 +83,39 @@ export default {
   },
   data() {
     return {
+      search: "",
+      chartList: this.chartData,
       paginationCurrentPage: 1,
-      maxHeight: 280
+      paginationPageSize: Number(this.chartConfig.page_length) || 20
     };
   },
   computed: {
-    chartDataArr() {
-      const length = this.chartData.length;
+    tableList() {
+      const length = this.chartList.length;
       const result = [];
       for (let i = 0; i < length; i += this.paginationPageSize) {
-        result.push(this.chartData.slice(i, i + this.paginationPageSize));
+        result.push(this.chartList.slice(i, i + this.paginationPageSize));
       }
       return result;
+    }
+  },
+  watch: {
+    search(val) {
+      this.chartList = this.chartData.filter(
+        data => !val || this.haveSearch(data)
+      );
+      this.paginationCurrentPage = 1;
+    }
+  },
+  methods: {
+    haveSearch(obj) {
+      return this.chartColnames
+        .map(data =>
+          String(obj[data])
+            .toLowerCase()
+            .includes(this.search.toLowerCase())
+        )
+        .includes(true);
     }
   }
 };
