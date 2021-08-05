@@ -5,16 +5,14 @@
   >
     <div class="superset-charts-title">
       {{ chartName }}
-      <el-tooltip
-        v-if="chartDescription"
-        :content="chartDescription"
-        placement="top"
-      >
+      <el-popover v-if="chartDescription" placement="right" trigger="hover">
+        <pre>{{ chartDescription }}</pre>
         <el-link
           icon="el-icon-info superset-charts-description"
           :underline="false"
+          slot="reference"
         ></el-link>
-      </el-tooltip>
+      </el-popover>
     </div>
     <div style="display: flex">
       <el-select

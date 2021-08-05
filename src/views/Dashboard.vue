@@ -323,69 +323,75 @@ export default {
       charts: [
         {
           id: 1,
-          chart_id: 13,
+          chart_id: 20,
           width: 290,
           height: 150
         },
         {
           id: 2,
-          chart_id: 13,
+          chart_id: 20,
           width: 290,
           height: 150
         },
         {
           id: 3,
-          chart_id: 13,
+          chart_id: 20,
           width: 290,
           height: 150
         },
         {
           id: 4,
-          chart_id: 13,
+          chart_id: 20,
           width: 290,
           height: 150
         },
         {
           id: 5,
-          chart_id: 1,
-          width: 1220,
-          height: 500
+          chart_id: 21,
+          width: 600,
+          height: 400
         },
         {
           id: 6,
-          chart_id: 9,
-          width: 1220,
-          height: 500
+          chart_id: 22,
+          width: 600,
+          height: 400
         },
         {
           id: 7,
-          chart_id: 14,
+          chart_id: 23,
           width: 1220,
-          height: 500
+          height: 600
         },
         {
           id: 8,
-          chart_id: 15,
+          chart_id: 24,
           width: 1220,
-          height: 800
+          height: 600
         },
         {
           id: 9,
-          chart_id: 16,
+          chart_id: 25,
+          width: 1220,
+          height: 600
+        },
+        {
+          id: 10,
+          chart_id: 26,
           width: 1220,
           height: 800
         },
         {
-          id: 10,
-          chart_id: 10,
-          width: 600,
-          height: 400
+          id: 11,
+          chart_id: 27,
+          width: 1220,
+          height: 800
         },
         {
-          id: 11,
-          chart_id: 12,
-          width: 600,
-          height: 400
+          id: 12,
+          chart_id: 28,
+          width: 1220,
+          height: 800
         }
       ],
       resizeRowIndex: null,
@@ -555,7 +561,7 @@ export default {
             this.$set(data, "data", res[3].result[0].data);
             if (res[2].viz_type === "table") {
               this.$set(data, "colnames", res[3].result[0].colnames);
-              this.$set(data, "paginationPageSize", res[2].page_length);
+              this.$set(data, "paginationPageSize", Number(res[2].page_length));
               this.$set(data, "paginationTotal", res[3].result[0].rowcount);
             } else {
               this.$set(data, "config", res[2]);
@@ -593,7 +599,7 @@ export default {
                 description: res[1],
                 data: res[3].result[0].data,
                 colnames: res[3].result[0].colnames,
-                paginationPageSize: res[2].page_length,
+                paginationPageSize: Number(res[2].page_length),
                 paginationTotal: res[3].result[0].rowcount
               });
             } else {
