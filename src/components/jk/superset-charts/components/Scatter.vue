@@ -225,8 +225,10 @@ export default {
         data: chartData.map(subitem => [
           subitem[config.echarts_x],
           subitem[item],
-          subitem[config.echarts_indicator],
-          (subitem[item] / subitem[config.echarts_x]) * config.echarts_radius
+          subitem[config.echarts_name],
+          config.echarts_indicator
+            ? subitem[config.echarts_indicator]
+            : config.echarts_radius
         ]),
         markLine: {
           lineStyle: {
