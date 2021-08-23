@@ -22,16 +22,19 @@ router.beforeEach(async (to, from, next) => {
   NProgress.start();
   if (to.meta.title) document.title = to.meta.title;
   try {
+    const timeLog = localStorage.getItem("jk_now");
+    const dateDiff = Date.now() - Number(timeLog);
     const SUPERSETTOKEN = localStorage.getItem("jk_superset_token");
-    if (!SUPERSETTOKEN) {
+    if (!SUPERSETTOKEN || !timeLog || dateDiff > 600000) {
       const params = {
         username: "vip",
         password: "123456",
         provider: "db",
         refresh: true
       };
-      const superset = await supersetService.securityLogin(params);
-      localStorage.setItem("jk_superset_token", superset.access_token);
+      const res = await supersetService.securityLogin(params);
+      localStorage.setItem("jk_superset_token", res.access_token);
+      localStorage.setItem("jk_now", Date.now().toString());
     }
     const TOKEN = localStorage.getItem("jk_admin_token");
     if (!TOKEN && to.name !== "AccountLogin") {

@@ -532,7 +532,7 @@ export default {
       el => (this.pageWidth = el.offsetWidth)
     );
   },
-  destroyed() {
+  beforeDestroy() {
     this.unbind();
   },
   methods: {
@@ -571,7 +571,7 @@ export default {
       this.charts.splice(index, 1);
     },
     addChart() {
-      this.$refs["addInfo"].validate(val => {
+      this.$refs["addInfo"].validate(async val => {
         if (!val) {
           this.$message.error(this.$i18n.t("error.missing"));
           return;
@@ -579,7 +579,20 @@ export default {
         const id = this.addInfo.id;
         const width = this.addInfo.width;
         const height = this.addInfo.height;
+        const timeLog = localStorage.getItem("jk_now");
+        const dateDiff = Date.now() - Number(timeLog);
         this.addBtnLoading = true;
+        if (dateDiff > 600000) {
+          const params = {
+            username: "vip",
+            password: "123456",
+            provider: "db",
+            refresh: true
+          };
+          const res = await supersetService.securityLogin(params);
+          localStorage.setItem("jk_superset_token", res.access_token);
+          localStorage.setItem("jk_now", Date.now().toString());
+        }
         supersetService
           .getData(id)
           .then(res => {
