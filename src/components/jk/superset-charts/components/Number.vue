@@ -2,33 +2,33 @@
   <div
     class="card-item"
     :style="{
-      width: `${width}px`,
-      height: `${height}px`,
+      width: `${formatPixel(width)}`,
+      height: `${formatPixel(height)}`,
       alignItems: `${chartConfig.jk_align_items}`,
       justifyContent: `${chartConfig.jk_justify_content}`,
-      background: `${backgroundColor}`,
-      paddingTop: `${Number(chartConfig.jk_padding_top)}px`,
-      paddingBottom: `${Number(chartConfig.jk_padding_bottom)}px`,
-      paddingLeft: `${Number(chartConfig.jk_padding_left)}px`,
-      paddingRight: `${Number(chartConfig.jk_padding_right)}px`
+      backgroundColor,
+      paddingTop: `${formatPixel(chartConfig.jk_padding_top)}`,
+      paddingBottom: `${formatPixel(chartConfig.jk_padding_bottom)}`,
+      paddingLeft: `${formatPixel(chartConfig.jk_padding_left)}`,
+      paddingRight: `${formatPixel(chartConfig.jk_padding_right)}`
     }"
   >
     <div>
       <div
         :style="{
-          fontSize: `${Number(chartConfig.jk_number_font_size)}px`,
+          fontSize: `${formatPixel(chartConfig.jk_number_font_size)}`,
           fontWeight: `${chartConfig.jk_number_font_weight}`,
-          color: `${numberColor}`
+          color: numberColor
         }"
       >
         {{ val }}
       </div>
       <div
         :style="{
-          marginTop: `${Number(chartConfig.jk_spacing)}px`,
-          fontSize: `${Number(chartConfig.jk_title_font_size)}px`,
+          marginTop: `${formatPixel(chartConfig.jk_spacing)}`,
+          fontSize: `${formatPixel(chartConfig.jk_title_font_size)}`,
           fontWeight: `${chartConfig.jk_title_font_weight}`,
-          color: `${titleColor}`
+          color: titleColor
         }"
       >
         {{ chartConfig.jk_title }}
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { formatPixel } from "../utils/format";
 import { formatColor } from "../utils/colors";
 
 export default {
@@ -61,11 +62,11 @@ export default {
       default: () => []
     },
     width: {
-      type: Number,
+      type: [String, Number],
       default: 600
     },
     height: {
-      type: Number,
+      type: [String, Number],
       default: 150
     }
   },
@@ -89,6 +90,11 @@ export default {
           value
         );
       return value;
+    }
+  },
+  methods: {
+    formatPixel(val, num) {
+      return formatPixel(val, num);
     }
   }
 };

@@ -1,7 +1,10 @@
 <template>
   <el-card
     shadow="hover"
-    :style="{ width: `${width}px`, height: `${height}px` }"
+    :style="{
+      width: `${formatPixel(width)}`,
+      height: `${formatPixel(height)}`
+    }"
   >
     <div class="superset-charts-title">
       {{ chartName }}
@@ -25,7 +28,11 @@
     <el-table
       border
       :data="tableList[paginationCurrentPage - 1]"
-      :max-height="chartConfig.include_search ? height - 150 : height - 110"
+      :max-height="
+        chartConfig.include_search
+          ? formatPixel(height, 150)
+          : formatPixel(height, 110)
+      "
       :stripe="true"
     >
       <el-table-column
@@ -50,6 +57,8 @@
 </template>
 
 <script>
+import { formatPixel } from "../utils/format";
+
 export default {
   props: {
     chartName: {
@@ -73,11 +82,11 @@ export default {
       default: () => []
     },
     width: {
-      type: Number,
+      type: [String, Number],
       default: 600
     },
     height: {
-      type: Number,
+      type: [String, Number],
       default: 400
     }
   },
@@ -108,6 +117,9 @@ export default {
     }
   },
   methods: {
+    formatPixel(val, num) {
+      return formatPixel(val, num);
+    },
     haveSearch(obj) {
       return this.chartColnames
         .map(data =>

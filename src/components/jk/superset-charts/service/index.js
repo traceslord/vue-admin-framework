@@ -11,7 +11,7 @@ const service = {
   chartData(params = {}) {
     return axios.post(API.chartData, params);
   },
-  async getData(id) {
+  async getData(id, filter) {
     const res = await axios.get(API.chartItem(id));
     const config = JSON.parse(res.result.params);
     const ds = config.datasource.split("__");
@@ -127,6 +127,7 @@ const service = {
       });
       if (!tempArr.length) params.queries[0].metrics = [config.metric];
     }
+    if (filter) params.queries[0].filters[0] = filter;
     return await Promise.all([
       Promise.resolve(res.result.slice_name),
       Promise.resolve(res.result.description),

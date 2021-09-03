@@ -1,7 +1,10 @@
 <template>
   <el-card
     shadow="hover"
-    :style="{ width: `${width}px`, height: `${height}px` }"
+    :style="{
+      width: `${formatPixel(width)}`,
+      height: `${formatPixel(height)}`
+    }"
   >
     <div class="superset-charts-title">
       {{ chartName }}
@@ -17,8 +20,8 @@
     <div
       :ref="id"
       :style="{
-        width: width - 40 + 'px',
-        height: height - 72 + 'px'
+        width: formatPixel(width, 40),
+        height: formatPixel(height, 72)
       }"
     ></div>
   </el-card>
@@ -27,6 +30,7 @@
 <script>
 import * as echarts from "echarts";
 import "echarts-liquidfill";
+import { formatPixel } from "../utils/format";
 import { defaultby } from "../utils/defaultby";
 import { formatColor } from "../utils/colors";
 
@@ -50,11 +54,11 @@ export default {
       default: () => []
     },
     width: {
-      type: Number,
+      type: [String, Number],
       default: 600
     },
     height: {
-      type: Number,
+      type: [String, Number],
       default: 400
     }
   },
@@ -86,6 +90,9 @@ export default {
     }
   },
   methods: {
+    formatPixel(val, num) {
+      return formatPixel(val, num);
+    },
     drawChart() {
       const config = defaultby(this.chartConfig);
       const metricName =
