@@ -34,13 +34,14 @@
           : formatPixel(height, 110)
       "
       :stripe="true"
+      @sort-change="sortChange"
     >
       <el-table-column
         v-for="(data, index) in chartColnames"
         :key="index"
         :label="data"
         :prop="data"
-        sortable
+        sortable="custom"
       ></el-table-column>
     </el-table>
     <el-pagination
@@ -58,6 +59,7 @@
 
 <script>
 import { formatPixel } from "../utils/format";
+import { sort } from "../utils/sort";
 
 export default {
   props: {
@@ -93,7 +95,7 @@ export default {
   data() {
     return {
       search: "",
-      chartList: this.chartData,
+      chartList: JSON.parse(JSON.stringify(this.chartData)),
       paginationCurrentPage: 1,
       paginationPageSize: Number(this.chartConfig.page_length) || 20
     };
@@ -128,6 +130,18 @@ export default {
             .includes(this.search.toLowerCase())
         )
         .includes(true);
+    },
+    sortChange(obj) {
+      switch (obj.order) {
+        case "ascending":
+          sort(this.chartList, obj.prop, "升序");
+          break;
+        case "descending":
+          sort(this.chartList, obj.prop, "降序");
+          break;
+        default:
+          this.chartList = JSON.parse(JSON.stringify(this.chartData));
+      }
     }
   }
 };
