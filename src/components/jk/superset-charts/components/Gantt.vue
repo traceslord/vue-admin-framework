@@ -186,7 +186,12 @@ export default {
     },
     drawChart() {
       const config = defaultby(this.chartConfig);
-      let chartData = this.chartData;
+      let chartData = config.echarts_data_preprocessing
+        ? new Function(
+            "params",
+            `return ${config.echarts_data_preprocessing}`
+          )()(this.chartData)
+        : this.chartData;
       if (config.echarts_select) {
         chartData = this.selectData;
       }

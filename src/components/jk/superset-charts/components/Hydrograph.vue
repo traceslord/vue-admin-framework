@@ -99,7 +99,13 @@ export default {
         config.metric && config.metric.label
           ? config.metric.label
           : config.metric;
-      const val = this.chartData[0][metricName];
+      let val = this.chartData[0][metricName];
+      val = config.echarts_data_preprocessing
+        ? new Function(
+            "params",
+            `return ${config.echarts_data_preprocessing}`
+          )()(val)
+        : val;
 
       const warningThreshold = Number(
         config.echarts_hydrograph_warning_threshold

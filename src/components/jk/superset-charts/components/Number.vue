@@ -85,6 +85,12 @@ export default {
           ? config.metric.label
           : config.metric;
       let value = this.chartData[0][metricName];
+      value = config.echarts_data_preprocessing
+        ? new Function(
+            "params",
+            `return ${config.echarts_data_preprocessing}`
+          )()(value)
+        : value;
       if (config.jk_number_formatter)
         value = new Function("num", `return ${config.jk_number_formatter}`)()(
           value
