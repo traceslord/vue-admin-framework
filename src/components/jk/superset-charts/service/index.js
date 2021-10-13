@@ -11,7 +11,7 @@ const service = {
   chartData(params = {}) {
     return axios.post(API.chartData, params);
   },
-  async getData(id, filter) {
+  async getData(id, filters) {
     const res = await axios.get(API.chartItem(id));
     const config = JSON.parse(res.result.params);
     const ds = config.datasource.split("__");
@@ -107,6 +107,7 @@ const service = {
         ? [config.echarts_end_time]
         : [];
       const echartsName = config.echarts_name ? [config.echarts_name] : [];
+      const echartsPreprocessingData = config.echarts_preprocessing_data || [];
 
       const tempArr = [
         ...echartsIndicator,
@@ -121,7 +122,8 @@ const service = {
         ...echartsSort,
         ...echartsStartTime,
         ...echartsEndTime,
-        ...echartsName
+        ...echartsName,
+        ...echartsPreprocessingData
       ];
       tempArr.forEach(data => {
         if (params.queries[0].columns.indexOf(data) === -1)
@@ -129,7 +131,7 @@ const service = {
       });
       if (!tempArr.length) params.queries[0].metrics = [config.metric];
     }
-    if (filter) params.queries[0].filters[0] = filter;
+    if (filters) params.queries[0].filters = filters;
     return await Promise.all([
       Promise.resolve(res.result.slice_name),
       Promise.resolve(res.result.description),
