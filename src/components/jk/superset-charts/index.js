@@ -5,5 +5,6 @@ export { default as JkLine } from "./components/Line";
 export { default as JkLineBar } from "./components/LineBar";
 export { default as JkNumber } from "./components/Number";
 export { default as JkPie } from "./components/Pie";
+export { default as JkSankey } from "./components/Sankey";
 export { default as JkScatter } from "./components/Scatter";
 export { default as JkTable } from "./components/Table";
