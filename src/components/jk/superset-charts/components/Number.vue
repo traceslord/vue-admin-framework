@@ -80,11 +80,7 @@ export default {
   computed: {
     val() {
       const config = this.chartConfig;
-      const metricName =
-        config.metric && config.metric.label
-          ? config.metric.label
-          : config.metric;
-      let value = this.chartData[0][metricName];
+      let value = this.chartData;
       value = config.echarts_data_preprocessing
         ? new Function(
             "params",
