@@ -339,7 +339,7 @@ export default {
           nameGap: config.echarts_x_axis_name_gap,
           nameRotate: config.echarts_x_axis_name_rotate,
           inverse: config.echarts_x_axis_inverse,
-          scale: true,
+          scale: config.echarts_x_axis_scale,
           axisLabel: {
             rotate: config.echarts_x_axis_label_rotate
           },
@@ -355,7 +355,7 @@ export default {
           nameGap: config.echarts_y_axis_name_gap,
           nameRotate: config.echarts_y_axis_name_rotate,
           inverse: config.echarts_y_axis_inverse,
-          scale: true,
+          scale: config.echarts_y_axis_scale,
           axisLabel: {
             rotate: config.echarts_y_axis_label_rotate
           },
