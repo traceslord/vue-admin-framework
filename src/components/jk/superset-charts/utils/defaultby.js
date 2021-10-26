@@ -144,6 +144,7 @@ export const defaultby = config => {
     val.echarts_x_axis_data_format_type = "";
   if (!val.echarts_x_axis_label_interval)
     val.echarts_x_axis_label_interval = "";
+  if (!val.echarts_x_axis_scale) val.echarts_x_axis_scale = false;
 
   // yAxis
   if (!val.echarts_y_axis_show) val.echarts_y_axis_show = false;
@@ -162,6 +163,7 @@ export const defaultby = config => {
     val.echarts_y_axis_label_interval = "";
   if (!val.echarts_y_axis_label_interval_2)
     val.echarts_y_axis_label_interval_2 = "";
+  if (!val.echarts_y_axis_scale) val.echarts_y_axis_scale = false;
 
   // tooltip
   if (!val.echarts_tooltip_show) val.echarts_tooltip_show = false;
