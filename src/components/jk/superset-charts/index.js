@@ -1,4 +1,5 @@
 export { default as JkBar } from "./components/Bar";
+export { default as JkEchartsDiy } from "./components/EchartsDiy";
 export { default as JkGantt } from "./components/Gantt";
 export { default as JkHydrograph } from "./components/Hydrograph";
 export { default as JkLine } from "./components/Line";

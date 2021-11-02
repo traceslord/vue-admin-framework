@@ -109,6 +109,19 @@
           ></jk-bar>
         </template>
 
+        <template v-if="item.type === 'echarts_diy'">
+          <jk-echarts-diy
+            v-loading="item.loading"
+            :id="item.id || item.tid"
+            :chart-name="item.name"
+            :chart-description="item.description"
+            :chart-config="item.config"
+            :chart-data="item.data"
+            :width="formatWidth(item.width)"
+            :height="item.height"
+          ></jk-echarts-diy>
+        </template>
+
         <template v-if="item.type === 'echarts_gantt'">
           <jk-gantt
             v-loading="item.loading"
@@ -310,6 +323,7 @@ import Draggable from "@/plugins/draggable";
 import supersetService from "@/components/jk/superset-charts/service";
 import {
   JkBar,
+  JkEchartsDiy,
   JkGantt,
   JkHydrograph,
   JkLine,
@@ -325,6 +339,7 @@ export default {
   components: {
     Draggable,
     JkBar,
+    JkEchartsDiy,
     JkGantt,
     JkHydrograph,
     JkLine,
@@ -417,6 +432,12 @@ export default {
         {
           id: 13,
           chart_id: 29,
+          width: 1220,
+          height: 800
+        },
+        {
+          id: 14,
+          chart_id: 30,
           width: 1220,
           height: 800
         }
