@@ -186,13 +186,12 @@ export default {
     },
     drawChart() {
       const config = defaultby(this.chartConfig);
-      const metadata = config.echarts_data_preprocessing
+      let chartData = config.echarts_data_preprocessing
         ? new Function(
             "params",
             `return ${config.echarts_data_preprocessing}`
           )()(this.chartData)
         : this.chartData;
-      let chartData = metadata.data;
       if (config.echarts_select) {
         chartData = this.selectData;
       }
@@ -219,102 +218,71 @@ export default {
       config.echarts_legend_not_selected.forEach(data => {
         legendNotSelected[data] = false;
       });
-      const legendData = config.echarts_legend_data
-        ? metadata.legendData
-        : config.echarts_y_left.concat(config.echarts_y_right);
-      const yAxis = [
-        {
-          show: config.echarts_y_axis_show,
-          type: config.echarts_y_axis_type,
-          name: config.echarts_y_axis_name,
-          nameLocation: config.echarts_y_axis_name_location,
-          nameGap: config.echarts_y_axis_name_gap,
-          nameRotate: config.echarts_y_axis_name_rotate,
-          inverse: config.echarts_y_axis_inverse,
-          axisLabel: {
-            rotate: config.echarts_y_axis_label_rotate
-          }
-        },
-        {
-          show: config.echarts_y_axis_show_2,
-          type: "value",
-          name: config.echarts_y_axis_name_2,
-          nameLocation: config.echarts_y_axis_name_location_2,
-          nameGap: config.echarts_y_axis_name_gap_2,
-          nameRotate: config.echarts_y_axis_name_rotate_2,
-          inverse: config.echarts_y_axis_inverse_2,
-          axisLabel: {
-            rotate: config.echarts_y_axis_label_rotate_2
-          }
-        }
-      ];
-      if (config.echarts_y_axis_data) yAxis[0].data = metadata.yAxisData;
-      const series = config.echarts_series
-        ? metadata.series
-        : config.echarts_y_left
-            .map(item => ({
-              type: "line",
-              name: item,
-              showSymbol: config.echarts_series_show_symbol,
-              showAllSymbol: config.echarts_series_show_all_symbol,
-              symbol: config.echarts_series_symbol,
-              symbolSize: [
-                config.echarts_series_symbol_size_width,
-                config.echarts_series_symbol_size_height
-              ],
-              symbolRotate: config.echarts_series_symbol_rotate,
-              symbolOffset: [
-                config.echarts_series_symbol_offset_horizontal,
-                config.echarts_series_symbol_offset_vertical
-              ],
-              step: config.echarts_series_step,
-              lineStyle: {
-                type: config.echarts_series_line_style_type,
-                width: config.echarts_series_line_style_width,
-                opacity: config.echarts_series_line_style_opacity
-              },
-              areaStyle: {
-                opacity: config.echarts_series_area_style_opacity
-              },
-              legendHoverLink: config.echarts_series_legend_hover_link,
-              stack: config.echarts_series_stack,
-              smooth: config.echarts_series_smooth,
-              connectNulls: config.echarts_series_connect_nulls,
-              data: chartData.map(data => data[item])
-            }))
-            .concat(
-              config.echarts_y_right.map(item => ({
-                type: "line",
-                name: item,
-                yAxisIndex: 1,
-                showSymbol: config.echarts_series_show_symbol_2,
-                showAllSymbol: config.echarts_series_show_all_symbol_2,
-                symbol: config.echarts_series_symbol_2,
-                symbolSize: [
-                  config.echarts_series_symbol_size_width_2,
-                  config.echarts_series_symbol_size_height_2
-                ],
-                symbolRotate: config.echarts_series_symbol_rotate_2,
-                symbolOffset: [
-                  config.echarts_series_symbol_offset_horizontal_2,
-                  config.echarts_series_symbol_offset_vertical_2
-                ],
-                step: config.echarts_series_step_2,
-                lineStyle: {
-                  type: config.echarts_series_line_style_type_2,
-                  width: config.echarts_series_line_style_width_2,
-                  opacity: config.echarts_series_line_style_opacity_2
-                },
-                areaStyle: {
-                  opacity: config.echarts_series_area_style_opacity_2
-                },
-                legendHoverLink: config.echarts_series_legend_hover_link_2,
-                stack: config.echarts_series_stack_2,
-                smooth: config.echarts_series_smooth_2,
-                connectNulls: config.echarts_series_connect_nulls_2,
-                data: chartData.map(data => data[item])
-              }))
-            );
+      const legendData = config.echarts_y_left.concat(config.echarts_y_right);
+      const series = config.echarts_y_left
+        .map(item => ({
+          type: "line",
+          name: item,
+          showSymbol: config.echarts_series_show_symbol,
+          showAllSymbol: config.echarts_series_show_all_symbol,
+          symbol: config.echarts_series_symbol,
+          symbolSize: [
+            config.echarts_series_symbol_size_width,
+            config.echarts_series_symbol_size_height
+          ],
+          symbolRotate: config.echarts_series_symbol_rotate,
+          symbolOffset: [
+            config.echarts_series_symbol_offset_horizontal,
+            config.echarts_series_symbol_offset_vertical
+          ],
+          step: config.echarts_series_step,
+          lineStyle: {
+            type: config.echarts_series_line_style_type,
+            width: config.echarts_series_line_style_width,
+            opacity: config.echarts_series_line_style_opacity
+          },
+          areaStyle: {
+            opacity: config.echarts_series_area_style_opacity
+          },
+          legendHoverLink: config.echarts_series_legend_hover_link,
+          stack: config.echarts_series_stack,
+          smooth: config.echarts_series_smooth,
+          connectNulls: config.echarts_series_connect_nulls,
+          data: chartData.map(data => data[item])
+        }))
+        .concat(
+          config.echarts_y_right.map(item => ({
+            type: "line",
+            name: item,
+            yAxisIndex: 1,
+            showSymbol: config.echarts_series_show_symbol_2,
+            showAllSymbol: config.echarts_series_show_all_symbol_2,
+            symbol: config.echarts_series_symbol_2,
+            symbolSize: [
+              config.echarts_series_symbol_size_width_2,
+              config.echarts_series_symbol_size_height_2
+            ],
+            symbolRotate: config.echarts_series_symbol_rotate_2,
+            symbolOffset: [
+              config.echarts_series_symbol_offset_horizontal_2,
+              config.echarts_series_symbol_offset_vertical_2
+            ],
+            step: config.echarts_series_step_2,
+            lineStyle: {
+              type: config.echarts_series_line_style_type_2,
+              width: config.echarts_series_line_style_width_2,
+              opacity: config.echarts_series_line_style_opacity_2
+            },
+            areaStyle: {
+              opacity: config.echarts_series_area_style_opacity_2
+            },
+            legendHoverLink: config.echarts_series_legend_hover_link_2,
+            stack: config.echarts_series_stack_2,
+            smooth: config.echarts_series_smooth_2,
+            connectNulls: config.echarts_series_connect_nulls_2,
+            data: chartData.map(data => data[item])
+          }))
+        );
 
       this.chart.setOption({
         legend: {
@@ -377,7 +345,32 @@ export default {
             return data[config.echarts_x];
           })
         },
-        yAxis,
+        yAxis: [
+          {
+            show: config.echarts_y_axis_show,
+            type: config.echarts_y_axis_type,
+            name: config.echarts_y_axis_name,
+            nameLocation: config.echarts_y_axis_name_location,
+            nameGap: config.echarts_y_axis_name_gap,
+            nameRotate: config.echarts_y_axis_name_rotate,
+            inverse: config.echarts_y_axis_inverse,
+            axisLabel: {
+              rotate: config.echarts_y_axis_label_rotate
+            }
+          },
+          {
+            show: config.echarts_y_axis_show_2,
+            type: "value",
+            name: config.echarts_y_axis_name_2,
+            nameLocation: config.echarts_y_axis_name_location_2,
+            nameGap: config.echarts_y_axis_name_gap_2,
+            nameRotate: config.echarts_y_axis_name_rotate_2,
+            inverse: config.echarts_y_axis_inverse_2,
+            axisLabel: {
+              rotate: config.echarts_y_axis_label_rotate_2
+            }
+          }
+        ],
         tooltip: {
           show: config.echarts_tooltip_show,
           trigger: config.echarts_tooltip_trigger,
