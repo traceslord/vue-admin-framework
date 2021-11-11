@@ -8,7 +8,7 @@
   >
     <export-btn
       v-if="isExport"
-      :data="[{ 水位图: val }]"
+      :data="[{ [chartName]: val }]"
       :name="`${chartName}.csv`"
       ><slot name="export"></slot
     ></export-btn>
