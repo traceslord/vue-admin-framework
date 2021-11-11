@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
+    "downloadjs": "^1.4.7",
     "echarts": "^5.1.1",
     "echarts-liquidfill": "^3.0.0",
     "echarts-stat": "^1.2.0",
@@ -21,7 +22,7 @@
     "html2canvas": "^1.0.0-rc.7",
     "jk-image-editor": "^1.0.2",
     "jk-markdown-it": "^1.0.6",
-    "jk-superset-charts": "^2.9.1",
+    "jk-superset-charts": "^3.0.0",
     "markdown-it": "^11.0.0",
     "markdown-it-abbr": "^1.0.4",
     "markdown-it-container": "^3.0.0",

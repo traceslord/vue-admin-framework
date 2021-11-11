@@ -6,6 +6,12 @@
       height: `${formatPixel(height)}`
     }"
   >
+    <export-btn v-if="isExport" :data="chartList" :name="`${chartName}.csv`"
+      ><slot name="export"></slot
+    ></export-btn>
+    <skip-btn v-if="isSkip && chartId" :id="chartId"
+      ><slot name="skip"></slot
+    ></skip-btn>
     <div class="superset-charts-title">
       {{ chartName }}
       <el-popover v-if="chartDescription" placement="right" trigger="hover">
@@ -60,9 +66,16 @@
 <script>
 import { formatPixel } from "../utils/format";
 import { sort } from "../utils/sort";
+import ExportBtn from "./widgets/ExportBtn.vue";
+import SkipBtn from "./widgets/SkipBtn.vue";
 
 export default {
+  components: {
+    ExportBtn,
+    SkipBtn
+  },
   props: {
+    chartId: [String, Number],
     chartName: {
       type: String,
       default: ""
@@ -90,6 +103,14 @@ export default {
     height: {
       type: [String, Number],
       default: 400
+    },
+    isSkip: {
+      type: Boolean,
+      default: false
+    },
+    isExport: {
+      type: Boolean,
+      default: false
     }
   },
   data() {

@@ -4056,6 +4056,11 @@ dotenv@^8.2.0:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
   integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
 
+downloadjs@^1.4.7:
+  version "1.4.7"
+  resolved "https://registry.yarnpkg.com/downloadjs/-/downloadjs-1.4.7.tgz#f69f96f940e0d0553dac291139865a3cd0101e3c"
+  integrity sha1-9p+W+UDg0FU9rCkROYZaPNAQHjw=
+
 duplexer@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
@@ -6564,12 +6569,13 @@ jk-markdown-it@^1.0.6:
     markdown-it-sup "^1.0.0"
     markdown-it-task-lists "^2.1.1"
 
-jk-superset-charts@^2.9.1:
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/jk-superset-charts/-/jk-superset-charts-2.9.1.tgz#0f6691cea532c4d5d00e1f85f09ec0220b8b0131"
-  integrity sha512-UDFFByiejCW8EpADe2QFETUGDPZntoC9UnLoubwMIm3SEe6sicR1LUYs6/kfdnMhtOq3v19QmIqQR0fpIzjOtg==
+jk-superset-charts@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/jk-superset-charts/-/jk-superset-charts-3.0.0.tgz#d4313db2c322645b5f3fd67ed4ac95251ced6793"
+  integrity sha512-Keb74hsKFcmWFg/FFECIGL5BMOt2OcvziM80KKEVXLG0tRDjSWQZI03r7U1czRFI/yUv+NnJ50/Fm5Vv7ZPCdw==
   dependencies:
     axios "^0.19.2"
+    downloadjs "^1.4.7"
     echarts "^5.1.1"
     echarts-liquidfill "^3.0.0"
     echarts-stat "^1.2.0"

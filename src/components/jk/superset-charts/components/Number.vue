@@ -13,6 +13,15 @@
       paddingRight: `${formatPixel(chartConfig.jk_padding_right)}`
     }"
   >
+    <export-btn
+      v-if="isExport"
+      :data="[{ 数字图: val }]"
+      :name="`${chartConfig.jk_title}.csv`"
+      ><slot name="export"></slot
+    ></export-btn>
+    <skip-btn v-if="isSkip && chartId" :id="chartId"
+      ><slot name="skip"></slot
+    ></skip-btn>
     <div>
       <div
         :style="{
@@ -46,9 +55,16 @@
 <script>
 import { formatPixel } from "../utils/format";
 import { formatColor } from "../utils/colors";
+import ExportBtn from "./widgets/ExportBtn.vue";
+import SkipBtn from "./widgets/SkipBtn.vue";
 
 export default {
+  components: {
+    ExportBtn,
+    SkipBtn
+  },
   props: {
+    chartId: [String, Number],
     chartDescription: {
       type: String,
       default: ""
@@ -68,6 +84,14 @@ export default {
     height: {
       type: [String, Number],
       default: 150
+    },
+    isSkip: {
+      type: Boolean,
+      default: false
+    },
+    isExport: {
+      type: Boolean,
+      default: false
     }
   },
   data() {

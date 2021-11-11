@@ -85,141 +85,269 @@
             </el-dropdown-menu>
           </el-dropdown>
         </div>
-        <div v-show="!editing" @click="skip(item.chart_id)">
-          <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
-        </div>
 
         <template v-if="item.type === 'echarts_bar'">
           <jk-bar
             v-loading="item.loading"
             :id="item.id || item.tid"
+            :chart-id="item.chart_id"
             :chart-name="item.name"
             :chart-description="item.description"
             :chart-config="item.config"
             :chart-data="item.data"
             :width="formatWidth(item.width)"
             :height="item.height"
-          ></jk-bar>
+            is-skip
+            is-export
+          >
+            <template v-slot:skip>
+              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+            </template>
+            <template v-slot:export>
+              <icon-svg
+                svg-name="export"
+                svg-class="charts-item-export"
+              ></icon-svg>
+            </template>
+          </jk-bar>
         </template>
 
         <template v-if="item.type === 'echarts_diy'">
           <jk-echarts-diy
             v-loading="item.loading"
             :id="item.id || item.tid"
+            :chart-id="item.chart_id"
             :chart-name="item.name"
             :chart-description="item.description"
             :chart-config="item.config"
             :chart-data="item.data"
             :width="formatWidth(item.width)"
             :height="item.height"
-          ></jk-echarts-diy>
+            is-skip
+            is-export
+          >
+            <template v-slot:skip>
+              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+            </template>
+            <template v-slot:export>
+              <icon-svg
+                svg-name="export"
+                svg-class="charts-item-export"
+              ></icon-svg>
+            </template>
+          </jk-echarts-diy>
         </template>
 
         <template v-if="item.type === 'echarts_gantt'">
           <jk-gantt
             v-loading="item.loading"
             :id="item.id || item.tid"
+            :chart-id="item.chart_id"
             :chart-name="item.name"
             :chart-description="item.description"
             :chart-config="item.config"
             :chart-data="item.data"
             :width="formatWidth(item.width)"
             :height="item.height"
-          ></jk-gantt>
+            is-skip
+            is-export
+          >
+            <template v-slot:skip>
+              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+            </template>
+            <template v-slot:export>
+              <icon-svg
+                svg-name="export"
+                svg-class="charts-item-export"
+              ></icon-svg>
+            </template>
+          </jk-gantt>
         </template>
 
         <template v-if="item.type === 'echarts_hydrograph'">
           <jk-hydrograph
             v-loading="item.loading"
             :id="item.id || item.tid"
+            :chart-id="item.chart_id"
             :chart-name="item.name"
             :chart-description="item.description"
             :chart-config="item.config"
             :chart-data="item.data"
             :width="formatWidth(item.width)"
             :height="item.height"
-          ></jk-hydrograph>
+            is-skip
+            is-export
+          >
+            <template v-slot:skip>
+              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+            </template>
+            <template v-slot:export>
+              <icon-svg
+                svg-name="export"
+                svg-class="charts-item-export"
+              ></icon-svg>
+            </template>
+          </jk-hydrograph>
         </template>
 
         <template v-if="item.type === 'echarts_line'">
           <jk-line
             v-loading="item.loading"
             :id="item.id || item.tid"
+            :chart-id="item.chart_id"
             :chart-name="item.name"
             :chart-description="item.description"
             :chart-config="item.config"
             :chart-data="item.data"
             :width="formatWidth(item.width)"
             :height="item.height"
-          ></jk-line>
+            is-skip
+            is-export
+          >
+            <template v-slot:skip>
+              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+            </template>
+            <template v-slot:export>
+              <icon-svg
+                svg-name="export"
+                svg-class="charts-item-export"
+              ></icon-svg>
+            </template>
+          </jk-line>
         </template>
 
         <template v-if="item.type === 'echarts_line_bar'">
           <jk-line-bar
             v-loading="item.loading"
             :id="item.id || item.tid"
+            :chart-id="item.chart_id"
             :chart-name="item.name"
             :chart-description="item.description"
             :chart-config="item.config"
             :chart-data="item.data"
             :width="formatWidth(item.width)"
             :height="item.height"
-          ></jk-line-bar>
+            is-skip
+            is-export
+          >
+            <template v-slot:skip>
+              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+            </template>
+            <template v-slot:export>
+              <icon-svg
+                svg-name="export"
+                svg-class="charts-item-export"
+              ></icon-svg>
+            </template>
+          </jk-line-bar>
         </template>
 
         <template v-if="item.type === 'jk_number'">
           <jk-number
             v-loading="item.loading"
+            :chart-id="item.chart_id"
             :chart-description="item.description"
             :chart-config="item.config"
             :chart-data="item.data"
             :width="formatWidth(item.width)"
             :height="item.height"
-          ></jk-number>
+            is-skip
+            is-export
+          >
+            <template v-slot:skip>
+              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+            </template>
+            <template v-slot:export>
+              <icon-svg
+                svg-name="export"
+                svg-class="charts-item-export"
+              ></icon-svg>
+            </template>
+          </jk-number>
         </template>
 
         <template v-if="item.type === 'echarts_pie'">
           <jk-pie
             v-loading="item.loading"
             :id="item.id || item.tid"
+            :chart-id="item.chart_id"
             :chart-name="item.name"
             :chart-description="item.description"
             :chart-config="item.config"
             :chart-data="item.data"
             :width="formatWidth(item.width)"
             :height="item.height"
-          ></jk-pie>
+            is-skip
+            is-export
+          >
+            <template v-slot:skip>
+              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+            </template>
+            <template v-slot:export>
+              <icon-svg
+                svg-name="export"
+                svg-class="charts-item-export"
+              ></icon-svg>
+            </template>
+          </jk-pie>
         </template>
 
         <template v-if="item.type === 'echarts_sankey'">
           <jk-sankey
             v-loading="item.loading"
             :id="item.id || item.tid"
+            :chart-id="item.chart_id"
             :chart-name="item.name"
             :chart-description="item.description"
             :chart-config="item.config"
             :chart-data="item.data"
             :width="formatWidth(item.width)"
             :height="item.height"
-          ></jk-sankey>
+            is-skip
+            is-export
+          >
+            <template v-slot:skip>
+              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+            </template>
+            <template v-slot:export>
+              <icon-svg
+                svg-name="export"
+                svg-class="charts-item-export"
+              ></icon-svg>
+            </template>
+          </jk-sankey>
         </template>
 
         <template v-if="item.type === 'echarts_scatter'">
           <jk-scatter
             v-loading="item.loading"
             :id="item.id || item.tid"
+            :chart-id="item.chart_id"
             :chart-name="item.name"
             :chart-description="item.description"
             :chart-config="item.config"
             :chart-data="item.data"
             :width="formatWidth(item.width)"
             :height="item.height"
-          ></jk-scatter>
+            is-skip
+            is-export
+          >
+            <template v-slot:skip>
+              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+            </template>
+            <template v-slot:export>
+              <icon-svg
+                svg-name="export"
+                svg-class="charts-item-export"
+              ></icon-svg>
+            </template>
+          </jk-scatter>
         </template>
 
         <template v-if="item.type === 'table'">
           <jk-table
             v-loading="item.loading"
+            :chart-id="item.chart_id"
             :chart-name="item.name"
             :chart-description="item.description"
             :chart-config="item.config"
@@ -227,7 +355,19 @@
             :chart-colnames="item.colnames"
             :width="formatWidth(item.width)"
             :height="item.height"
-          ></jk-table>
+            is-skip
+            is-export
+          >
+            <template v-slot:skip>
+              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+            </template>
+            <template v-slot:export>
+              <icon-svg
+                svg-name="export"
+                svg-class="charts-item-export"
+              ></icon-svg>
+            </template>
+          </jk-table>
         </template>
 
         <template v-if="!item.type">
@@ -313,7 +453,7 @@
 <script>
 import elementResizeDetectorMaker from "element-resize-detector";
 import Draggable from "@/plugins/draggable";
-import supersetService from "@/components/jk/superset-charts/service";
+import supersetService from "jk-superset-charts/service";
 import {
   JkBar,
   JkEchartsDiy,
@@ -326,7 +466,7 @@ import {
   JkSankey,
   JkScatter,
   JkTable
-} from "@/components/jk/superset-charts";
+} from "jk-superset-charts";
 
 export default {
   components: {
@@ -578,11 +718,6 @@ export default {
     this.unbind();
   },
   methods: {
-    skip(id) {
-      window.open(
-        `https://superset.zhuhuajian.com/superset/explore/?form_data=%7B%22slice_id%22%3A%20${id}%7D`
-      );
-    },
     getDashboard() {
       this.loading = true;
       this.charts.forEach(data => {
@@ -872,10 +1007,10 @@ export default {
         height: 100%;
       }
     }
-    .charts-item-skip {
+    .charts-item-skip,
+    .charts-item-export {
       position: absolute;
       top: 15px;
-      right: 15px;
       display: none;
       width: 20px;
       height: 20px;
@@ -885,6 +1020,12 @@ export default {
         color: #409eff;
       }
     }
+    .charts-item-skip {
+      right: 15px;
+    }
+    .charts-item-export {
+      right: 42px;
+    }
     &:hover .charts-item-mask {
       border: 1px dashed #409eff;
       background: rgba(255, 255, 255, 0);
@@ -892,7 +1033,8 @@ export default {
     &:hover .charts-item-operation {
       z-index: 3;
     }
-    &:hover .charts-item-skip {
+    &:hover .charts-item-skip,
+    &:hover .charts-item-export {
       display: block;
     }
   }

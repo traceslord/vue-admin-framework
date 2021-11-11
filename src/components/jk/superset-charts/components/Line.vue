@@ -6,6 +6,12 @@
       height: `${formatPixel(height)}`
     }"
   >
+    <export-btn v-if="isExport" :data="exportData" :name="`${chartName}.csv`"
+      ><slot name="export"></slot
+    ></export-btn>
+    <skip-btn v-if="isSkip && chartId" :id="chartId"
+      ><slot name="skip"></slot
+    ></skip-btn>
     <div class="superset-charts-title">
       {{ chartName }}
       <el-popover v-if="chartDescription" placement="right" trigger="hover">
@@ -72,10 +78,17 @@ import { groupby } from "../utils/groupby";
 import { sort } from "../utils/sort";
 import { formatColor } from "../utils/colors";
 import { formatDate } from "../utils/dates";
+import ExportBtn from "./widgets/ExportBtn.vue";
+import SkipBtn from "./widgets/SkipBtn.vue";
 
 export default {
+  components: {
+    ExportBtn,
+    SkipBtn
+  },
   props: {
     id: [String, Number],
+    chartId: [String, Number],
     chartName: {
       type: String,
       default: ""
@@ -99,6 +112,14 @@ export default {
     height: {
       type: [String, Number],
       default: 400
+    },
+    isSkip: {
+      type: Boolean,
+      default: false
+    },
+    isExport: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -162,6 +183,36 @@ export default {
         selected.push(datas[index]);
       });
       return selected.flat();
+    },
+    exportData() {
+      const config = this.chartConfig;
+      let chartData = config.echarts_data_preprocessing
+        ? new Function(
+            "params",
+            `return ${config.echarts_data_preprocessing}`
+          )()(this.chartData)
+        : this.chartData;
+      if (config.echarts_select) {
+        chartData = this.selectData;
+      }
+      if (this.selectTime) {
+        chartData = chartData.filter(
+          d =>
+            d[config.echarts_picker] >= this.selectTime[0] &&
+            d[config.echarts_picker] <= this.selectTime[1]
+        );
+      }
+      if (config.echarts_groupby) {
+        chartData = groupby(
+          chartData,
+          config.echarts_groupby,
+          config.echarts_groupby_aggregate
+        );
+      }
+      if (config.echarts_sort) {
+        sort(chartData, config.echarts_sort, config.echarts_order);
+      }
+      return chartData;
     }
   },
   mounted() {
@@ -186,34 +237,6 @@ export default {
     },
     drawChart() {
       const config = defaultby(this.chartConfig);
-      let chartData = config.echarts_data_preprocessing
-        ? new Function(
-            "params",
-            `return ${config.echarts_data_preprocessing}`
-          )()(this.chartData)
-        : this.chartData;
-      if (config.echarts_select) {
-        chartData = this.selectData;
-      }
-      if (this.selectTime) {
-        chartData = chartData.filter(
-          d =>
-            d[config.echarts_picker] >= this.selectTime[0] &&
-            d[config.echarts_picker] <= this.selectTime[1]
-        );
-      }
-      if (config.echarts_groupby) {
-        chartData = groupby(
-          chartData,
-          config.echarts_groupby,
-          config.echarts_groupby_aggregate,
-          config.echarts_x
-        );
-      }
-      if (config.echarts_sort) {
-        sort(chartData, config.echarts_sort, config.echarts_order);
-      }
-
       const legendNotSelected = {};
       config.echarts_legend_not_selected.forEach(data => {
         legendNotSelected[data] = false;
@@ -248,7 +271,7 @@ export default {
           stack: config.echarts_series_stack,
           smooth: config.echarts_series_smooth,
           connectNulls: config.echarts_series_connect_nulls,
-          data: chartData.map(data => data[item])
+          data: this.exportData.map(data => data[item])
         }))
         .concat(
           config.echarts_y_right.map(item => ({
@@ -280,7 +303,7 @@ export default {
             stack: config.echarts_series_stack_2,
             smooth: config.echarts_series_smooth_2,
             connectNulls: config.echarts_series_connect_nulls_2,
-            data: chartData.map(data => data[item])
+            data: this.exportData.map(data => data[item])
           }))
         );
 
@@ -335,7 +358,7 @@ export default {
             interval: config.echarts_x_axis_label_interval,
             rotate: config.echarts_x_axis_label_rotate
           },
-          data: chartData.map(data => {
+          data: this.exportData.map(data => {
             if (config.echarts_x_axis_data_format) {
               return formatDate.formatBox(
                 config.echarts_x_axis_data_format_type,

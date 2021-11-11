@@ -6,6 +6,12 @@
       height: `${formatPixel(height)}`
     }"
   >
+    <export-btn v-if="isExport" :data="exportData" :name="`${chartName}.csv`"
+      ><slot name="export"></slot
+    ></export-btn>
+    <skip-btn v-if="isSkip && chartId" :id="chartId"
+      ><slot name="skip"></slot
+    ></skip-btn>
     <div class="superset-charts-title">
       {{ chartName }}
       <el-popover v-if="chartDescription" placement="right" trigger="hover">
@@ -72,10 +78,17 @@ import { defaultby } from "../utils/defaultby";
 import { groupby } from "../utils/groupby";
 import { sort } from "../utils/sort";
 import { formatColor } from "../utils/colors";
+import ExportBtn from "./widgets/ExportBtn.vue";
+import SkipBtn from "./widgets/SkipBtn.vue";
 
 export default {
+  components: {
+    ExportBtn,
+    SkipBtn
+  },
   props: {
     id: [String, Number],
+    chartId: [String, Number],
     chartName: {
       type: String,
       default: ""
@@ -99,6 +112,14 @@ export default {
     height: {
       type: [String, Number],
       default: 400
+    },
+    isSkip: {
+      type: Boolean,
+      default: false
+    },
+    isExport: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -162,30 +183,9 @@ export default {
         selected.push(datas[index]);
       });
       return selected.flat();
-    }
-  },
-  mounted() {
-    this.chart = echarts.init(this.$refs[this.id]);
-    this.drawChart();
-  },
-  beforeDestroy() {
-    if (!this.chart) return;
-    this.chart.dispose();
-    this.chart = null;
-  },
-  watch: {
-    size() {
-      this.$nextTick(() => {
-        this.chart.resize();
-      });
-    }
-  },
-  methods: {
-    formatPixel(val, num) {
-      return formatPixel(val, num);
     },
-    drawChart() {
-      const config = defaultby(this.chartConfig);
+    exportData() {
+      const config = this.chartConfig;
       let chartData = config.echarts_data_preprocessing
         ? new Function(
             "params",
@@ -212,7 +212,31 @@ export default {
       if (config.echarts_sort) {
         sort(chartData, config.echarts_sort, config.echarts_order);
       }
-
+      return chartData;
+    }
+  },
+  mounted() {
+    this.chart = echarts.init(this.$refs[this.id]);
+    this.drawChart();
+  },
+  beforeDestroy() {
+    if (!this.chart) return;
+    this.chart.dispose();
+    this.chart = null;
+  },
+  watch: {
+    size() {
+      this.$nextTick(() => {
+        this.chart.resize();
+      });
+    }
+  },
+  methods: {
+    formatPixel(val, num) {
+      return formatPixel(val, num);
+    },
+    drawChart() {
+      const config = defaultby(this.chartConfig);
       const legendNotSelected = {};
       config.echarts_legend_not_selected.forEach(data => {
         legendNotSelected[data] = false;
@@ -234,7 +258,7 @@ export default {
           shadowColor: "rgba(0, 0, 0, 0.2)",
           shadowOffsetY: 5
         },
-        data: chartData.map(subitem => [
+        data: this.exportData.map(subitem => [
           subitem[config.echarts_x],
           subitem[item],
           subitem[config.echarts_name],
@@ -255,7 +279,7 @@ export default {
       }));
       if (config.echarts_regression_type) {
         config.echarts_y.forEach(item => {
-          const lineData = chartData.map(subitem => [
+          const lineData = this.exportData.map(subitem => [
             subitem[config.echarts_x],
             subitem[item]
           ]);

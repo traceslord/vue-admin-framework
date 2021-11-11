@@ -6,6 +6,12 @@
       height: `${formatPixel(height)}`
     }"
   >
+    <export-btn v-if="isExport" :data="exportData" :name="`${chartName}.csv`"
+      ><slot name="export"></slot
+    ></export-btn>
+    <skip-btn v-if="isSkip && chartId" :id="chartId"
+      ><slot name="skip"></slot
+    ></skip-btn>
     <div class="superset-charts-title">
       {{ chartName }}
       <el-popover v-if="chartDescription" placement="right" trigger="hover">
@@ -72,10 +78,17 @@ import { groupby } from "../utils/groupby";
 import { sort } from "../utils/sort";
 import { formatColor } from "../utils/colors";
 import { formatDate } from "../utils/dates";
+import ExportBtn from "./widgets/ExportBtn.vue";
+import SkipBtn from "./widgets/SkipBtn.vue";
 
 export default {
+  components: {
+    ExportBtn,
+    SkipBtn
+  },
   props: {
     id: [String, Number],
+    chartId: [String, Number],
     chartName: {
       type: String,
       default: ""
@@ -99,6 +112,14 @@ export default {
     height: {
       type: [String, Number],
       default: 400
+    },
+    isSkip: {
+      type: Boolean,
+      default: false
+    },
+    isExport: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -162,6 +183,36 @@ export default {
         selected.push(datas[index]);
       });
       return selected.flat();
+    },
+    exportData() {
+      const config = this.chartConfig;
+      let chartData = config.echarts_data_preprocessing
+        ? new Function(
+            "params",
+            `return ${config.echarts_data_preprocessing}`
+          )()(this.chartData)
+        : this.chartData;
+      if (config.echarts_select) {
+        chartData = this.selectData;
+      }
+      if (this.selectTime) {
+        chartData = chartData.filter(
+          d =>
+            d[config.echarts_picker] >= this.selectTime[0] &&
+            d[config.echarts_picker] <= this.selectTime[1]
+        );
+      }
+      if (config.echarts_groupby) {
+        chartData = groupby(
+          chartData,
+          config.echarts_groupby,
+          config.echarts_groupby_aggregate
+        );
+      }
+      if (config.echarts_sort) {
+        sort(chartData, config.echarts_sort, config.echarts_order);
+      }
+      return chartData;
     }
   },
   mounted() {
@@ -186,40 +237,12 @@ export default {
     },
     drawChart() {
       const config = defaultby(this.chartConfig);
-      let chartData = config.echarts_data_preprocessing
-        ? new Function(
-            "params",
-            `return ${config.echarts_data_preprocessing}`
-          )()(this.chartData)
-        : this.chartData;
-      if (config.echarts_select) {
-        chartData = this.selectData;
-      }
-      if (this.selectTime) {
-        chartData = chartData.filter(
-          d =>
-            d[config.echarts_picker] >= this.selectTime[0] &&
-            d[config.echarts_picker] <= this.selectTime[1]
-        );
-      }
-      if (config.echarts_groupby) {
-        chartData = groupby(
-          chartData,
-          config.echarts_groupby,
-          config.echarts_groupby_aggregate,
-          config.echarts_x
-        );
-      }
-      if (config.echarts_sort) {
-        sort(chartData, config.echarts_sort, config.echarts_order);
-      }
-
       const legendNotSelected = {};
       config.echarts_legend_not_selected.forEach(data => {
         legendNotSelected[data] = false;
       });
 
-      const planData = chartData.map(item => {
+      const planData = this.exportData.map(item => {
         const startTime = new Date(item[config.echarts_start_time]).getTime();
         const endTime = new Date(item[config.echarts_end_time]).getTime();
         return {
@@ -236,7 +259,7 @@ export default {
           ((data.endTime - data.startTime) * data.progress) / 100 +
           data.startTime
       );
-      const otherData = chartData.map(item => {
+      const otherData = this.exportData.map(item => {
         const obj = {};
         config.echarts_indicators.forEach(data => {
           obj[data] = item[data];
@@ -426,7 +449,7 @@ export default {
               color: "#eaeaea"
             }
           },
-          data: chartData.map(item => {
+          data: this.exportData.map(item => {
             const obj = JSON.parse(JSON.stringify(item));
             const startTime = obj[config.echarts_start_time];
             const endTime = obj[config.echarts_end_time];
