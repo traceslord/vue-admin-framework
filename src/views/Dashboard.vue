@@ -453,7 +453,7 @@
 <script>
 import elementResizeDetectorMaker from "element-resize-detector";
 import Draggable from "@/plugins/draggable";
-import supersetService from "jk-superset-charts/service";
+import supersetService from "@/components/jk/superset-charts/service";
 import {
   JkBar,
   JkEchartsDiy,
@@ -466,7 +466,7 @@ import {
   JkSankey,
   JkScatter,
   JkTable
-} from "jk-superset-charts";
+} from "@/components/jk/superset-charts";
 
 export default {
   components: {

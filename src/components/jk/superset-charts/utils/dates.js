@@ -3,6 +3,19 @@ const formatNumber = num => {
   return n[1] ? n : `0${n}`;
 };
 
+export const formatExport = timestamp => {
+  const date = new Date(timestamp);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+  const second = date.getSeconds();
+  return `${[year, month, day, hour, minute, second]
+    .map(formatNumber)
+    .join("")}`;
+};
+
 const formatTime = timestamp => {
   const date = new Date(timestamp);
   const year = date.getFullYear();
