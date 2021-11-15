@@ -245,6 +245,16 @@ export default {
         type: "scatter",
         name: item,
         symbolSize: params => params[3],
+        label: {
+          show: config.echarts_name_show,
+          position: "top",
+          formatter: params => params.data[2]
+        },
+        itemStyle: {
+          shadowBlur: 10,
+          shadowColor: "rgba(0, 0, 0, 0.2)",
+          shadowOffsetY: 5
+        },
         emphasis: {
           focus: "series",
           label: {
@@ -252,11 +262,6 @@ export default {
             position: "top",
             formatter: params => params.data[2]
           }
-        },
-        itemStyle: {
-          shadowBlur: 10,
-          shadowColor: "rgba(0, 0, 0, 0.2)",
-          shadowOffsetY: 5
         },
         data: this.exportData.map(subitem => [
           subitem[config.echarts_x],
