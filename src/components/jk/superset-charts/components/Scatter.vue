@@ -246,7 +246,7 @@ export default {
         name: item,
         symbolSize: params => params[3],
         label: {
-          show: config.echarts_name_show,
+          show: config.echarts_name_show === "always",
           position: "top",
           formatter: params => params.data[2]
         },
