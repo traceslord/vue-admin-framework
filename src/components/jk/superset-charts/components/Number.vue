@@ -15,7 +15,7 @@
   >
     <export-btn
       v-if="isExport"
-      :data="[{ [chartConfig.jk_title]: val }]"
+      :data="chartData"
       :name="`${chartConfig.jk_title}.csv`"
       ><slot name="export"></slot
     ></export-btn>

@@ -108,13 +108,20 @@
             is-export
           >
             <template v-slot:skip>
-              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+              <icon-svg
+                v-if="!editing"
+                svg-name="skip"
+                svg-class="charts-item-skip"
+              ></icon-svg>
+              <div v-else></div>
             </template>
             <template v-slot:export>
               <icon-svg
+                v-if="!editing"
                 svg-name="export"
                 svg-class="charts-item-export"
               ></icon-svg>
+              <div v-else></div>
             </template>
           </jk-bar>
         </template>
@@ -134,13 +141,20 @@
             is-export
           >
             <template v-slot:skip>
-              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+              <icon-svg
+                v-if="!editing"
+                svg-name="skip"
+                svg-class="charts-item-skip"
+              ></icon-svg>
+              <div v-else></div>
             </template>
             <template v-slot:export>
               <icon-svg
+                v-if="!editing"
                 svg-name="export"
                 svg-class="charts-item-export"
               ></icon-svg>
+              <div v-else></div>
             </template>
           </jk-echarts-diy>
         </template>
@@ -160,13 +174,20 @@
             is-export
           >
             <template v-slot:skip>
-              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+              <icon-svg
+                v-if="!editing"
+                svg-name="skip"
+                svg-class="charts-item-skip"
+              ></icon-svg>
+              <div v-else></div>
             </template>
             <template v-slot:export>
               <icon-svg
+                v-if="!editing"
                 svg-name="export"
                 svg-class="charts-item-export"
               ></icon-svg>
+              <div v-else></div>
             </template>
           </jk-gantt>
         </template>
@@ -186,13 +207,20 @@
             is-export
           >
             <template v-slot:skip>
-              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+              <icon-svg
+                v-if="!editing"
+                svg-name="skip"
+                svg-class="charts-item-skip"
+              ></icon-svg>
+              <div v-else></div>
             </template>
             <template v-slot:export>
               <icon-svg
+                v-if="!editing"
                 svg-name="export"
                 svg-class="charts-item-export"
               ></icon-svg>
+              <div v-else></div>
             </template>
           </jk-hydrograph>
         </template>
@@ -212,13 +240,20 @@
             is-export
           >
             <template v-slot:skip>
-              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+              <icon-svg
+                v-if="!editing"
+                svg-name="skip"
+                svg-class="charts-item-skip"
+              ></icon-svg>
+              <div v-else></div>
             </template>
             <template v-slot:export>
               <icon-svg
+                v-if="!editing"
                 svg-name="export"
                 svg-class="charts-item-export"
               ></icon-svg>
+              <div v-else></div>
             </template>
           </jk-line>
         </template>
@@ -238,13 +273,20 @@
             is-export
           >
             <template v-slot:skip>
-              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+              <icon-svg
+                v-if="!editing"
+                svg-name="skip"
+                svg-class="charts-item-skip"
+              ></icon-svg>
+              <div v-else></div>
             </template>
             <template v-slot:export>
               <icon-svg
+                v-if="!editing"
                 svg-name="export"
                 svg-class="charts-item-export"
               ></icon-svg>
+              <div v-else></div>
             </template>
           </jk-line-bar>
         </template>
@@ -262,13 +304,20 @@
             is-export
           >
             <template v-slot:skip>
-              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+              <icon-svg
+                v-if="!editing"
+                svg-name="skip"
+                svg-class="charts-item-skip"
+              ></icon-svg>
+              <div v-else></div>
             </template>
             <template v-slot:export>
               <icon-svg
+                v-if="!editing"
                 svg-name="export"
                 svg-class="charts-item-export"
               ></icon-svg>
+              <div v-else></div>
             </template>
           </jk-number>
         </template>
@@ -288,13 +337,20 @@
             is-export
           >
             <template v-slot:skip>
-              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+              <icon-svg
+                v-if="!editing"
+                svg-name="skip"
+                svg-class="charts-item-skip"
+              ></icon-svg>
+              <div v-else></div>
             </template>
             <template v-slot:export>
               <icon-svg
+                v-if="!editing"
                 svg-name="export"
                 svg-class="charts-item-export"
               ></icon-svg>
+              <div v-else></div>
             </template>
           </jk-pie>
         </template>
@@ -314,13 +370,20 @@
             is-export
           >
             <template v-slot:skip>
-              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+              <icon-svg
+                v-if="!editing"
+                svg-name="skip"
+                svg-class="charts-item-skip"
+              ></icon-svg>
+              <div v-else></div>
             </template>
             <template v-slot:export>
               <icon-svg
+                v-if="!editing"
                 svg-name="export"
                 svg-class="charts-item-export"
               ></icon-svg>
+              <div v-else></div>
             </template>
           </jk-sankey>
         </template>
@@ -340,13 +403,20 @@
             is-export
           >
             <template v-slot:skip>
-              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+              <icon-svg
+                v-if="!editing"
+                svg-name="skip"
+                svg-class="charts-item-skip"
+              ></icon-svg>
+              <div v-else></div>
             </template>
             <template v-slot:export>
               <icon-svg
+                v-if="!editing"
                 svg-name="export"
                 svg-class="charts-item-export"
               ></icon-svg>
+              <div v-else></div>
             </template>
           </jk-scatter>
         </template>
@@ -366,13 +436,20 @@
             is-export
           >
             <template v-slot:skip>
-              <icon-svg svg-name="skip" svg-class="charts-item-skip"></icon-svg>
+              <icon-svg
+                v-if="!editing"
+                svg-name="skip"
+                svg-class="charts-item-skip"
+              ></icon-svg>
+              <div v-else></div>
             </template>
             <template v-slot:export>
               <icon-svg
+                v-if="!editing"
                 svg-name="export"
                 svg-class="charts-item-export"
               ></icon-svg>
+              <div v-else></div>
             </template>
           </jk-table>
         </template>

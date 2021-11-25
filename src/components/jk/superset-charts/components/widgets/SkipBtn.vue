@@ -1,6 +1,6 @@
 <template>
   <div :id="`skip_${Date.now()}`" @click="skip">
-    <el-tooltip content="跳转" placement="top">
+    <el-tooltip :content="`跳转（${id}）`" placement="top">
       <slot><div class="skip-btn"></div></slot>
     </el-tooltip>
   </div>

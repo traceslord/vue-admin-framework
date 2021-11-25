@@ -6,10 +6,7 @@
       height: `${formatPixel(height)}`
     }"
   >
-    <export-btn
-      v-if="isExport"
-      :data="[{ [chartName]: val }]"
-      :name="`${chartName}.csv`"
+    <export-btn v-if="isExport" :data="chartData" :name="`${chartName}.csv`"
       ><slot name="export"></slot
     ></export-btn>
     <skip-btn v-if="isSkip && chartId" :id="chartId"

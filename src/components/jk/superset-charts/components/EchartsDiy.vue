@@ -119,6 +119,10 @@ export default {
           )()(this.chartData)
         : {};
       this.chart.setOption(option);
+      this.chart.on("click", params => {
+        if (typeof params.data !== "object" || !params.data.url) return;
+        window.open(params.data.url);
+      });
     }
   }
 };
