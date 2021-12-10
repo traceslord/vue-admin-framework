@@ -36,7 +36,8 @@ export default {
         ".csv",
         `_${formatExport(Date.now())}.csv`
       );
-      return download(data, filename, "application/csv");
+      const blob = this.base64ToBlob(data, "application/csv");
+      return download(blob, filename, "application/csv");
     },
     jsonToCSV(data) {
       const csvData = [];

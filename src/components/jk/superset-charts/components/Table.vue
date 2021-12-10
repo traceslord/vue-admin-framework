@@ -117,6 +117,7 @@ export default {
     return {
       search: "",
       chartList: JSON.parse(JSON.stringify(this.chartData)),
+      sortList: JSON.parse(JSON.stringify(this.chartData)),
       paginationCurrentPage: 1,
       paginationPageSize: Number(this.chartConfig.page_length) || 20
     };
@@ -133,7 +134,7 @@ export default {
   },
   watch: {
     search(val) {
-      this.chartList = this.chartData.filter(
+      this.chartList = this.sortList.filter(
         data => !val || this.haveSearch(data)
       );
       this.paginationCurrentPage = 1;
@@ -156,12 +157,14 @@ export default {
       switch (obj.order) {
         case "ascending":
           sort(this.chartList, obj.prop, "升序");
+          sort(this.sortList, obj.prop, "升序");
           break;
         case "descending":
           sort(this.chartList, obj.prop, "降序");
+          sort(this.sortList, obj.prop, "降序");
           break;
         default:
-          this.chartList = JSON.parse(JSON.stringify(this.chartData));
+          this.sortList = JSON.parse(JSON.stringify(this.chartData));
       }
     }
   }
