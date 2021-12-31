@@ -12,6 +12,11 @@ import { formatExport } from "../../utils/dates";
 
 export default {
   props: {
+    // 支持的类型 csv、xls
+    type: {
+      type: String,
+      default: "csv"
+    },
     data: {
       type: Array,
       default: null
@@ -31,13 +36,45 @@ export default {
     generate() {
       if (!this.data || !this.data.length) return;
       const json = this.getProcessedJson(this.data);
-      const data = this.jsonToCSV(json);
-      const filename = this.name.replace(
-        ".csv",
-        `_${formatExport(Date.now())}.csv`
-      );
-      const blob = this.base64ToBlob(data, "application/csv");
-      return download(blob, filename, "application/csv");
+      if (this.type === "xls") {
+        const data = this.jsonToXLS(json);
+        const filename = this.name.replace(
+          ".csv",
+          `_${formatExport(Date.now())}.xls`
+        );
+        const blob = this.base64ToBlob(data, "application/vnd.ms-excel");
+        return download(blob, filename, "application/vnd.ms-excel");
+      } else {
+        const data = this.jsonToCSV(json);
+        const filename = this.name.replace(
+          ".csv",
+          `_${formatExport(Date.now())}.csv`
+        );
+        const blob = this.base64ToBlob(data, "application/csv");
+        return download(blob, filename, "application/csv");
+      }
+    },
+    jsonToXLS(data) {
+      const xlsTemp =
+        '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><meta name=ProgId content=Excel.Sheet> <meta name=Generator content="Microsoft Excel 11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>Sheet1</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><style>br {mso-data-placement: same-cell;}</style></head><body><table>${table}</table></body></html>';
+      let xlsData = "<thead><tr>";
+      for (let key in data[0]) {
+        xlsData += `<th>${key}</th>`;
+      }
+      xlsData += "</tr></thead><tbody>";
+      data.map(item => {
+        xlsData += "<tr>";
+        for (let key in item) {
+          xlsData += `<td>${
+            typeof item[key] == "string"
+              ? item[key].replace(/\n/gi, "<br/>")
+              : item[key]
+          }</td>`;
+        }
+        xlsData += "</tr>";
+      });
+      xlsData += "</tbody>";
+      return xlsTemp.replace("${table}", xlsData);
     },
     jsonToCSV(data) {
       const csvData = [];
