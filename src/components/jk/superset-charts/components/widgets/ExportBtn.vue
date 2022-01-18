@@ -35,6 +35,7 @@ export default {
   methods: {
     generate() {
       if (!this.data || !this.data.length) return;
+      this.parseJSON(this.data);
       const json = this.getProcessedJson(this.data);
       if (this.type === "xls") {
         const data = this.jsonToXLS(json);
@@ -53,6 +54,25 @@ export default {
         const blob = this.base64ToBlob(data, "application/csv");
         return download(blob, filename, "application/csv");
       }
+    },
+    parseJSON(data) {
+      data.forEach(item => {
+        Object.keys(item).forEach(subitem => {
+          if (this.isJSON(item[subitem]))
+            item[subitem] = JSON.parse(item[subitem]);
+        });
+      });
+    },
+    isJSON(val) {
+      const isString = typeof val === "string" || val instanceof String;
+      if (!isString) return false;
+      try {
+        const obj = JSON.parse(val);
+        return !!obj && typeof obj === "object";
+      } catch (e) {
+        /* ignore */
+      }
+      return false;
     },
     jsonToXLS(data) {
       const xlsTemp =

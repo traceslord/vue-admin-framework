@@ -6569,10 +6569,10 @@ jk-markdown-it@^1.0.6:
     markdown-it-sup "^1.0.0"
     markdown-it-task-lists "^2.1.1"
 
-jk-superset-charts@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/jk-superset-charts/-/jk-superset-charts-3.1.0.tgz#8f0fb4543e2133b0e76a8b6fe8f0fde0eae35835"
-  integrity sha512-iRWCOm2rE4aYAOItJCvcRQdTxhyOcVDnmlx78ArtyvZTDBLTSg5qxyBXXyREPuRFKbmDng27R1i2qNouGRRM2A==
+jk-superset-charts@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/jk-superset-charts/-/jk-superset-charts-3.2.0.tgz#45edf74abaf8db5135fcfb7cdcf0ee5440022946"
+  integrity sha512-8IQe8S5U4CJUOWJ3v7dc0QKMwAMvMQ83PZ0eCXAupg/mibvlh0pc1j/ZaTO+bXm2AO/KMycYICm4XNaL/woz8Q==
   dependencies:
     axios "^0.19.2"
     downloadjs "^1.4.7"
